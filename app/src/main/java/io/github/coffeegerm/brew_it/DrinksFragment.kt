@@ -3,24 +3,37 @@ package io.github.coffeegerm.brew_it
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.widget.GridLayoutManager
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import kotlinx.android.synthetic.main.fragment_container.*
-import kotlinx.android.synthetic.main.fragment_container.view.*
+import kotlinx.android.synthetic.main.fragment_drinks.*
 
 /**
  * Created by david_yarz on 10/23/17.
+ *
+ * Fragment Responsible for controlling the Recycler view of drinks
  */
 class DrinksFragment : Fragment() {
 
-    private val TAG: String = "MoreFragment"
+    private val TAG: String = "DrinksFragment"
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        Log.d(TAG, "Fragment Created")
-        val view = inflater.inflate(R.layout.fragment_drinks, container, false)
-        return view
+        return inflater.inflate(R.layout.fragment_drinks, container, false)
+    }
+
+    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        Log.i(TAG, "OnCreatedView")
+        setupAdapter()
+    }
+
+    private fun setupAdapter() {
+        if (isAdded) {
+            drinks_recycler_view.layoutManager = GridLayoutManager(activity, 3)
+            Log.i(TAG, "layoutManager set")
+        }
     }
 
     override fun onDestroy() {
