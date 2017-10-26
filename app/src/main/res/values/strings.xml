@@ -3,4 +3,5 @@
     <string name="title_drinks">Drinks</string>
     <string name="title_timer">Timer</string>
     <string name="title_more">More</string>
+    <string name="drink_image">Drink Image</string>
 </resources>

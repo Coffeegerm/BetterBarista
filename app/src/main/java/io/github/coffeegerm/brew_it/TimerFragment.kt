@@ -20,8 +20,7 @@ class TimerFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         Log.d(TAG, "Fragment Created")
-        val view = inflater.inflate(R.layout.fragment_container, container, false)
-        view.message.setText(R.string.title_timer)
+        val view = inflater.inflate(R.layout.fragment_timer, container, false)
         return view
     }
 
