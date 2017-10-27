@@ -3,6 +3,7 @@ package io.github.coffeegerm.brew_it
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.content.res.ResourcesCompat
 import android.support.v7.widget.GridLayoutManager
 import android.util.Log
 import android.view.LayoutInflater
@@ -26,6 +27,7 @@ class DrinksFragment : Fragment() {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Log.i(TAG, "OnCreatedView")
+        toolbar_title.typeface = ResourcesCompat.getFont(context, R.font.raleway_thin)
         setupAdapter()
     }
 
