@@ -18,9 +18,12 @@ class MoreFragment : Fragment() {
     private val TAG: String = "MoreFragment"
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        Log.d(TAG, "Fragment Created")
-        val view = inflater.inflate(R.layout.fragment_container, container, false)
-        return view
+        Log.d(TAG, "View Created")
+        return inflater.inflate(R.layout.fragment_more, container, false)
+    }
+
+    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
     }
 
     override fun onDestroy() {

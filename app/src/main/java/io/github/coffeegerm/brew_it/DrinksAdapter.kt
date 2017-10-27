@@ -18,8 +18,7 @@ class DrinksAdapter() : RecyclerView.Adapter<DrinksViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DrinksViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_drink, parent, false)
-        return DrinksViewHolder(view)
+        return DrinksViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_drink, parent, false))
     }
 
     override fun getItemCount(): Int {
