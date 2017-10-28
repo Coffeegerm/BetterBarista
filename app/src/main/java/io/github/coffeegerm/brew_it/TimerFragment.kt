@@ -2,14 +2,13 @@ package io.github.coffeegerm.brew_it
 
 import android.content.Context
 import android.os.Bundle
+import android.os.Handler
 import android.support.v4.app.Fragment
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.inflate
 import android.view.ViewGroup
-import kotlinx.android.synthetic.main.fragment_container.*
-import kotlinx.android.synthetic.main.fragment_container.view.*
+import kotlinx.android.synthetic.main.fragment_timer.*
 
 /**
  * Created by david_yarz on 10/24/17.
@@ -25,6 +24,20 @@ class TimerFragment : Fragment() {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        var count = 60
+        val handler = Handler()
+
+        val runnable = object : Runnable {
+            override fun run() {
+                if (count <= 100) {
+                    handler.postDelayed(this, 1000)
+                    circularView.setPercentage(count)
+                    count--
+                }
+            }
+        }
+
+        handler.post(runnable)
     }
 
     override fun onDestroy() {
