@@ -3,7 +3,12 @@ package io.github.coffeegerm.brew_it
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
+import io.github.coffeegerm.brew_it.data.Coffee
+import io.github.coffeegerm.brew_it.data.Drink
+import io.github.coffeegerm.brew_it.data.Mocha
 import kotlinx.android.synthetic.main.activity_main.*
+
+var drinksList: ArrayList<Drink> = ArrayList()
 
 class MainActivity : AppCompatActivity() {
 
@@ -37,11 +42,15 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        drinksList = getDrinksList()
         supportFragmentManager.beginTransaction().replace(R.id.fragment_container, DrinksFragment()).commit()
         navigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    fun getDrinksList(): ArrayList<Drink> {
+        drinksList.add(Mocha())
+        drinksList.add(Coffee())
+        return drinksList
     }
+
 }

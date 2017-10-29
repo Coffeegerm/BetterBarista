@@ -11,7 +11,7 @@ import io.github.coffeegerm.brew_it.data.Drink
  */
 class DrinksAdapter() : RecyclerView.Adapter<DrinksViewHolder>() {
 
-    private val drinks: MutableList<Drink> = mutableListOf()
+    val drinks: ArrayList<Drink> = drinksList
 
     override fun onBindViewHolder(holder: DrinksViewHolder, position: Int) {
         holder.bindDrink(drinks[position])

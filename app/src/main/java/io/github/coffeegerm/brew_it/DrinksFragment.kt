@@ -33,7 +33,8 @@ class DrinksFragment : Fragment() {
 
     private fun setupAdapter() {
         if (isAdded) {
-            drinks_recycler_view.layoutManager = GridLayoutManager(activity, 3)
+            drinks_recycler_view.layoutManager = GridLayoutManager(activity, 2)
+            drinks_recycler_view.adapter = DrinksAdapter()
             Log.i(TAG, "layoutManager set")
         }
     }
