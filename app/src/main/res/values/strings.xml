@@ -4,4 +4,31 @@
     <string name="title_timer">Timer</string>
     <string name="title_more">More</string>
     <string name="drink_image">Drink Image</string>
+
+    <string name="coffee">Coffee</string>
+    <string name="coffee_description">The classic cup of coffee, easy to enjoy and even easier to make.</string>
+
+    <string name="mocha">Mocha</string>
+    <string name="mocha_description">A blend of espresso and chocolate make this drink an all year favorite for some</string>
+
+
+    <!-- Instructions -->
+
+    <!-- Instructions for coffee -->
+    <array name="instructions_coffee">
+        <item name="instruction_step1_coffee">Grind coffee if necessary and load into filter of
+            selected coffee pot.
+        </item>
+        <item name="instruction_step2_coffee">Add water to basin.</item>
+        <item name="instruction_step3_coffee">
+            Press start.
+        </item>
+        <item name="instruction_step4_coffee">
+            Wait for brewing to complete.
+        </item>
+        <item name="instruction_step5_coffee">
+            Pour and enjoy!
+        </item>
+    </array>
+
 </resources>

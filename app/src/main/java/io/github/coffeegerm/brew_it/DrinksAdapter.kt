@@ -9,7 +9,7 @@ import io.github.coffeegerm.brew_it.data.Drink
  * Created by dYarzebinski on 10/26/2017.
  * TODO: Add class comment header
  */
-class DrinksAdapter() : RecyclerView.Adapter<DrinksViewHolder>() {
+class DrinksAdapter : RecyclerView.Adapter<DrinksViewHolder>() {
 
     val drinks: ArrayList<Drink> = drinksList
 
@@ -21,7 +21,5 @@ class DrinksAdapter() : RecyclerView.Adapter<DrinksViewHolder>() {
         return DrinksViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_drink, parent, false))
     }
 
-    override fun getItemCount(): Int {
-        return drinks.size
-    }
+    override fun getItemCount(): Int = drinks.size
 }

@@ -3,12 +3,12 @@ package io.github.coffeegerm.brew_it
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
-import io.github.coffeegerm.brew_it.data.Coffee
 import io.github.coffeegerm.brew_it.data.Drink
-import io.github.coffeegerm.brew_it.data.Mocha
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.*
 
 var drinksList: ArrayList<Drink> = ArrayList()
+var coffeeInstructions: List<String>? = null
 
 class MainActivity : AppCompatActivity() {
 
@@ -48,9 +48,26 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun getDrinksList(): ArrayList<Drink> {
-        drinksList.add(Mocha())
-        drinksList.add(Coffee())
+        drinksList.add(getCoffee())
+        drinksList.add(getMocha())
         return drinksList
     }
 
+    fun getCoffee(): Drink {
+        return Drink(name = getString(R.string.coffee),
+                description = getString(R.string.coffee_description),
+                servingSize = 16,
+                duration = 6,
+                instructions = Arrays.asList(*resources.getStringArray(R.array.instructions_coffee)),
+                image = null)
+    }
+
+    fun getMocha(): Drink {
+        return Drink(name = getString(R.string.coffee),
+                description = getString(R.string.coffee_description),
+                servingSize = 16,
+                duration = 6,
+                instructions = Arrays.asList(*resources.getStringArray(R.array.instructions_coffee)),
+                image = null)
+    }
 }

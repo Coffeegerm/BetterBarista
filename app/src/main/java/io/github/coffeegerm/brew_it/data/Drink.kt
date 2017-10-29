@@ -5,5 +5,9 @@ package io.github.coffeegerm.brew_it.data
  * TODO: Add class comment header
  */
 
-// TODO Work out how to do instructions and ingredients
-open class Drink(val name: String, val minutes: Int)
+open class Drink(val name: String,
+                 val description: String,
+                 val servingSize: Int,
+                 val duration: Int, // minutes
+                 val instructions: List<String>?,
+                 val image: Int?)
