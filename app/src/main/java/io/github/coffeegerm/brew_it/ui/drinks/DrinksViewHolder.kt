@@ -1,4 +1,4 @@
-package io.github.coffeegerm.brew_it
+package io.github.coffeegerm.brew_it.ui.drinks
 
 import android.support.v7.widget.RecyclerView
 import android.view.View

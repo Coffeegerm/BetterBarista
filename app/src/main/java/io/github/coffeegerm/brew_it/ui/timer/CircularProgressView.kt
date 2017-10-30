@@ -1,4 +1,4 @@
-package io.github.coffeegerm.brew_it
+package io.github.coffeegerm.brew_it.ui.timer
 
 import android.content.Context
 import android.graphics.Canvas
@@ -7,6 +7,7 @@ import android.graphics.RectF
 import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
 import android.view.View
+import io.github.coffeegerm.brew_it.R
 
 /**
  * Created by dYarzebinski on 10/27/2017.

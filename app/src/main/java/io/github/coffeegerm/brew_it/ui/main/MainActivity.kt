@@ -1,14 +1,16 @@
-package io.github.coffeegerm.brew_it
+package io.github.coffeegerm.brew_it.ui.main
 
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
+import io.github.coffeegerm.brew_it.R
 import io.github.coffeegerm.brew_it.data.Drink
+import io.github.coffeegerm.brew_it.drinksList
+import io.github.coffeegerm.brew_it.ui.drinks.DrinksFragment
+import io.github.coffeegerm.brew_it.ui.more.MoreFragment
+import io.github.coffeegerm.brew_it.ui.timer.TimerFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
-
-var drinksList: ArrayList<Drink> = ArrayList()
-var coffeeInstructions: List<String>? = null
 
 class MainActivity : AppCompatActivity() {
 
@@ -63,10 +65,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun getMocha(): Drink {
-        return Drink(name = getString(R.string.coffee),
-                description = getString(R.string.coffee_description),
+        return Drink(name = getString(R.string.mocha),
+                description = getString(R.string.mocha_description),
                 servingSize = 16,
-                duration = 6,
+                duration = 8,
                 instructions = Arrays.asList(*resources.getStringArray(R.array.instructions_coffee)),
                 image = null)
     }

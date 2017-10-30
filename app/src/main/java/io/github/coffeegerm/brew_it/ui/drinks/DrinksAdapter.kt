@@ -1,9 +1,11 @@
-package io.github.coffeegerm.brew_it
+package io.github.coffeegerm.brew_it.ui.drinks
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import io.github.coffeegerm.brew_it.R
 import io.github.coffeegerm.brew_it.data.Drink
+import io.github.coffeegerm.brew_it.drinksList
 
 /**
  * Created by dYarzebinski on 10/26/2017.

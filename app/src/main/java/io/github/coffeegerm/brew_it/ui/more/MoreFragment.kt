@@ -1,4 +1,4 @@
-package io.github.coffeegerm.brew_it
+package io.github.coffeegerm.brew_it.ui.more
 
 import android.content.Context
 import android.os.Bundle
@@ -7,35 +7,22 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import io.github.coffeegerm.brew_it.R
 
 /**
  * Created by david_yarz on 10/24/17.
  */
-class TimerFragment : Fragment() {
+class MoreFragment : Fragment() {
 
-    private val TAG: String = "TimerFragment"
+    private val TAG: String = "MoreFragment"
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        Log.d(TAG, "Fragment Created")
-        return inflater.inflate(R.layout.fragment_timer, container, false)
+        Log.d(TAG, "View Created")
+        return inflater.inflate(R.layout.fragment_more, container, false)
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        var count = 60
-//        val handler = Handler()
-//
-//        val runnable = object : Runnable {
-//            override fun run() {
-//                if (count <= 100) {
-//                    handler.postDelayed(this, 1000)
-//                    circularView.setPercentage(count)
-//                    count--
-//                }
-//            }
-//        }
-//
-//        handler.post(runnable)
     }
 
     override fun onDestroy() {

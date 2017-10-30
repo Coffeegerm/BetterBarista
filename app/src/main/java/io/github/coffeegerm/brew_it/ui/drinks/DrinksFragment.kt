@@ -1,4 +1,4 @@
-package io.github.coffeegerm.brew_it
+package io.github.coffeegerm.brew_it.ui.drinks
 
 import android.content.Context
 import android.os.Bundle
@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import io.github.coffeegerm.brew_it.R
 import kotlinx.android.synthetic.main.fragment_drinks.*
 
 /**

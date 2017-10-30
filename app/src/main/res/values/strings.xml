@@ -5,8 +5,11 @@
     <string name="title_more">More</string>
     <string name="drink_image">Drink Image</string>
 
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
+
     <string name="coffee">Coffee</string>
-    <string name="coffee_description">The classic cup of coffee, easy to enjoy and even easier to make.</string>
+    <string name="coffee_description">The classic cup of coffee, easy to make and even easier to enjoy.</string>
 
     <string name="mocha">Mocha</string>
     <string name="mocha_description">A blend of espresso and chocolate make this drink an all year favorite for some</string>
