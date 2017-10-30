@@ -12,8 +12,10 @@ import kotlinx.android.synthetic.main.fragment_timer.*
 
 /**
  * Created by david_yarz on 10/24/17.
+ *
+ * Fragment for handling Timer Activity
  */
-class TimerFragment : Fragment() {
+class TimerFragment : Fragment(), View.OnClickListener {
 
     private val TAG: String = "TimerFragment"
     var isButtonPressed: Boolean = false
@@ -40,11 +42,13 @@ class TimerFragment : Fragment() {
 //
 //        handler.post(runnable)
 
-        timer_button.setOnClickListener {
-            timer_button.text = if (isButtonPressed) getString(R.string.start) else getString(R.string.stop)
-            if (isButtonPressed) isButtonPressed = false
-            else if (!isButtonPressed) isButtonPressed = true
-        }
+        timer_button.setOnClickListener(this)
+    }
+
+    override fun onClick(v: View?) {
+        timer_button.text = if (isButtonPressed) getString(R.string.start) else getString(R.string.stop)
+        if (isButtonPressed) isButtonPressed = false
+        else if (!isButtonPressed) isButtonPressed = true
     }
 
     override fun onDestroy() {

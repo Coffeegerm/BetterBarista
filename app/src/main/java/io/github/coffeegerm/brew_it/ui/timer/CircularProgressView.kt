@@ -67,6 +67,7 @@ class CircularProgressView(context: Context?, attrs: AttributeSet) : View(contex
         }
     }
 
+    // todo fecator this to calculate for time
     fun setPercentage(percentage: Int) {
         this.percentage = percentage
         invalidate()

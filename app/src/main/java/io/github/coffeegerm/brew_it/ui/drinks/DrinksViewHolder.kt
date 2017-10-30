@@ -1,9 +1,11 @@
 package io.github.coffeegerm.brew_it.ui.drinks
 
+import android.content.Intent
+import android.support.v4.content.ContextCompat.startActivity
 import android.support.v7.widget.RecyclerView
 import android.view.View
-import android.widget.Toast
 import io.github.coffeegerm.brew_it.data.Drink
+import io.github.coffeegerm.brew_it.ui.single_drink.SingleDrinkActivity
 import kotlinx.android.synthetic.main.item_drink.view.*
 
 /**
@@ -18,7 +20,8 @@ class DrinksViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View
         itemView.setOnClickListener(this)
     }
 
-    override fun onClick(v: View?) {
-        Toast.makeText(v!!.context, "Hello there", Toast.LENGTH_SHORT).show()
+    override fun onClick(v: View) {
+        val intent = Intent(v.context, SingleDrinkActivity::class.java)
+        startActivity(v.context, intent, null)
     }
 }
