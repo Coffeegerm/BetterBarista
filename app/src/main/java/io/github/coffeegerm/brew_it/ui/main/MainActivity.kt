@@ -5,7 +5,6 @@ import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
 import io.github.coffeegerm.brew_it.R
 import io.github.coffeegerm.brew_it.data.Drink
-import io.github.coffeegerm.brew_it.drinksList
 import io.github.coffeegerm.brew_it.ui.drinks.DrinksFragment
 import io.github.coffeegerm.brew_it.ui.more.MoreFragment
 import io.github.coffeegerm.brew_it.ui.timer.TimerFragment
@@ -44,16 +43,16 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        drinksList = getDrinksList()
+        //drinksList = getDrinksList()
         supportFragmentManager.beginTransaction().replace(R.id.fragment_container, DrinksFragment()).commit()
         navigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
     }
 
-    fun getDrinksList(): ArrayList<Drink> {
-        drinksList.add(getCoffee())
-        drinksList.add(getMocha())
-        return drinksList
-    }
+//    fun getDrinksList(): ArrayList<Drink> {
+//        drinksList.add(getCoffee())
+//        drinksList.add(getMocha())
+//        return drinksList
+//    }
 
     fun getCoffee(): Drink {
         return Drink(name = getString(R.string.coffee),

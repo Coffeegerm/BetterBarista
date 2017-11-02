@@ -3,7 +3,7 @@
     package="io.github.coffeegerm.brew_it">
 
     <application
-        android:name=".BrewIt"
+        android:name=".BrewItApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="Brew It"
