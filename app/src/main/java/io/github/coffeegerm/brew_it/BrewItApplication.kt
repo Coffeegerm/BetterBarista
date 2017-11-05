@@ -12,12 +12,21 @@ import io.github.coffeegerm.brew_it.dagger.DaggerAppComponent
 
 class BrewItApplication : Application() {
 
-    private val component: AppComponent by lazy {
-        DaggerAppComponent.builder().appModule(AppModule(this)).build()
+    private lateinit var appComponent: AppComponent
+
+    fun getAppComponent(): AppComponent {
+        return appComponent
+    }
+
+    private fun initDagger(brewItApplication: BrewItApplication): AppComponent {
+        return DaggerAppComponent
+                .builder()
+                .appModule(AppModule(brewItApplication))
+                .build()
     }
 
     override fun onCreate() {
         super.onCreate()
-        component.inject(this)
+        appComponent = initDagger(this)
     }
 }

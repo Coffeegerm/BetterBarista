@@ -3,6 +3,7 @@ package io.github.coffeegerm.brew_it.ui.main
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
+import io.github.coffeegerm.brew_it.BrewItApplication
 import io.github.coffeegerm.brew_it.R
 import io.github.coffeegerm.brew_it.data.Drink
 import io.github.coffeegerm.brew_it.ui.drinks.DrinksFragment
