@@ -14,17 +14,8 @@ import io.realm.RealmConfiguration
 
 class BrewItApplication : Application() {
 
-    private lateinit var appComponent: AppComponent
-
-    fun getAppComponent(): AppComponent {
-        return appComponent
-    }
-
-    private fun initDagger(brewItApplication: BrewItApplication): AppComponent {
-        return DaggerAppComponent
-                .builder()
-                .appModule(AppModule(brewItApplication))
-                .build()
+    companion object {
+        @JvmStatic lateinit var graph: AppComponent
     }
 
     private fun initRealm() {
@@ -39,6 +30,7 @@ class BrewItApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         initRealm()
-        appComponent = initDagger(this)
+        graph = DaggerAppComponent.builder().appModule(AppModule(this)).build()
+        graph.inject(this)
     }
 }

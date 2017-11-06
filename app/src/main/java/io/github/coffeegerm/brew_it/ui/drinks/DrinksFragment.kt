@@ -9,7 +9,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import io.github.coffeegerm.brew_it.R
+import io.github.coffeegerm.brew_it.data.DrinksRepository
 import kotlinx.android.synthetic.main.fragment_drinks.*
+import javax.inject.Inject
 
 
 /**
@@ -18,6 +20,9 @@ import kotlinx.android.synthetic.main.fragment_drinks.*
  * Fragment Responsible for controlling the Recycler view of drinks
  */
 class DrinksFragment : Fragment() {
+
+    @Inject
+    lateinit var drinkRepository: DrinksRepository
 
     private val TAG: String = "DrinksFragment"
 

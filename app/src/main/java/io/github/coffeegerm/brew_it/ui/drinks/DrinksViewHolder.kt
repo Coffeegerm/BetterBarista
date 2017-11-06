@@ -16,7 +16,7 @@ class DrinksViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View
 
     fun bindDrink(item: Drink) {
         itemView.drink_name.text = item.name
-        itemView.drink_time.text = """${item.duration}:00"""
+        itemView.drink_time.text = """${item.brewDuration}:00"""
         itemView.setOnClickListener(this)
     }
 

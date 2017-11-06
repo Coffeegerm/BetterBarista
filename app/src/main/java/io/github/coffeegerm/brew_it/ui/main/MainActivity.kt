@@ -3,6 +3,7 @@ package io.github.coffeegerm.brew_it.ui.main
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import io.github.coffeegerm.brew_it.BrewItApplication
 import io.github.coffeegerm.brew_it.R
 import io.github.coffeegerm.brew_it.data.Drink
@@ -11,8 +12,15 @@ import io.github.coffeegerm.brew_it.ui.more.MoreFragment
 import io.github.coffeegerm.brew_it.ui.timer.TimerFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
+import javax.inject.Inject
+import javax.inject.Named
 
 class MainActivity : AppCompatActivity() {
+
+    val TAG = MainActivity::class.java.name
+
+    @field:[Inject Named("something")]
+    lateinit var something: String
 
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
@@ -45,6 +53,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         //drinksList = getDrinksList()
+        BrewItApplication.graph.inject(this)
+        Log.d(TAG, "$something has been received successfully")
         supportFragmentManager.beginTransaction().replace(R.id.fragment_container, DrinksFragment()).commit()
         navigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
     }
@@ -59,7 +69,9 @@ class MainActivity : AppCompatActivity() {
         return Drink(name = getString(R.string.coffee),
                 description = getString(R.string.coffee_description),
                 servingSize = 16,
-                duration = 6,
+                groundSize = "Course",
+                potency = "Regular",
+                brewDuration = 6,
                 instructions = Arrays.asList(*resources.getStringArray(R.array.instructions_coffee)),
                 image = null)
     }
@@ -68,7 +80,9 @@ class MainActivity : AppCompatActivity() {
         return Drink(name = getString(R.string.mocha),
                 description = getString(R.string.mocha_description),
                 servingSize = 16,
-                duration = 8,
+                groundSize = "Course",
+                potency = "Weak",
+                brewDuration = 8,
                 instructions = Arrays.asList(*resources.getStringArray(R.array.instructions_coffee)),
                 image = null)
     }
