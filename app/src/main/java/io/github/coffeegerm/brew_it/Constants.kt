@@ -5,6 +5,7 @@ package io.github.coffeegerm.brew_it
  *
  * Object file used to store any and all constants used throughout application
  */
+
 object Constants {
     val SHARED_PREFERENCES: String = "SHARED_PREFERENCES"
 }

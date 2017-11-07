@@ -7,6 +7,7 @@ import android.util.Log
 import io.github.coffeegerm.brew_it.BrewItApplication
 import io.github.coffeegerm.brew_it.R
 import io.github.coffeegerm.brew_it.data.Drink
+import io.github.coffeegerm.brew_it.data.DrinksRepository
 import io.github.coffeegerm.brew_it.ui.drinks.DrinksFragment
 import io.github.coffeegerm.brew_it.ui.more.MoreFragment
 import io.github.coffeegerm.brew_it.ui.timer.TimerFragment
@@ -14,16 +15,13 @@ import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 import javax.inject.Inject
 import javax.inject.Named
+import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity() {
 
     val TAG = MainActivity::class.java.name
 
-    @field:[Inject Named("something")]
-    lateinit var something: String
-
-    @field:[Inject Named("DrinksList")]
-    lateinit var drinksList: ArrayList<Drink>
+    @Inject lateinit var drinksRepository: DrinksRepository
 
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
@@ -55,27 +53,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        //drinksList = getDrinksList()
         BrewItApplication.graph.inject(this)
-        Log.d(TAG, "$something has been received successfully")
-        Log.d(TAG, "$drinksList has been received successfully")
         supportFragmentManager.beginTransaction().replace(R.id.fragment_container, DrinksFragment()).commit()
         navigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
-    }
-
-//    fun getDrinksList(): ArrayList<Drink> {
-//        drinksList.add(getCoffee())
-//        drinksList.add(getMocha())
-//        return drinksList
-//    }
-
-    fun getCoffee(): Drink {
-        return Drink(name = getString(R.string.coffee),
-                brewDuration = 6)
-    }
-
-    fun getMocha(): Drink {
-        return Drink(name = getString(R.string.mocha),
-                brewDuration = 8)
     }
 }

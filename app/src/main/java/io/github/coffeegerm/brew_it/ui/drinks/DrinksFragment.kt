@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import io.github.coffeegerm.brew_it.BrewItApplication
 import io.github.coffeegerm.brew_it.R
 import io.github.coffeegerm.brew_it.data.DrinksRepository
 import kotlinx.android.synthetic.main.fragment_drinks.*
@@ -18,6 +19,7 @@ import javax.inject.Inject
  * Created by david_yarz on 10/23/17.
  *
  * Fragment Responsible for controlling the Recycler view of drinks
+ * As well as beginning the SingleDrinkActivity
  */
 class DrinksFragment : Fragment() {
 
@@ -33,6 +35,7 @@ class DrinksFragment : Fragment() {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Log.i(TAG, "OnCreatedView")
+        BrewItApplication.graph.inject(this)
         toolbar_title.typeface = ResourcesCompat.getFont(context, R.font.raleway_thin)
         setupAdapter()
     }

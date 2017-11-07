@@ -42,11 +42,7 @@ class AppModule(brewItApplication: BrewItApplication) {
 
     @Provides
     @Singleton
-    @Named("something")
-    fun provideSomething(): String = "something"
-
-    @Provides
-    @Singleton
-    @Named("DrinksList")
-    fun provideDrinksList(): ArrayList<Drink> = DrinksRepository().getDrinks()
+    fun provideDrinksRepository(): DrinksRepository {
+        return DrinksRepository()
+    }
 }

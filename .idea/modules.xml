@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://E:\Documents\Android Applications\BrewIt\Brew-It.iml" filepath="E:\Documents\Android Applications\BrewIt\Brew-It.iml" />
-      <module fileurl="file://$PROJECT_DIR$/BrewIt.iml" filepath="$PROJECT_DIR$/BrewIt.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
