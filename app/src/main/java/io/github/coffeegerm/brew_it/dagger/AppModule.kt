@@ -7,8 +7,8 @@ import android.content.res.Resources
 import dagger.Module
 import dagger.Provides
 import io.github.coffeegerm.brew_it.BrewItApplication
-import io.github.coffeegerm.brew_it.Constants
 import io.github.coffeegerm.brew_it.Constants.SHARED_PREFERENCES
+import io.github.coffeegerm.brew_it.data.Drink
 import io.github.coffeegerm.brew_it.data.DrinksRepository
 import javax.inject.Named
 import javax.inject.Singleton
@@ -44,4 +44,9 @@ class AppModule(brewItApplication: BrewItApplication) {
     @Singleton
     @Named("something")
     fun provideSomething(): String = "something"
+
+    @Provides
+    @Singleton
+    @Named("DrinksList")
+    fun provideDrinksList(): ArrayList<Drink> = DrinksRepository().getDrinks()
 }

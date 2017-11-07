@@ -22,6 +22,9 @@ class MainActivity : AppCompatActivity() {
     @field:[Inject Named("something")]
     lateinit var something: String
 
+    @field:[Inject Named("DrinksList")]
+    lateinit var drinksList: ArrayList<Drink>
+
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_drinks -> {
@@ -55,6 +58,7 @@ class MainActivity : AppCompatActivity() {
         //drinksList = getDrinksList()
         BrewItApplication.graph.inject(this)
         Log.d(TAG, "$something has been received successfully")
+        Log.d(TAG, "$drinksList has been received successfully")
         supportFragmentManager.beginTransaction().replace(R.id.fragment_container, DrinksFragment()).commit()
         navigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
     }
@@ -67,23 +71,11 @@ class MainActivity : AppCompatActivity() {
 
     fun getCoffee(): Drink {
         return Drink(name = getString(R.string.coffee),
-                description = getString(R.string.coffee_description),
-                servingSize = 16,
-                groundSize = "Course",
-                potency = "Regular",
-                brewDuration = 6,
-                instructions = Arrays.asList(*resources.getStringArray(R.array.instructions_coffee)),
-                image = null)
+                brewDuration = 6)
     }
 
     fun getMocha(): Drink {
         return Drink(name = getString(R.string.mocha),
-                description = getString(R.string.mocha_description),
-                servingSize = 16,
-                groundSize = "Course",
-                potency = "Weak",
-                brewDuration = 8,
-                instructions = Arrays.asList(*resources.getStringArray(R.array.instructions_coffee)),
-                image = null)
+                brewDuration = 8)
     }
 }
