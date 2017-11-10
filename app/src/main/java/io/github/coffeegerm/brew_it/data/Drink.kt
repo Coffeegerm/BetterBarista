@@ -6,4 +6,6 @@ package io.github.coffeegerm.brew_it.data
  */
 
 open class Drink(val name: String,
-                 val brewDuration: Int) // minutes
+                 val brewDuration: Int, // minutes
+                 val strength: String,
+                 val difficulty: Int)

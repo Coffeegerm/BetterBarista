@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import io.github.coffeegerm.brew_it.BrewItApplication
 import io.github.coffeegerm.brew_it.R
+import io.github.coffeegerm.brew_it.data.Drink
 import io.github.coffeegerm.brew_it.data.DrinksRepository
 import kotlinx.android.synthetic.main.fragment_drinks.*
 import javax.inject.Inject
@@ -44,7 +45,10 @@ class DrinksFragment : Fragment() {
         if (isAdded) {
             drinks_recycler_view.layoutManager = GridLayoutManager(activity, 2)
             Log.i(TAG, "layoutManager set")
-            drinks_recycler_view.adapter = DrinksAdapter()
+            val adapter = DrinksAdapter()
+            val drinksList: ArrayList<Drink> = drinkRepository.getDrinks()
+            adapter.setDrinks(drinksList)
+            drinks_recycler_view.adapter = adapter
             Log.i(TAG, "Adapter set")
 
         }

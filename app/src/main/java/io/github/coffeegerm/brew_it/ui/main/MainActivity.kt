@@ -1,5 +1,6 @@
 package io.github.coffeegerm.brew_it.ui.main
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
@@ -21,7 +22,7 @@ class MainActivity : AppCompatActivity() {
 
     val TAG = MainActivity::class.java.name
 
-    @Inject lateinit var drinksRepository: DrinksRepository
+    @Inject lateinit var sharedPreferences: SharedPreferences
 
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
@@ -56,5 +57,9 @@ class MainActivity : AppCompatActivity() {
         BrewItApplication.graph.inject(this)
         supportFragmentManager.beginTransaction().replace(R.id.fragment_container, DrinksFragment()).commit()
         navigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
+    }
+
+    fun createDatabase() {
+
     }
 }
