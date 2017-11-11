@@ -10,10 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import io.github.coffeegerm.brew_it.BrewItApplication
 import io.github.coffeegerm.brew_it.R
-import io.github.coffeegerm.brew_it.data.Drink
-import io.github.coffeegerm.brew_it.data.DrinksRepository
 import kotlinx.android.synthetic.main.fragment_drinks.*
-import javax.inject.Inject
 
 
 /**
@@ -24,9 +21,6 @@ import javax.inject.Inject
  */
 class DrinksFragment : Fragment() {
 
-    @Inject
-    lateinit var drinkRepository: DrinksRepository
-
     private val TAG: String = "DrinksFragment"
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -36,7 +30,7 @@ class DrinksFragment : Fragment() {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Log.i(TAG, "OnCreatedView")
-        BrewItApplication.graph.inject(this)
+        BrewItApplication.syringe.inject(this)
         toolbar_title.typeface = ResourcesCompat.getFont(context, R.font.raleway_thin)
         setupAdapter()
     }
@@ -46,8 +40,6 @@ class DrinksFragment : Fragment() {
             drinks_recycler_view.layoutManager = GridLayoutManager(activity, 2)
             Log.i(TAG, "layoutManager set")
             val adapter = DrinksAdapter()
-            val drinksList: ArrayList<Drink> = drinkRepository.getDrinks()
-            adapter.setDrinks(drinksList)
             drinks_recycler_view.adapter = adapter
             Log.i(TAG, "Adapter set")
 

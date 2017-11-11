@@ -4,6 +4,7 @@ import android.app.Application
 import io.github.coffeegerm.brew_it.dagger.AppComponent
 import io.github.coffeegerm.brew_it.dagger.AppModule
 import io.github.coffeegerm.brew_it.dagger.DaggerAppComponent
+import io.github.coffeegerm.brew_it.data.Drink
 import io.realm.Realm
 import io.realm.RealmConfiguration
 
@@ -15,7 +16,7 @@ import io.realm.RealmConfiguration
 class BrewItApplication : Application() {
 
     companion object {
-        @JvmStatic lateinit var graph: AppComponent
+        @JvmStatic lateinit var syringe: AppComponent
     }
 
     private fun initRealm() {
@@ -27,10 +28,24 @@ class BrewItApplication : Application() {
         Realm.setDefaultConfiguration(realmConfig)
     }
 
+    fun createDatabase() {
+        val realm: Realm = Realm.getDefaultInstance()
+        val drink = Drink()
+
+        drink.id = 1
+        drink.name = "Coffee"
+        drink.brewDuration = 6
+        drink.strength = "Medium"
+        drink.difficulty = "Easy"
+        realm.copyToRealmOrUpdate(drink)
+
+        drink.id = 2
+    }
+
     override fun onCreate() {
         super.onCreate()
         initRealm()
-        graph = DaggerAppComponent.builder().appModule(AppModule(this)).build()
-        graph.inject(this)
+        syringe = DaggerAppComponent.builder().appModule(AppModule(this)).build()
+        syringe.inject(this)
     }
 }

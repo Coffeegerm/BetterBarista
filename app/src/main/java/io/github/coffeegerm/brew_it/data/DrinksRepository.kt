@@ -8,10 +8,8 @@ package io.github.coffeegerm.brew_it.data
 
 class DrinksRepository {
 
-    fun getDrinks(): ArrayList<Drink> {
-        val drinks: ArrayList<Drink> = ArrayList()
-        drinks.add(Drink(name = "Coffee", brewDuration = 6))
-        drinks.add(Drink(name = "Mocha", brewDuration = 10))
-        return drinks
-    }
+//    fun getDrinks(): ArrayList<Drink> {
+//        syringe.inject(this)
+//        return ArrayList(results)
+//    }
 }

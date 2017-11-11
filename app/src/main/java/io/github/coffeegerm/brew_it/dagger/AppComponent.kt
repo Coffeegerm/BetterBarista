@@ -20,4 +20,5 @@ interface AppComponent {
     fun inject(mainActivity: MainActivity)
     fun inject(drinksFragment: DrinksFragment)
     fun inject(timerFragment: TimerFragment)
+    fun inject(drinksRepository: DrinksRepository)
 }
