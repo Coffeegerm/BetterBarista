@@ -19,8 +19,7 @@ class BrewItApplication : Application() {
         @JvmStatic lateinit var syringe: AppComponent
     }
 
-    private fun initRealm() {
-        Realm.init(this)
+    private fun createRealmConfiguration() {
         val realmConfig: RealmConfiguration = RealmConfiguration
                 .Builder()
                 .deleteRealmIfMigrationNeeded()
@@ -28,23 +27,21 @@ class BrewItApplication : Application() {
         Realm.setDefaultConfiguration(realmConfig)
     }
 
-    fun createDatabase() {
+    override fun onCreate() {
+        super.onCreate()
+        Realm.init(this)
+        createRealmConfiguration()
+
         val realm: Realm = Realm.getDefaultInstance()
-        val drink = Drink()
+        val drink = realm.createObject(Drink::class.java)
 
         drink.id = 1
         drink.name = "Coffee"
         drink.brewDuration = 6
         drink.strength = "Medium"
         drink.difficulty = "Easy"
-        realm.copyToRealmOrUpdate(drink)
+        realm.insertOrUpdate(drink)
 
-        drink.id = 2
-    }
-
-    override fun onCreate() {
-        super.onCreate()
-        initRealm()
         syringe = DaggerAppComponent.builder().appModule(AppModule(this)).build()
         syringe.inject(this)
     }

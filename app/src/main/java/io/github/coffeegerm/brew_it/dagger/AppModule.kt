@@ -34,6 +34,7 @@ class AppModule(brewItApplication: BrewItApplication) {
     }
 
     @Provides
+    @Singleton
     @Named("drinksRepository")
     fun provideDrinksRepository(): DrinksRepository {
         return DrinksRepository()
