@@ -12,6 +12,7 @@ import io.github.coffeegerm.brew_it.BrewItApplication.Companion.syringe
 import io.github.coffeegerm.brew_it.R
 import io.github.coffeegerm.brew_it.data.DrinksRepository
 import kotlinx.android.synthetic.main.fragment_drinks.*
+import org.jetbrains.anko.gridLayout
 import javax.inject.Inject
 import javax.inject.Named
 

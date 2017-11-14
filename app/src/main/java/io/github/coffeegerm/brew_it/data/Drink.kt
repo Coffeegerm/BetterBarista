@@ -8,9 +8,9 @@ import io.realm.RealmObject
  */
 
 open class Drink : RealmObject() {
-    var id: Int? = 0
-    var name: String? = null
-    var brewDuration: Int? = 0 // minutes
-    var strength: String? = null
-    var difficulty: String? = null
+    var id: Int = 0
+    var name: String = ""
+    var brewDuration: Int = 0 // minutes
+    var strength: String = ""
+    var difficulty: String = ""
 }

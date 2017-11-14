@@ -6,6 +6,7 @@ import dagger.Module
 import dagger.Provides
 import io.github.coffeegerm.brew_it.BrewItApplication
 import io.github.coffeegerm.brew_it.data.DrinksRepository
+import io.realm.Realm
 import javax.inject.Named
 import javax.inject.Singleton
 
@@ -22,21 +23,20 @@ class AppModule(brewItApplication: BrewItApplication) {
     @Provides
     @Singleton
     @Named("context")
-    fun provideApplicationContext(): Context {
-        return app.applicationContext
-    }
+    fun provideApplicationContext(): Context = app.applicationContext
 
     @Provides
     @Singleton
     @Named("resources")
-    fun provideActivityResources(app: Context): Resources {
-        return app.resources
-    }
+    fun provideActivityResources(app: Context): Resources = app.resources
+
+    @Provides
+    @Singleton
+    @Named("realm")
+    fun provideRealm(): Realm = Realm.getDefaultInstance()
 
     @Provides
     @Singleton
     @Named("drinksRepository")
-    fun provideDrinksRepository(): DrinksRepository {
-        return DrinksRepository()
-    }
+    fun provideDrinksRepository(): DrinksRepository = DrinksRepository()
 }
