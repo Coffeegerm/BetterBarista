@@ -22,6 +22,5 @@ class DrinksRepository {
 
     fun getDrinks(): ArrayList<Drink> = ArrayList(realm.where(Drink::class.java).findAll())
 
-    //todo fix this causing problem
-    fun getSingleDrink(id: Int): Drink = realm.where(Drink::class.java).equalTo("id", id).findFirstAsync()
+    fun getSingleDrink(id: Int): Drink = realm.where(Drink::class.java).equalTo("id", id).findFirst()!!
 }

@@ -40,6 +40,8 @@ class DrinksFragment : Fragment() {
         syringe.inject(this)
         toolbar_title.typeface = ResourcesCompat.getFont(context, R.font.raleway_thin)
         setupAdapter()
+        val singleDrink = drinksRepository.getSingleDrink(1)
+        Log.d(TAG, singleDrink.name)
     }
 
     private fun setupAdapter() {

@@ -14,5 +14,4 @@ open class Drink : RealmObject() {
     var brewDuration: Int = 0 // minutes
     var strength: String = ""
     var difficulty: String = ""
-    var instructions: List<String> = listOf()
 }

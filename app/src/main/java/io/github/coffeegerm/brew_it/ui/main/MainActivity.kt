@@ -62,9 +62,8 @@ class MainActivity : AppCompatActivity() {
         realm.executeTransaction {
             realm.deleteAll()
             val drink = Drink()
-            var id = 0
 
-            drink.id = id++
+            drink.id = 1
             drink.name = "Coffee"
             drink.description = resources.getString(R.string.coffee_description)
             drink.brewDuration = 6
@@ -72,17 +71,15 @@ class MainActivity : AppCompatActivity() {
             drink.difficulty = "Easy"
             realm.insertOrUpdate(drink)
 
-            drink.id = id++
+            drink.id = 2
             drink.name = "Mocha"
             drink.brewDuration = 10
             drink.strength = "Light"
             drink.difficulty = "Medium"
             realm.insertOrUpdate(drink)
 
-            drink.id = id++
+            drink.id = 3
             drink.name = "Pour Over"
-
-            Log.d(TAG, drink.id.toString())
         }
     }
 }
