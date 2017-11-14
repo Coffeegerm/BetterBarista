@@ -3,11 +3,14 @@ package io.github.coffeegerm.brew_it.ui.main
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import io.github.coffeegerm.brew_it.BrewItApplication.Companion.syringe
 import io.github.coffeegerm.brew_it.R
+import io.github.coffeegerm.brew_it.data.Drink
 import io.github.coffeegerm.brew_it.ui.drinks.DrinksFragment
 import io.github.coffeegerm.brew_it.ui.more.MoreFragment
 import io.github.coffeegerm.brew_it.ui.timer.TimerFragment
+import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {

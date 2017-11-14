@@ -1,6 +1,7 @@
 package io.github.coffeegerm.brew_it
 
 import android.app.Application
+import android.util.Log
 import io.github.coffeegerm.brew_it.dagger.AppComponent
 import io.github.coffeegerm.brew_it.dagger.AppModule
 import io.github.coffeegerm.brew_it.dagger.DaggerAppComponent
@@ -15,34 +16,50 @@ import io.realm.RealmConfiguration
 
 class BrewItApplication : Application() {
 
+    val TAG = BrewItApplication::class.java.simpleName
+
     companion object {
         @JvmStatic lateinit var syringe: AppComponent
     }
 
-    private fun createRealmConfiguration() {
+    override fun onCreate() {
+        super.onCreate()
+        initRealm()
+        syringe = DaggerAppComponent.builder().appModule(AppModule(this)).build()
+        syringe.inject(this)
+    }
+
+    private fun initRealm() {
+        Realm.init(this)
         val realmConfig: RealmConfiguration = RealmConfiguration
                 .Builder()
                 .deleteRealmIfMigrationNeeded()
                 .build()
         Realm.setDefaultConfiguration(realmConfig)
+        initData()
     }
 
-    override fun onCreate() {
-        super.onCreate()
-        Realm.init(this)
-        createRealmConfiguration()
+    private fun initData() {
+        val realm = Realm.getDefaultInstance()
+        realm.executeTransaction {
+            realm.deleteAll()
+            val drink = Drink()
+            var id = 0
 
-        val realm: Realm = Realm.getDefaultInstance()
-        val drink = realm.createObject(Drink::class.java)
+            drink.id = id++
+            drink.name = "Coffee"
+            drink.brewDuration = 6
+            drink.strength = "Medium"
+            drink.difficulty = "Easy"
+            realm.insertOrUpdate(drink)
 
-        drink.id = 1
-        drink.name = "Coffee"
-        drink.brewDuration = 6
-        drink.strength = "Medium"
-        drink.difficulty = "Easy"
-        realm.insertOrUpdate(drink)
+            drink.id = id++
+            drink.name = "Mocha"
+            drink.brewDuration = 10
+            drink.strength = "Light"
+            drink.difficulty = "Medium"
 
-        syringe = DaggerAppComponent.builder().appModule(AppModule(this)).build()
-        syringe.inject(this)
+            Log.d(TAG, drink.id.toString())
+        }
     }
 }
