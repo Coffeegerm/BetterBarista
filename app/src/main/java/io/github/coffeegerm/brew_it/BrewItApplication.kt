@@ -36,30 +36,5 @@ class BrewItApplication : Application() {
                 .deleteRealmIfMigrationNeeded()
                 .build()
         Realm.setDefaultConfiguration(realmConfig)
-        initData()
-    }
-
-    private fun initData() {
-        val realm = Realm.getDefaultInstance()
-        realm.executeTransaction {
-            realm.deleteAll()
-            val drink = Drink()
-            var id = 0
-
-            drink.id = id++
-            drink.name = "Coffee"
-            drink.brewDuration = 6
-            drink.strength = "Medium"
-            drink.difficulty = "Easy"
-            realm.insertOrUpdate(drink)
-
-            drink.id = id++
-            drink.name = "Mocha"
-            drink.brewDuration = 10
-            drink.strength = "Light"
-            drink.difficulty = "Medium"
-
-            Log.d(TAG, drink.id.toString())
-        }
     }
 }

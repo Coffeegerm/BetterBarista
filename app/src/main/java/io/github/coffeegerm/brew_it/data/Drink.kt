@@ -10,7 +10,9 @@ import io.realm.RealmObject
 open class Drink : RealmObject() {
     var id: Int = 0
     var name: String = ""
+    var description: String = ""
     var brewDuration: Int = 0 // minutes
     var strength: String = ""
     var difficulty: String = ""
+    var instructions: List<String> = listOf()
 }

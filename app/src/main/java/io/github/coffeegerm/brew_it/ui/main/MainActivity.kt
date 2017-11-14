@@ -1,5 +1,6 @@
 package io.github.coffeegerm.brew_it.ui.main
 
+import android.content.res.Resources
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
@@ -12,6 +13,9 @@ import io.github.coffeegerm.brew_it.ui.more.MoreFragment
 import io.github.coffeegerm.brew_it.ui.timer.TimerFragment
 import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.*
+import javax.inject.Inject
+import javax.inject.Named
 
 class MainActivity : AppCompatActivity() {
 
@@ -50,5 +54,35 @@ class MainActivity : AppCompatActivity() {
         syringe.inject(this)
         supportFragmentManager.beginTransaction().replace(R.id.fragment_container, DrinksFragment()).commit()
         navigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
+        initData()
+    }
+
+    private fun initData() {
+        val realm = Realm.getDefaultInstance()
+        realm.executeTransaction {
+            realm.deleteAll()
+            val drink = Drink()
+            var id = 0
+
+            drink.id = id++
+            drink.name = "Coffee"
+            drink.description = resources.getString(R.string.coffee_description)
+            drink.brewDuration = 6
+            drink.strength = "Medium"
+            drink.difficulty = "Easy"
+            realm.insertOrUpdate(drink)
+
+            drink.id = id++
+            drink.name = "Mocha"
+            drink.brewDuration = 10
+            drink.strength = "Light"
+            drink.difficulty = "Medium"
+            realm.insertOrUpdate(drink)
+
+            drink.id = id++
+            drink.name = "Pour Over"
+
+            Log.d(TAG, drink.id.toString())
+        }
     }
 }
