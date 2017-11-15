@@ -8,11 +8,37 @@
     <string name="start">Start</string>
     <string name="stop">Stop</string>
 
+    <string name="easy">Easy</string>
+    <string name="easy_intermediate">Easy - Intermediate</string>
+    <string name="intermediate">Intermediate</string>
+    <string name="intermediate_difficult">Intermediate - Difficult</string>
+    <string name="difficult">Difficult</string>
+
+    <string name="weak">Weak</string>
+    <string name="weak_regular">Weak - Regular</string>
+    <string name="regular">Regular</string>
+    <string name="regular_strong">Regular - Strong</string>
+    <string name="strong">Strong</string>
+    <string name="strong_potent">Strong - Potent</string>
+    <string name="potent">Potent</string>
+
     <string name="coffee">Coffee</string>
     <string name="coffee_description">The classic cup of coffee, easy to make and even easier to enjoy.</string>
 
+    <string name="pour_over">Pour Over</string>
+    <string name="pour_over_description">The hipster\'s favorite drink.</string>
+
     <string name="mocha">Mocha</string>
-    <string name="mocha_description">A blend of espresso and chocolate make this drink an all year favorite for some</string>
+    <string name="mocha_description">A blend of espresso and chocolate make this drink an all year favorite for some.</string>
+
+    <string name="french_press">French Press</string>
+    <string name="french_press_description">When you just want a tasty cup of coffee without all the hassle.</string>
+
+    <string name="aeropress">Aeropress</string>
+    <string name="aeropress_description">Marco Arment\'s favorite brewing method.</string>
+
+    <string name="iced_coffee">Iced Coffee</string>
+    <string name="iced_coffee_description">A summer favorite for everyone that can be made to suit everyone\'s taste.</string>
 
 
     <!-- Instructions -->
