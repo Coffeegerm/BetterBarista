@@ -6,6 +6,10 @@
     <string name="drink_image">Drink Image</string>
     <string name="single_drink_image">Single Drink Toolbar Image</string>
 
+    <string name="duration">Duration</string>
+    <string name="strength">Strength</string>
+    <string name="difficulty">Difficulty</string>
+
     <string name="start">Start</string>
     <string name="stop">Stop</string>
 

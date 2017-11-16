@@ -1,10 +1,13 @@
 package io.github.coffeegerm.brew_it.ui.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import io.github.coffeegerm.brew_it.BrewItApplication.Companion.syringe
+import io.github.coffeegerm.brew_it.Constants
+import io.github.coffeegerm.brew_it.Constants.SINGLE_DRINK_REQUEST_CODE
 import io.github.coffeegerm.brew_it.R
 import io.github.coffeegerm.brew_it.data.Drink
 import io.github.coffeegerm.brew_it.ui.drinks.DrinksFragment
@@ -56,6 +59,16 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction().replace(R.id.fragment_container, DrinksFragment()).commit()
         navigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
         initRealmData()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == SINGLE_DRINK_REQUEST_CODE) {
+            showTimerFragment()
+        }
+    }
+
+    fun showTimerFragment() {
+        supportFragmentManager.beginTransaction().replace(R.id.fragment_container, TimerFragment()).commit()
     }
 
     private fun initRealmData() {
