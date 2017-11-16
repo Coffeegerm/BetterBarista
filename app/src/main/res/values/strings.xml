@@ -4,6 +4,7 @@
     <string name="title_timer">Timer</string>
     <string name="title_more">More</string>
     <string name="drink_image">Drink Image</string>
+    <string name="single_drink_image">Single Drink Toolbar Image</string>
 
     <string name="start">Start</string>
     <string name="stop">Stop</string>

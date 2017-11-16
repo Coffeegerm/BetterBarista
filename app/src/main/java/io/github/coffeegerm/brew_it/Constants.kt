@@ -9,5 +9,5 @@ package io.github.coffeegerm.brew_it
 object Constants {
     val SHARED_PREFERENCES: String = "SHARED_PREFERENCES"
     val DATABASE_CREATED: String = "DATABASE_CREATED"
-    val NUMBER_OF_DRINKS = 4
+    val DRINK_ID_PASSED: String = "DRINK_ID_PASSED"
 }

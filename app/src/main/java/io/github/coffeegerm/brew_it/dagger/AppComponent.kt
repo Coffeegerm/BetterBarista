@@ -5,6 +5,7 @@ import io.github.coffeegerm.brew_it.BrewItApplication
 import io.github.coffeegerm.brew_it.data.DrinksRepository
 import io.github.coffeegerm.brew_it.ui.drinks.DrinksFragment
 import io.github.coffeegerm.brew_it.ui.main.MainActivity
+import io.github.coffeegerm.brew_it.ui.single_drink.SingleDrinkActivity
 import io.github.coffeegerm.brew_it.ui.timer.TimerFragment
 import javax.inject.Singleton
 
@@ -20,5 +21,6 @@ interface AppComponent {
     fun inject(mainActivity: MainActivity)
     fun inject(drinksFragment: DrinksFragment)
     fun inject(timerFragment: TimerFragment)
+    fun inject(singleDrinkActivity: SingleDrinkActivity)
     fun inject(drinksRepository: DrinksRepository)
 }
