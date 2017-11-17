@@ -58,11 +58,17 @@
                 android:id="@+id/drink_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp" />
+                android:layout_marginBottom="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:fontFamily="@font/raleway_regular"
+                android:textSize="18sp" />
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:baselineAligned="false"
                 android:orientation="horizontal"
                 android:weightSum="3">
@@ -76,11 +82,16 @@
                     <TextView
                         android:id="@+id/drink_duration"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="8dp"
+                        android:fontFamily="@font/raleway_italic" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/raleway_bold"
                         android:text="@string/duration" />
 
                 </LinearLayout>
@@ -94,11 +105,16 @@
                     <TextView
                         android:id="@+id/drink_strength"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="8dp"
+                        android:fontFamily="@font/raleway_italic" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/raleway_bold"
                         android:text="@string/strength" />
 
                 </LinearLayout>
@@ -112,11 +128,16 @@
                     <TextView
                         android:id="@+id/drink_difficulty"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="8dp"
+                        android:fontFamily="@font/raleway_italic" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/raleway_bold"
                         android:text="@string/difficulty" />
 
                 </LinearLayout>
