@@ -6,8 +6,7 @@ import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import io.github.coffeegerm.brew_it.BrewItApplication.Companion.syringe
-import io.github.coffeegerm.brew_it.Constants
-import io.github.coffeegerm.brew_it.Constants.SINGLE_DRINK_REQUEST_CODE
+import io.github.coffeegerm.brew_it.utilities.Constants.SINGLE_DRINK_REQUEST_CODE
 import io.github.coffeegerm.brew_it.R
 import io.github.coffeegerm.brew_it.data.Drink
 import io.github.coffeegerm.brew_it.ui.drinks.DrinksFragment

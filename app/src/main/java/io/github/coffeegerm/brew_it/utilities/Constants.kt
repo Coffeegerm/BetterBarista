@@ -1,4 +1,4 @@
-package io.github.coffeegerm.brew_it
+package io.github.coffeegerm.brew_it.utilities
 
 /**
  * Created by david_yarz on 11/2/17.

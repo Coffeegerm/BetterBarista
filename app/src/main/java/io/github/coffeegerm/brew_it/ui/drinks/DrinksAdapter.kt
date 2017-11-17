@@ -10,6 +10,7 @@ import io.github.coffeegerm.brew_it.data.Drink
  * Created by dYarzebinski on 10/26/2017.
  * TODO: Add class comment header
  */
+
 class DrinksAdapter : RecyclerView.Adapter<DrinksViewHolder>() {
 
     private lateinit var drinks: ArrayList<Drink>
@@ -22,9 +23,8 @@ class DrinksAdapter : RecyclerView.Adapter<DrinksViewHolder>() {
         holder.bindDrink(drinks[position])
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DrinksViewHolder {
-        return DrinksViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_drink, parent, false))
-    }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DrinksViewHolder =
+            DrinksViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_drink, parent, false))
 
     override fun getItemCount(): Int = drinks.size
 }

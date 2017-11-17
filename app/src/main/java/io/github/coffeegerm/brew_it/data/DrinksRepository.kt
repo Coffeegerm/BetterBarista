@@ -21,7 +21,9 @@ class DrinksRepository {
     @Inject
     @field:Named("realm") lateinit var realm: Realm
 
-    fun getDrinks(): ArrayList<Drink> = ArrayList(realm.where(Drink::class.java).findAll())
+    fun getAllDrinks(): ArrayList<Drink> = ArrayList(realm.where(Drink::class.java).findAll())
 
-    fun getSingleDrink(id: Int): Drink = realm.where(Drink::class.java).equalTo("id", id).findFirst()!!
+    fun getSingleDrinkById(id: Int): Drink = realm.where(Drink::class.java).equalTo("id", id).findFirst()!!
+
+    fun getSingleDrinkByName(name: String): Drink = realm.where(Drink::class.java).equalTo("name", name).findFirst()!!
 }
