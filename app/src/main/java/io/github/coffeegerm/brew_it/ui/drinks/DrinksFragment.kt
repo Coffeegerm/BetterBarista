@@ -34,12 +34,10 @@ class DrinksFragment : Fragment() {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.i(TAG, "OnCreatedView")
+        Log.i(TAG, "onViewCreated")
         syringe.inject(this)
         toolbar_title.typeface = ResourcesCompat.getFont(context, R.font.raleway_thin)
         setupAdapter()
-        val singleDrink = drinksRepository.getSingleDrinkById(1)
-        Log.d(TAG, singleDrink.name)
     }
 
     private fun setupAdapter() {

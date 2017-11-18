@@ -13,6 +13,7 @@
             android:id="@+id/drink_image"
             android:layout_width="match_parent"
             android:layout_height="170dp"
+            android:scaleType="centerCrop"
             android:contentDescription="@string/drink_image" />
 
         <LinearLayout
@@ -41,7 +42,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:fontFamily="@font/raleway_italic"
-                android:text="12:00"
                 android:textSize="14sp" />
 
         </LinearLayout>

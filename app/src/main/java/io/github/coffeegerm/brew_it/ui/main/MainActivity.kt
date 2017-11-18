@@ -6,12 +6,12 @@ import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import io.github.coffeegerm.brew_it.BrewItApplication.Companion.syringe
-import io.github.coffeegerm.brew_it.utilities.Constants.SINGLE_DRINK_REQUEST_CODE
 import io.github.coffeegerm.brew_it.R
 import io.github.coffeegerm.brew_it.data.Drink
 import io.github.coffeegerm.brew_it.ui.drinks.DrinksFragment
 import io.github.coffeegerm.brew_it.ui.more.MoreFragment
 import io.github.coffeegerm.brew_it.ui.timer.TimerFragment
+import io.github.coffeegerm.brew_it.utilities.Constants.SINGLE_DRINK_REQUEST_CODE
 import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
@@ -66,7 +66,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun showTimerFragment() {
+    private fun showTimerFragment() {
         supportFragmentManager.beginTransaction().replace(R.id.fragment_container, TimerFragment()).commit()
     }
 
@@ -79,6 +79,7 @@ class MainActivity : AppCompatActivity() {
             drink.id = 1
             drink.name = getString(R.string.coffee)
             drink.description = getString(R.string.coffee_description)
+            drink.image = R.drawable.coffee
             drink.brewDuration = 6
             drink.strength = getString(R.string.regular)
             drink.difficulty = getString(R.string.easy)
@@ -88,6 +89,7 @@ class MainActivity : AppCompatActivity() {
             drink.name = getString(R.string.pour_over)
             drink.description = getString(R.string.pour_over_description)
             drink.brewDuration = 10
+            drink.image = R.drawable.pour_over
             drink.strength = getString(R.string.regular_strong)
             drink.difficulty = getString(R.string.intermediate)
             realm.insertOrUpdate(drink)
@@ -95,6 +97,7 @@ class MainActivity : AppCompatActivity() {
             drink.id = 3
             drink.name = getString(R.string.french_press)
             drink.description = getString(R.string.french_press_description)
+            drink.image = R.drawable.french_press
             drink.brewDuration = 10
             drink.strength = getString(R.string.regular)
             drink.difficulty = getString(R.string.intermediate)
@@ -103,6 +106,7 @@ class MainActivity : AppCompatActivity() {
             drink.id = 4
             drink.name = getString(R.string.aeropress)
             drink.description = getString(R.string.aeropress_description)
+            drink.image = R.drawable.aeropress
             drink.brewDuration = 12
             drink.strength = getString(R.string.strong)
             drink.difficulty = getString(R.string.difficult)
@@ -111,6 +115,7 @@ class MainActivity : AppCompatActivity() {
             drink.id = 5
             drink.name = getString(R.string.iced_coffee)
             drink.description = getString(R.string.iced_coffee_description)
+            drink.image = R.drawable.iced_coffee
             drink.brewDuration = 1440
             drink.strength = getString(R.string.regular_strong)
             drink.difficulty = getString(R.string.easy)
