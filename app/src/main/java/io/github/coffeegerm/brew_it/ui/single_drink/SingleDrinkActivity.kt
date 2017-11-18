@@ -4,11 +4,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import io.github.coffeegerm.brew_it.BrewItApplication.Companion.syringe
-import io.github.coffeegerm.brew_it.utilities.Constants
-import io.github.coffeegerm.brew_it.utilities.Constants.SINGLE_DRINK_REQUEST_CODE
 import io.github.coffeegerm.brew_it.R
 import io.github.coffeegerm.brew_it.data.Drink
 import io.github.coffeegerm.brew_it.data.DrinksRepository
+import io.github.coffeegerm.brew_it.utilities.Constants
+import io.github.coffeegerm.brew_it.utilities.Constants.SINGLE_DRINK_REQUEST_CODE
+import io.github.coffeegerm.brew_it.utilities.Utilities
 import kotlinx.android.synthetic.main.activity_single_drink.*
 import javax.inject.Inject
 import javax.inject.Named
@@ -24,6 +25,9 @@ class SingleDrinkActivity : AppCompatActivity() {
     @Inject
     @field:Named("drinksRepository") lateinit var drinksRepository: DrinksRepository
 
+    @Inject
+    @field:Named("utilities") lateinit var utilities: Utilities
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_single_drink)
@@ -32,7 +36,7 @@ class SingleDrinkActivity : AppCompatActivity() {
         val drinkMade = drinksRepository.getSingleDrinkById(drinkId)
         setupToolbar(drinkMade)
         drink_description.text = drinkMade.description
-        drink_duration.text = drinkMade.brewDuration.toString()
+        drink_duration.text = utilities.convertBrewDuration(drinkMade.brewDuration)
         drink_strength.text = drinkMade.strength
         drink_difficulty.text = drinkMade.difficulty
 
@@ -44,6 +48,7 @@ class SingleDrinkActivity : AppCompatActivity() {
     }
 
     private fun setupToolbar(drinkMade: Drink) {
+        single_drink_image.setImageResource(drinkMade.image)
         collapsing_toolbar.title = drinkMade.name
         setSupportActionBar(toolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
