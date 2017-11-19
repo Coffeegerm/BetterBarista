@@ -29,9 +29,9 @@ class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private var isButtonPressed: Boolean = false
 
     @Inject
-    @field:Named("drinksRepository") lateinit var drinksRepository: DrinksRepository
+    lateinit var drinksRepository: DrinksRepository
     @Inject
-    @field:Named("utilities") lateinit var utilities: Utilities
+    lateinit var utilities: Utilities
     private lateinit var drinksList: ArrayList<Drink>
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =

@@ -27,8 +27,7 @@ class MainActivity : AppCompatActivity() {
 
     private var currentFragment: Fragment? = null
 
-    @Inject
-    @field:Named("realm") lateinit var realm: Realm
+    private lateinit var realm: Realm
 
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
@@ -66,27 +65,28 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showFragment(fragment: Fragment) {
-        val ft = supportFragmentManager.beginTransaction()
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
 
-        ft.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
+        fragmentTransaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
 
-        when(fragment.isAdded) {
-            true -> ft.show(fragment)
-            false -> ft.add(R.id.fragment_container, fragment)
+        when (fragment.isAdded) {
+            true -> fragmentTransaction.show(fragment)
+            false -> fragmentTransaction.add(R.id.fragment_container, fragment)
         }
 
-        //as in the old fragment
+        //old fragment
         currentFragment?.let {
-            ft.hide(it)
+            fragmentTransaction.hide(it)
         }
 
-        ft.commit()
+        fragmentTransaction.commit()
 
         //set new current fragment
         currentFragment = fragment
     }
 
     private fun initRealmData() {
+        realm = Realm.getDefaultInstance()
         realm.executeTransaction {
             realm.deleteAll()
             Timber.d("All realm entries deleted")

@@ -14,12 +14,7 @@ import javax.inject.Named
 
 class DrinksRepository {
 
-    init {
-        syringe.inject(this)
-    }
-
-    @Inject
-    @field:Named("realm") lateinit var realm: Realm
+    private var realm: Realm = Realm.getDefaultInstance()
 
     fun getAllDrinks(): ArrayList<Drink> = ArrayList(realm.where(Drink::class.java).findAll())
 

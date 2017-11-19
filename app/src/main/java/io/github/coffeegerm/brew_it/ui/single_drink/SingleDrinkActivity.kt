@@ -21,10 +21,10 @@ import javax.inject.Named
 class SingleDrinkActivity : AppCompatActivity() {
 
     @Inject
-    @field:Named("drinksRepository") lateinit var drinksRepository: DrinksRepository
+    lateinit var drinksRepository: DrinksRepository
 
     @Inject
-    @field:Named("utilities") lateinit var utilities: Utilities
+    lateinit var utilities: Utilities
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +40,6 @@ class SingleDrinkActivity : AppCompatActivity() {
             drink_strength.text = drinkMade.strength
             drink_difficulty.text = drinkMade.difficulty
         }
-
 
         start_timer_fab.setOnClickListener({
             val intent = Intent(applicationContext, SingleDrinkActivity::class.java)

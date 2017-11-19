@@ -26,7 +26,7 @@ import javax.inject.Named
 class DrinksFragment : Fragment() {
 
     @Inject
-    @field:Named("drinksRepository") lateinit var drinksRepository: DrinksRepository
+    lateinit var drinksRepository: DrinksRepository
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
             inflater.inflate(R.layout.fragment_drinks, container, false)
