@@ -8,12 +8,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import io.github.coffeegerm.brew_it.BrewItApplication.Companion.syringe
 import io.github.coffeegerm.brew_it.R
 import io.github.coffeegerm.brew_it.data.Drink
 import io.github.coffeegerm.brew_it.data.DrinksRepository
 import io.github.coffeegerm.brew_it.utilities.Utilities
 import kotlinx.android.synthetic.main.fragment_timer.*
+import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -24,7 +26,6 @@ import javax.inject.Named
  */
 class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
-    private val TAG: String = "TimerFragment"
     private var isButtonPressed: Boolean = false
 
     @Inject
@@ -62,9 +63,9 @@ class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
         timer_button.setOnClickListener({
             timer_button.text = if (isButtonPressed) getString(R.string.start) else getString(R.string.stop)
-            Log.d(TAG, isButtonPressed.toString())
-            if (isButtonPressed) isButtonPressed = false
-            else if (!isButtonPressed) isButtonPressed = true
+
+            Timber.d(isButtonPressed.toString())
+            isButtonPressed = !isButtonPressed
         })
     }
 
@@ -73,12 +74,27 @@ class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+
         when (parent.getItemAtPosition(position)) {
-            getString(R.string.coffee) -> timer_drink_time.text = utilities.convertBrewDurationForTimer(drinksRepository.getSingleDrinkByName(getString(R.string.coffee)).brewDuration)
-            getString(R.string.pour_over) -> timer_drink_time.text = utilities.convertBrewDurationForTimer(drinksRepository.getSingleDrinkByName(getString(R.string.pour_over)).brewDuration)
-            getString(R.string.aeropress) -> timer_drink_time.text = utilities.convertBrewDurationForTimer(drinksRepository.getSingleDrinkByName(getString(R.string.aeropress)).brewDuration)
-            getString(R.string.french_press) -> timer_drink_time.text = utilities.convertBrewDurationForTimer(drinksRepository.getSingleDrinkByName(getString(R.string.french_press)).brewDuration)
-            getString(R.string.iced_coffee) -> timer_drink_time.text = utilities.convertBrewDurationForTimer(drinksRepository.getSingleDrinkByName(getString(R.string.iced_coffee)).brewDuration)
+            getString(R.string.coffee) -> setDrinkTimerText(drinkResId = R.string.coffee)
+            getString(R.string.pour_over) -> setDrinkTimerText(drinkResId = R.string.pour_over)
+            getString(R.string.aeropress) -> setDrinkTimerText(drinkResId = R.string.aeropress)
+            getString(R.string.french_press) -> setDrinkTimerText(drinkResId = R.string.french_press)
+            getString(R.string.iced_coffee) -> setDrinkTimerText(drinkResId = R.string.iced_coffee)
         }
+    }
+
+    private fun setDrinkTimerText(drinkResId: Int) {
+
+        val drink = drinksRepository.getSingleDrinkByName(getString(drinkResId))
+
+        drink?.let {
+            timer_drink_time.text = utilities.convertBrewDurationForTimer(drink.brewDuration)
+        } ?: showDrinkTimerTextError()
+    }
+
+    private fun showDrinkTimerTextError() {
+        val toast = Toast.makeText(context, "Could not get timer duration for this drink", Toast.LENGTH_SHORT)
+        toast.show()
     }
 }
