@@ -8,16 +8,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import io.github.coffeegerm.brew_it.R
+import timber.log.Timber
 
 /**
  * Created by david_yarz on 10/24/17.
  */
 class MoreFragment : Fragment() {
 
-    private val TAG: String = "MoreFragment"
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        Log.d(TAG, "View Created")
+        Timber.i("View Created")
         return inflater.inflate(R.layout.fragment_more, container, false)
     }
 

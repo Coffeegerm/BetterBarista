@@ -20,8 +20,6 @@ import javax.inject.Named
  */
 class SingleDrinkActivity : AppCompatActivity() {
 
-    val TAG = SingleDrinkActivity::class.java.simpleName
-
     @Inject
     @field:Named("drinksRepository") lateinit var drinksRepository: DrinksRepository
 
@@ -34,11 +32,15 @@ class SingleDrinkActivity : AppCompatActivity() {
         syringe.inject(this)
         val drinkId = intent.getIntExtra(Constants.DRINK_ID_PASSED, 0)
         val drinkMade = drinksRepository.getSingleDrinkById(drinkId)
-        setupToolbar(drinkMade)
-        drink_description.text = drinkMade.description
-        drink_duration.text = utilities.convertBrewDuration(drinkMade.brewDuration)
-        drink_strength.text = drinkMade.strength
-        drink_difficulty.text = drinkMade.difficulty
+
+        drinkMade?.let {
+            setupToolbar(drinkMade)
+            drink_description.text = drinkMade.description
+            drink_duration.text = utilities.convertBrewDuration(drinkMade.brewDuration)
+            drink_strength.text = drinkMade.strength
+            drink_difficulty.text = drinkMade.difficulty
+        }
+
 
         start_timer_fab.setOnClickListener({
             val intent = Intent(applicationContext, SingleDrinkActivity::class.java)
@@ -51,8 +53,8 @@ class SingleDrinkActivity : AppCompatActivity() {
         single_drink_image.setImageResource(drinkMade.image)
         collapsing_toolbar.title = drinkMade.name
         setSupportActionBar(toolbar)
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        supportActionBar!!.setDisplayShowHomeEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
     }
 
     override fun onSupportNavigateUp(): Boolean {

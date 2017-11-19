@@ -3,6 +3,7 @@ package io.github.coffeegerm.brew_it.ui.main
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
+import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import io.github.coffeegerm.brew_it.BrewItApplication.Companion.syringe
@@ -14,12 +15,17 @@ import io.github.coffeegerm.brew_it.ui.timer.TimerFragment
 import io.github.coffeegerm.brew_it.utilities.Constants.SINGLE_DRINK_REQUEST_CODE
 import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_main.*
+import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Named
 
 class MainActivity : AppCompatActivity() {
 
-    val TAG = MainActivity::class.java.name
+    private val drinksFragment: DrinksFragment by lazy { DrinksFragment() }
+    private val timerFragment: TimerFragment by lazy { TimerFragment() }
+    private val moreFragment: MoreFragment by lazy { MoreFragment() }
+
+    private var currentFragment: Fragment? = null
 
     @Inject
     @field:Named("realm") lateinit var realm: Realm
@@ -27,24 +33,15 @@ class MainActivity : AppCompatActivity() {
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_drinks -> {
-                supportFragmentManager.beginTransaction()
-                        .replace(R.id.fragment_container, DrinksFragment())
-                        .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
-                        .commit()
+                showFragment(drinksFragment)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_timer -> {
-                supportFragmentManager.beginTransaction()
-                        .replace(R.id.fragment_container, TimerFragment())
-                        .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
-                        .commit()
+                showFragment(timerFragment)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_more -> {
-                supportFragmentManager.beginTransaction()
-                        .replace(R.id.fragment_container, MoreFragment())
-                        .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
-                        .commit()
+                showFragment(moreFragment)
                 return@OnNavigationItemSelectedListener true
             }
         }
@@ -54,26 +51,45 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         syringe.inject(this)
-        supportFragmentManager.beginTransaction().replace(R.id.fragment_container, DrinksFragment()).commit()
-        navigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
         initRealmData()
+
+        showFragment(drinksFragment)
+        navigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == SINGLE_DRINK_REQUEST_CODE) {
-            showTimerFragment()
+            showFragment(timerFragment)
         }
     }
 
-    private fun showTimerFragment() {
-        supportFragmentManager.beginTransaction().replace(R.id.fragment_container, TimerFragment()).commit()
+    private fun showFragment(fragment: Fragment) {
+        val ft = supportFragmentManager.beginTransaction()
+
+        ft.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
+
+        when(fragment.isAdded) {
+            true -> ft.show(fragment)
+            false -> ft.add(R.id.fragment_container, fragment)
+        }
+
+        //as in the old fragment
+        currentFragment?.let {
+            ft.hide(it)
+        }
+
+        ft.commit()
+
+        //set new current fragment
+        currentFragment = fragment
     }
 
     private fun initRealmData() {
         realm.executeTransaction {
             realm.deleteAll()
-            Log.d(TAG, "All realm entries deleted")
+            Timber.d("All realm entries deleted")
             val drink = Drink()
 
             drink.id = 1
@@ -121,7 +137,7 @@ class MainActivity : AppCompatActivity() {
             drink.difficulty = getString(R.string.easy)
             realm.insertOrUpdate(drink)
 
-            Log.d(TAG, "Realm entries created")
+            Timber.d("Realm entries created")
         }
     }
 }
