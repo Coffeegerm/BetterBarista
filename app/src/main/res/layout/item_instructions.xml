@@ -7,6 +7,9 @@
         android:id="@+id/single_drink_instructions"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/raleway_regular" />
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/raleway_regular"
+        android:textSize="@dimen/instructions_text_size" />
 
 </LinearLayout>

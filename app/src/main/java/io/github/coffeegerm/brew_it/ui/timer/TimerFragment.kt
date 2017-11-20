@@ -2,7 +2,6 @@ package io.github.coffeegerm.brew_it.ui.timer
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,7 +16,6 @@ import io.github.coffeegerm.brew_it.utilities.Utilities
 import kotlinx.android.synthetic.main.fragment_timer.*
 import timber.log.Timber
 import javax.inject.Inject
-import javax.inject.Named
 
 /**
  * Created by david_yarz on 10/24/17.
@@ -63,7 +61,6 @@ class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
         timer_button.setOnClickListener({
             timer_button.text = if (isButtonPressed) getString(R.string.start) else getString(R.string.stop)
-
             Timber.d(isButtonPressed.toString())
             isButtonPressed = !isButtonPressed
         })
@@ -74,7 +71,6 @@ class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
-
         when (parent.getItemAtPosition(position)) {
             getString(R.string.coffee) -> setDrinkTimerText(drinkResId = R.string.coffee)
             getString(R.string.pour_over) -> setDrinkTimerText(drinkResId = R.string.pour_over)

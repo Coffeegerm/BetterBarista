@@ -32,13 +32,13 @@
     <string name="coffee_description">The classic cup of coffee, easy to make and even easier to enjoy.</string>
 
     <string name="pour_over">Pour Over</string>
-    <string name="pour_over_description">The hipster\'s favorite drink.</string>
+    <string name="pour_over_description">A brewing method not to be looked down upon, the pour over is an skill that every great barista should master.</string>
 
     <string name="mocha">Mocha</string>
     <string name="mocha_description">A blend of espresso and chocolate make this drink an all year favorite for some.</string>
 
     <string name="french_press">French Press</string>
-    <string name="french_press_description">When you just want a tasty cup of coffee without all the hassle.</string>
+    <string name="french_press_description">When you just want a tasty cup of coffee without all the hassle a French Press might just be your best bet. Ease of use and a great cup of coffee each and every time. </string>
 
     <string name="aeropress">Aeropress</string>
     <string name="aeropress_description">Marco Arment\'s favorite brewing method.</string>
@@ -51,19 +51,24 @@
 
     <!-- Instructions for coffee -->
     <array name="instructions_coffee">
-        <item name="instruction_step1_coffee">Grind coffee if necessary and load into filter of
-            selected coffee pot.
-        </item>
-        <item name="instruction_step2_coffee">Add water to basin.</item>
-        <item name="instruction_step3_coffee">
-            Press start.
-        </item>
-        <item name="instruction_step4_coffee">
-            Wait for brewing to complete.
-        </item>
-        <item name="instruction_step5_coffee">
-            Pour and enjoy!
-        </item>
+        <item>Grind coffee if necessary and load into filter of selected coffee pot.</item>
+        <item>Add water to basin.</item>
+        <item>Press start.</item>
+        <item>Wait for brewing to complete.</item>
+        <item>Pour and enjoy!</item>
+    </array>
+
+    <!-- Instructions for French Press -->
+    <array name="instructions_french_press">
+        <item>Grind 1/2 cup of fresh coffee beans.</item>
+        <item>Boil water to 174 degrees fahrenheit.</item>
+        <item>Add coffee to beaker.</item>
+        <item>Add enough water to cover water.</item>
+        <item>Let coffee grounds bloom and enjoy the smell of the oxygen bursting.</item>
+        <item>Slowly fill beaker the rest of the way with water.</item>
+        <item>Allow brew to sit for four minutes.</item>
+        <item>Plunge press slowly!</item>
+        <item>Pour and enjoy your cup of coffee!</item>
     </array>
 
 </resources>
