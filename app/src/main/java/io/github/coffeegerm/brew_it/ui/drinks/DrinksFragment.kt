@@ -35,7 +35,6 @@ class DrinksFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         Timber.i("onViewCreated")
         syringe.inject(this)
-        toolbar_title.typeface = ResourcesCompat.getFont(context, R.font.raleway_thin)
         setupAdapter()
     }
 

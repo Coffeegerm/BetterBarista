@@ -29,7 +29,7 @@ class SingleDrinkActivity : AppCompatActivity() {
     @Inject
     lateinit var utilities: Utilities
 
-    lateinit var singleDrinkAdapter: SingleDrinkAdapter
+    private lateinit var singleDrinkAdapter: SingleDrinkAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,16 +49,9 @@ class SingleDrinkActivity : AppCompatActivity() {
 
         single_drink_recycler_view.layoutManager = LinearLayoutManager(applicationContext)
         single_drink_recycler_view.adapter = singleDrinkAdapter
-
-        val instructionsFromResources: Array<out String>? = resources.getStringArray(R.array.instructions_coffee)
-        val instructionsToBeUsed: ArrayList<String> = ArrayList()
-
-        if (instructionsFromResources != null) {
-            (1 until instructionsFromResources.size).mapTo(instructionsToBeUsed) { "$it. " + instructionsFromResources[it] }
+        if (drinkMade != null) {
+            getInstructions(drinkMade)
         }
-
-        singleDrinkAdapter.setInstructions(instructionsToBeUsed)
-        singleDrinkAdapter.notifyDataSetChanged()
 
         start_timer_fab.setOnClickListener({
             val intent = Intent(applicationContext, SingleDrinkActivity::class.java)
@@ -92,13 +85,18 @@ class SingleDrinkActivity : AppCompatActivity() {
         })
     }
 
-    fun getInstructions(drinkMade: Drink) {
-        val instructionsFromResources: Array<out String>?
-        val instructionsToBeUsed: ArrayList<String> = ArrayList()
-
+    private fun getInstructions(drinkMade: Drink) {
         when (drinkMade.name) {
-            getString(R.string.coffee) -> instructionsFromResources = resources.getStringArray(R.array.instructions_coffee)
+            getString(R.string.coffee) -> formatInstructionList(instructionsFromResources = resources.getStringArray(R.array.instructions_coffee))
+            getString(R.string.french_press) -> formatInstructionList(instructionsFromResources = resources.getStringArray(R.array.instructions_french_press))
         }
+    }
+
+    private fun formatInstructionList(instructionsFromResources: Array<out String>) {
+        val instructionsToBeUsed: ArrayList<String> = ArrayList()
+        (1 until instructionsFromResources.size).mapTo(instructionsToBeUsed) { "$it. " + instructionsFromResources[it] }
+        singleDrinkAdapter.setInstructions(instructionsToBeUsed)
+        singleDrinkAdapter.notifyDataSetChanged()
     }
 
     override fun onSupportNavigateUp(): Boolean {

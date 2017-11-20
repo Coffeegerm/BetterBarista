@@ -27,8 +27,6 @@ class MainActivity : AppCompatActivity() {
 
     private var currentFragment: Fragment? = null
 
-    private lateinit var realm: Realm
-
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_drinks -> {
@@ -86,7 +84,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initRealmData() {
-        realm = Realm.getDefaultInstance()
+        val realm = Realm.getDefaultInstance()
         realm.executeTransaction {
             realm.deleteAll()
             Timber.d("All realm entries deleted")
@@ -139,5 +137,11 @@ class MainActivity : AppCompatActivity() {
 
             Timber.d("Realm entries created")
         }
+    }
+
+    private fun convertResourcenstructionsToArrayList(resourceInstructions: Array<out String>): ArrayList<String> {
+        val instructionsToBeUsed: ArrayList<String> = ArrayList()
+        (1 until resourceInstructions.size).mapTo(instructionsToBeUsed) { "$it. " + resourceInstructions[it] }
+        return instructionsToBeUsed
     }
 }
