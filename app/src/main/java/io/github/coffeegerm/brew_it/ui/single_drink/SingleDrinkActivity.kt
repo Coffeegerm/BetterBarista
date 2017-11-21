@@ -89,12 +89,14 @@ class SingleDrinkActivity : AppCompatActivity() {
         when (drinkMade.name) {
             getString(R.string.coffee) -> formatInstructionList(instructionsFromResources = resources.getStringArray(R.array.instructions_coffee))
             getString(R.string.french_press) -> formatInstructionList(instructionsFromResources = resources.getStringArray(R.array.instructions_french_press))
+            getString(R.string.pour_over) -> formatInstructionList(instructionsFromResources = resources.getStringArray(R.array.instructions_pour_over))
+            getString(R.string.cold_brew) -> formatInstructionList(instructionsFromResources = resources.getStringArray(R.array.instructions_cold_brew_coffee))
         }
     }
 
     private fun formatInstructionList(instructionsFromResources: Array<out String>) {
         val instructionsToBeUsed: ArrayList<String> = ArrayList()
-        (1 until instructionsFromResources.size).mapTo(instructionsToBeUsed) { "$it. " + instructionsFromResources[it] }
+        (0 until instructionsFromResources.size).mapTo(instructionsToBeUsed) { "${it.plus(1)}. " + instructionsFromResources[it] }
         singleDrinkAdapter.setInstructions(instructionsToBeUsed)
         singleDrinkAdapter.notifyDataSetChanged()
     }

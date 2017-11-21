@@ -18,7 +18,7 @@
         android:id="@+id/timer_drink_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/raleway_regular"
+        android:fontFamily="@font/raleway_bold"
         android:textSize="32sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

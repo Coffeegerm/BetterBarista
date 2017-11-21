@@ -13,7 +13,7 @@ import io.github.coffeegerm.brew_it.R
  * Created by dYarzebinski on 10/27/2017.
  * TODO: Add class comment header
  */
-class CircularProgressView(context: Context?, attrs: AttributeSet) : View(context, attrs) {
+class CircularProgressView(context: Context, attrs: AttributeSet) : View(context, attrs) {
 
     private val arcColor: Int = ContextCompat.getColor(context, R.color.colorPrimaryDark)
     private val fillColor: Int = ContextCompat.getColor(context, R.color.lightGreen)
@@ -50,7 +50,7 @@ class CircularProgressView(context: Context?, attrs: AttributeSet) : View(contex
 
                 // how wide the stroke should be, typically more than or equal to the strokeWidth
                 // of the arc representing a filled percentage
-                strokeWidth = 5f
+                strokeWidth = 8f
             })
 
             // get the actual percentage as a float

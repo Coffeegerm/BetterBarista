@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import io.github.coffeegerm.brew_it.BrewItApplication.Companion.syringe
 import io.github.coffeegerm.brew_it.R
 import io.github.coffeegerm.brew_it.data.Drink
@@ -16,8 +15,6 @@ import io.github.coffeegerm.brew_it.utilities.Constants.SINGLE_DRINK_REQUEST_COD
 import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_main.*
 import timber.log.Timber
-import javax.inject.Inject
-import javax.inject.Named
 
 class MainActivity : AppCompatActivity() {
 
@@ -127,8 +124,8 @@ class MainActivity : AppCompatActivity() {
             realm.insertOrUpdate(drink)
 
             drink.id = 5
-            drink.name = getString(R.string.iced_coffee)
-            drink.description = getString(R.string.iced_coffee_description)
+            drink.name = getString(R.string.cold_brew)
+            drink.description = getString(R.string.cold_brew_description)
             drink.image = R.drawable.iced_coffee
             drink.brewDuration = 1440
             drink.strength = getString(R.string.regular_strong)
@@ -137,11 +134,5 @@ class MainActivity : AppCompatActivity() {
 
             Timber.d("Realm entries created")
         }
-    }
-
-    private fun convertResourcenstructionsToArrayList(resourceInstructions: Array<out String>): ArrayList<String> {
-        val instructionsToBeUsed: ArrayList<String> = ArrayList()
-        (1 until resourceInstructions.size).mapTo(instructionsToBeUsed) { "$it. " + resourceInstructions[it] }
-        return instructionsToBeUsed
     }
 }

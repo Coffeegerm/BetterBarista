@@ -43,8 +43,8 @@
     <string name="aeropress">Aeropress</string>
     <string name="aeropress_description">Marco Arment\'s favorite brewing method.</string>
 
-    <string name="iced_coffee">Iced Coffee</string>
-    <string name="iced_coffee_description">A summer favorite for everyone that can be made to suit everyone\'s taste.</string>
+    <string name="cold_brew">Cold Brew</string>
+    <string name="cold_brew_description">A summer favorite for everyone that can be made to suit everyone\'s taste.</string>
 
 
     <!-- Instructions -->
@@ -69,6 +69,42 @@
         <item>Allow brew to sit for four minutes.</item>
         <item>Plunge press slowly!</item>
         <item>Pour and enjoy your cup of coffee!</item>
+    </array>
+
+    <array name="instructions_pour_over">
+        <item>Bring 20 ounces, or 600 grams, of water to a boil.</item>
+        <item>Grind 30 grams of coffee beans to a sea salt like coarseness. This ensures that the
+            water does not simply flow through.
+        </item>
+        <item>Place filter into chosen into your dripper.</item>
+        <item>Wet the filter so as to prevent any filter taste making it\'s way into your coffee.
+        </item>
+        <item>Add coffee grounds to filter.</item>
+        <item>Pour enough water over the grounds so as to get them all wet and allow them to bloom,
+            puff up. This releases Co2 from the grounds and lets the oxygen burst.
+        </item>
+        <item>Starting from the center of the grounds starting pouring slowly in a spiral formation.
+            Careful not to pour too fast and aim for the dark spots of the grounds so you get all
+            the flavor from the grounds.
+        </item>
+        <item>Once your carafe or cup is full you\'re done! Enjoy your freshly made cup of coffee!
+        </item>
+    </array>
+
+    <!-- Instructions for cold brew coffee -->
+    <array name="instructions_cold_brew_coffee">
+        <item>Grind one pound of coffee beans coarsely.</item>
+        <item>Pour grinds into a large mason jar.</item>
+        <item>Add four cups of water to your mason jar.</item>
+        <item>Cover, put in fridge, and let sit for 24 hours or longer, depending on desired
+            strength.
+        </item>
+        <item>After allotted time has passed, remove jar and get out a second jar.</item>
+        <item>Using cheese cloth or a fine mesh strainer, begin pouring coffee from one jar to
+            another. Repeat this until all grounds are removed from coffee.
+        </item>
+        <item>Once all grounds are done you\'re ready to pour and enjoy this summer time favorite!
+        </item>
     </array>
 
 </resources>

@@ -35,7 +35,7 @@ class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
             inflater.inflate(R.layout.fragment_timer, container, false)
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         syringe.inject(this)
         drinksList = drinksRepository.getAllDrinks()
@@ -76,7 +76,7 @@ class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
             getString(R.string.pour_over) -> setDrinkTimerText(drinkResId = R.string.pour_over)
             getString(R.string.aeropress) -> setDrinkTimerText(drinkResId = R.string.aeropress)
             getString(R.string.french_press) -> setDrinkTimerText(drinkResId = R.string.french_press)
-            getString(R.string.iced_coffee) -> setDrinkTimerText(drinkResId = R.string.iced_coffee)
+            getString(R.string.cold_brew) -> setDrinkTimerText(drinkResId = R.string.cold_brew)
         }
     }
 
