@@ -9,8 +9,8 @@ import io.github.coffeegerm.brew_it.BrewItApplication.Companion.syringe
 import io.github.coffeegerm.brew_it.R
 import io.github.coffeegerm.brew_it.data.Drink
 import io.github.coffeegerm.brew_it.data.DrinksRepository
+import io.github.coffeegerm.brew_it.ui.main.MainActivity
 import io.github.coffeegerm.brew_it.utilities.Constants
-import io.github.coffeegerm.brew_it.utilities.Constants.SINGLE_DRINK_REQUEST_CODE
 import io.github.coffeegerm.brew_it.utilities.Utilities
 import kotlinx.android.synthetic.main.activity_single_drink.*
 import javax.inject.Inject
@@ -49,13 +49,11 @@ class SingleDrinkActivity : AppCompatActivity() {
 
         single_drink_recycler_view.layoutManager = LinearLayoutManager(applicationContext)
         single_drink_recycler_view.adapter = singleDrinkAdapter
-        if (drinkMade != null) {
-            getInstructions(drinkMade)
-        }
+        if (drinkMade != null) getInstructions(drinkMade)
 
         start_timer_fab.setOnClickListener({
-            val intent = Intent(applicationContext, SingleDrinkActivity::class.java)
-            startActivityForResult(intent, SINGLE_DRINK_REQUEST_CODE)
+            val intent = Intent(this, MainActivity::class.java)
+            startActivityForResult(intent, 1)
             finish()
         })
     }

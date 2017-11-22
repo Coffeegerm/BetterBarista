@@ -1,5 +1,6 @@
 package io.github.coffeegerm.brew_it.ui.main
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
@@ -11,7 +12,6 @@ import io.github.coffeegerm.brew_it.data.Drink
 import io.github.coffeegerm.brew_it.ui.drinks.DrinksFragment
 import io.github.coffeegerm.brew_it.ui.more.MoreFragment
 import io.github.coffeegerm.brew_it.ui.timer.TimerFragment
-import io.github.coffeegerm.brew_it.utilities.Constants.SINGLE_DRINK_REQUEST_CODE
 import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_main.*
 import timber.log.Timber
@@ -54,8 +54,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == SINGLE_DRINK_REQUEST_CODE) {
-            showFragment(timerFragment)
+        Timber.i("onActivityResult")
+        if (requestCode == 1) {
+            if (resultCode == Activity.RESULT_OK) {
+                showFragment(timerFragment)
+            }
         }
     }
 
