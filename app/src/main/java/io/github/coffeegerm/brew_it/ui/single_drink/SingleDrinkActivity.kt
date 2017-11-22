@@ -91,6 +91,7 @@ class SingleDrinkActivity : AppCompatActivity() {
             getString(R.string.french_press) -> formatInstructionList(instructionsFromResources = resources.getStringArray(R.array.instructions_french_press))
             getString(R.string.pour_over) -> formatInstructionList(instructionsFromResources = resources.getStringArray(R.array.instructions_pour_over))
             getString(R.string.cold_brew) -> formatInstructionList(instructionsFromResources = resources.getStringArray(R.array.instructions_cold_brew_coffee))
+            getString(R.string.aeropress) -> formatInstructionList(instructionsFromResources = resources.getStringArray(R.array.instructions_aeropress))
         }
     }
 

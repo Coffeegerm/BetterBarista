@@ -76,7 +76,7 @@
         <item>Grind 30 grams of coffee beans to a sea salt like coarseness. This ensures that the
             water does not simply flow through.
         </item>
-        <item>Place filter into chosen into your dripper.</item>
+        <item>Place filter into your chosen dripper.</item>
         <item>Wet the filter so as to prevent any filter taste making it\'s way into your coffee.
         </item>
         <item>Add coffee grounds to filter.</item>
@@ -103,8 +103,24 @@
         <item>Using cheese cloth or a fine mesh strainer, begin pouring coffee from one jar to
             another. Repeat this until all grounds are removed from coffee.
         </item>
-        <item>Once all grounds are done you\'re ready to pour and enjoy this summer time favorite!
+        <item>Once all grounds are strained out you\'re ready to pour and enjoy this summer time
+            favorite!
         </item>
+    </array>
+
+    <array name="instructions_aeropress">
+        <item>Bring your water to a boil. Aim for somewhere between 174 and 195 degree\'s
+            fahrenheit.
+        </item>
+        <item>Grind around 4 tablespoons of coffee beans a fine coarseness.</item>
+        <item>Assemble your Aeropress with a paper filter inside the cap.</item>
+        <item>Place over cup and drizzle some water over the filter to get it wet.</item>
+        <item>Place the funnel on top of the cup and pour in your coffee grounds.</item>
+        <item>Remove the funnel.</item>
+        <item>Pour water into Aeropress until it comes to the top.</item>
+        <item>Stir using provided paddle to ensure that all grounds are wet.</item>
+        <item>Insert plunger and press to extract coffee.</item>
+        <item>Taste and dilute if too potent.</item>
     </array>
 
 </resources>
