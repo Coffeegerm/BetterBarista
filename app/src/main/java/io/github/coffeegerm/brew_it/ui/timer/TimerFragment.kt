@@ -82,6 +82,8 @@ class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     private fun setDrinkTimerText(drinkResId: Int) {
 
+        setProgressCircle(drinkResId)
+
         val drink = drinksRepository.getSingleDrinkByName(getString(drinkResId))
 
         drink?.let {
@@ -92,5 +94,9 @@ class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private fun showDrinkTimerTextError() {
         val toast = Toast.makeText(context, "Could not get timer duration for this drink", Toast.LENGTH_SHORT)
         toast.show()
+    }
+
+    private fun setProgressCircle(drinkResId: Int) {
+        circularView.setPercentage(100)
     }
 }

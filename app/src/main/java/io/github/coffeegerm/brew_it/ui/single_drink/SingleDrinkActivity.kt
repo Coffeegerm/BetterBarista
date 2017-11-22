@@ -1,5 +1,6 @@
 package io.github.coffeegerm.brew_it.ui.single_drink
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.AppBarLayout
@@ -9,7 +10,6 @@ import io.github.coffeegerm.brew_it.BrewItApplication.Companion.syringe
 import io.github.coffeegerm.brew_it.R
 import io.github.coffeegerm.brew_it.data.Drink
 import io.github.coffeegerm.brew_it.data.DrinksRepository
-import io.github.coffeegerm.brew_it.ui.main.MainActivity
 import io.github.coffeegerm.brew_it.utilities.Constants
 import io.github.coffeegerm.brew_it.utilities.Utilities
 import kotlinx.android.synthetic.main.activity_single_drink.*
@@ -52,8 +52,9 @@ class SingleDrinkActivity : AppCompatActivity() {
         if (drinkMade != null) getInstructions(drinkMade)
 
         start_timer_fab.setOnClickListener({
-            val intent = Intent(this, MainActivity::class.java)
-            startActivityForResult(intent, 1)
+            val timer_result = Intent()
+//            timer_result.putExtra(Constants.DRINK_ID_PASSED, drinkMade?.id)
+            setResult(Activity.RESULT_OK, timer_result)
             finish()
         })
     }

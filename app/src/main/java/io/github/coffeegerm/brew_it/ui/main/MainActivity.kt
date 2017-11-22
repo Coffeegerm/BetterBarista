@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
         Timber.i("onActivityResult")
         if (requestCode == 1) {
             if (resultCode == Activity.RESULT_OK) {
-                showFragment(timerFragment)
+                navigation.selectedItemId = R.id.navigation_timer
             }
         }
     }
@@ -77,7 +77,7 @@ class MainActivity : AppCompatActivity() {
             fragmentTransaction.hide(it)
         }
 
-        fragmentTransaction.commit()
+        fragmentTransaction.commitAllowingStateLoss()
 
         //set new current fragment
         currentFragment = fragment
