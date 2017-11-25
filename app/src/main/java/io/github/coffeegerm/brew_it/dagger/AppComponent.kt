@@ -8,7 +8,6 @@ import io.github.coffeegerm.brew_it.ui.timer.TimerFragment
 import javax.inject.Singleton
 
 /**
- * Created by david_yarz on 11/1/17.
  * AppComponent used for DI with Dagger2
  */
 

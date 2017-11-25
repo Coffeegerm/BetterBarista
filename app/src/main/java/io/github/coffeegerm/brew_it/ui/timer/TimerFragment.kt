@@ -18,8 +18,6 @@ import timber.log.Timber
 import javax.inject.Inject
 
 /**
- * Created by david_yarz on 10/24/17.
- *
  * Fragment for handling Timer Activity
  */
 class TimerFragment : Fragment() {

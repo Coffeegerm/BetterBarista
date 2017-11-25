@@ -17,7 +17,6 @@ import javax.inject.Inject
 
 
 /**
- * Created by dYarzebinski on 10/28/2017.
  * TODO: Add class comment header
  */
 

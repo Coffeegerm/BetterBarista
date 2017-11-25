@@ -1,21 +1,18 @@
 package io.github.coffeegerm.brew_it
 
 import android.app.Application
-import android.util.Log
 import io.github.coffeegerm.brew_it.dagger.AppComponent
 import io.github.coffeegerm.brew_it.dagger.AppModule
 import io.github.coffeegerm.brew_it.dagger.DaggerAppComponent
-import io.github.coffeegerm.brew_it.data.Drink
 import io.realm.Realm
 import io.realm.RealmConfiguration
 import timber.log.Timber
 import timber.log.Timber.DebugTree
 
 
-
 /**
- * Created by dYarzebinski on 10/23/2017.
- * TODO: Add class comment header
+ * Application class that builds dagger component,
+ * inits realm and plants tree for logs
  */
 
 class BrewItApplication : Application() {

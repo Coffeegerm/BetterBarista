@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import io.github.coffeegerm.brew_it.R
 
 /**
- * Created by david_yarz on 11/22/17.
+ * Activity responsible for showing splash screen pre app launch
  */
 
 class SplashActivity : AppCompatActivity() {

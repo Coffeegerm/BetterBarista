@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import io.github.coffeegerm.brew_it.R
 
 /**
- * Created by dYarzebinski on 11/18/2017.
  * TODO: Add class comment header
  */
 class SingleDrinkAdapter : RecyclerView.Adapter<SingleDrinkViewHolder>() {

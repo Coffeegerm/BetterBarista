@@ -5,7 +5,6 @@ import android.view.View
 import kotlinx.android.synthetic.main.item_instructions.view.*
 
 /**
- * Created by dYarzebinski on 11/18/2017.
  * TODO: Add class comment header
  */
 

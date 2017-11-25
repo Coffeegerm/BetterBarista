@@ -11,7 +11,6 @@ import io.github.coffeegerm.brew_it.utilities.Utilities
 import kotlinx.android.synthetic.main.item_drink.view.*
 
 /**
- * Created by dYarzebinski on 10/26/2017.
  * TODO: Add class comment header
  */
 

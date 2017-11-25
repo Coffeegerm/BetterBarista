@@ -10,8 +10,6 @@ import io.github.coffeegerm.brew_it.utilities.Utilities
 import javax.inject.Singleton
 
 /**
- * Created by david_yarz on 11/1/17.
- *
  * Dagger AppModule that provides items for injection
  */
 

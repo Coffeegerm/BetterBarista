@@ -18,8 +18,6 @@ import javax.inject.Named
 
 
 /**
- * Created by david_yarz on 10/23/17.
- *
  * Fragment Responsible for controlling the Recycler view of drinks
  * As well as beginning the SingleDrinkActivity
  */

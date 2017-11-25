@@ -10,7 +10,6 @@ import android.view.View
 import io.github.coffeegerm.brew_it.R
 
 /**
- * Created by dYarzebinski on 10/27/2017.
  * TODO: Add class comment header
  */
 class CircularProgressView(context: Context, attrs: AttributeSet) : View(context, attrs) {
