@@ -1,8 +1,6 @@
 package io.github.coffeegerm.brew_it.dagger
 
 import dagger.Component
-import io.github.coffeegerm.brew_it.BrewItApplication
-import io.github.coffeegerm.brew_it.data.DrinksRepository
 import io.github.coffeegerm.brew_it.ui.drinks.DrinksFragment
 import io.github.coffeegerm.brew_it.ui.main.MainActivity
 import io.github.coffeegerm.brew_it.ui.single_drink.SingleDrinkActivity
@@ -21,5 +19,4 @@ interface AppComponent {
     fun inject(drinksFragment: DrinksFragment)
     fun inject(timerFragment: TimerFragment)
     fun inject(singleDrinkActivity: SingleDrinkActivity)
-    fun inject(drinksRepository: DrinksRepository)
 }

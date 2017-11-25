@@ -5,15 +5,15 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import io.github.coffeegerm.brew_it.BrewItApplication.Companion.syringe
 import io.github.coffeegerm.brew_it.R
 import io.github.coffeegerm.brew_it.data.Drink
 import io.github.coffeegerm.brew_it.data.DrinksRepository
 import io.github.coffeegerm.brew_it.utilities.Utilities
 import kotlinx.android.synthetic.main.fragment_timer.*
+import org.jetbrains.anko.sdk25.coroutines.onItemSelectedListener
+import org.jetbrains.anko.support.v4.toast
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -22,9 +22,10 @@ import javax.inject.Inject
  *
  * Fragment for handling Timer Activity
  */
-class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
+class TimerFragment : Fragment() {
 
     private var isButtonPressed: Boolean = false
+    private var totalTime: Long = 0
 
     @Inject
     lateinit var drinksRepository: DrinksRepository
@@ -43,7 +44,18 @@ class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
         drinksList.mapTo(drinksListNames) { it.name }
         val adapter = ArrayAdapter(activity, android.R.layout.simple_spinner_dropdown_item, drinksListNames)
         spinner.adapter = adapter
-        spinner.onItemSelectedListener = this
+        spinner.onItemSelectedListener {
+            onItemSelected { parent, _, position, _ ->
+                when (parent?.getItemAtPosition(position)) {
+                    getString(R.string.coffee) -> setDrinkTimerText(drinkResId = R.string.coffee)
+                    getString(R.string.pour_over) -> setDrinkTimerText(drinkResId = R.string.pour_over)
+                    getString(R.string.aeropress) -> setDrinkTimerText(drinkResId = R.string.aeropress)
+                    getString(R.string.french_press) -> setDrinkTimerText(drinkResId = R.string.french_press)
+                    getString(R.string.cold_brew) -> setDrinkTimerText(drinkResId = R.string.cold_brew)
+                }
+            }
+        }
+
 //        var count = 60
 //        val handler = Handler()
 //
@@ -61,42 +73,40 @@ class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
         timer_button.setOnClickListener({
             timer_button.text = if (isButtonPressed) getString(R.string.start) else getString(R.string.stop)
+            when (timer_button.text) {
+                getString(R.string.stop) -> startTimer()
+                getString(R.string.start) -> stopTimer()
+            }
             Timber.d(isButtonPressed.toString())
             isButtonPressed = !isButtonPressed
         })
     }
 
-    override fun onNothingSelected(p0: AdapterView<*>) {
-
-    }
-
-    override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
-        when (parent.getItemAtPosition(position)) {
-            getString(R.string.coffee) -> setDrinkTimerText(drinkResId = R.string.coffee)
-            getString(R.string.pour_over) -> setDrinkTimerText(drinkResId = R.string.pour_over)
-            getString(R.string.aeropress) -> setDrinkTimerText(drinkResId = R.string.aeropress)
-            getString(R.string.french_press) -> setDrinkTimerText(drinkResId = R.string.french_press)
-            getString(R.string.cold_brew) -> setDrinkTimerText(drinkResId = R.string.cold_brew)
-        }
-    }
-
     private fun setDrinkTimerText(drinkResId: Int) {
-
-        setProgressCircle(drinkResId)
-
         val drink = drinksRepository.getSingleDrinkByName(getString(drinkResId))
+
+        drink?.let { setTotalTime(it) }
 
         drink?.let {
             timer_drink_time.text = utilities.convertBrewDurationForTimer(drink.brewDuration)
         } ?: showDrinkTimerTextError()
     }
 
-    private fun showDrinkTimerTextError() {
-        val toast = Toast.makeText(context, "Could not get timer duration for this drink", Toast.LENGTH_SHORT)
-        toast.show()
+    private fun showDrinkTimerTextError() =
+            toast("Could not get timer duration for this drink.")
+
+
+    private fun setTotalTime(drinkMade: Drink) {
+        totalTime = (drinkMade.brewDuration * 60).toLong()
+        Timber.i(totalTime.toString())
+        circularView.setPercentage(100)
     }
 
-    private fun setProgressCircle(drinkResId: Int) {
-        circularView.setPercentage(100)
+    private fun startTimer() {
+        Timber.i("Timer started")
+    }
+
+    private fun stopTimer() {
+        Timber.i("Timer stopped")
     }
 }

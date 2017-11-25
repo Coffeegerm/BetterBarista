@@ -7,8 +7,6 @@ import dagger.Provides
 import io.github.coffeegerm.brew_it.BrewItApplication
 import io.github.coffeegerm.brew_it.data.DrinksRepository
 import io.github.coffeegerm.brew_it.utilities.Utilities
-import io.realm.Realm
-import javax.inject.Named
 import javax.inject.Singleton
 
 /**
