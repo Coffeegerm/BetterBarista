@@ -107,7 +107,7 @@ class TimerFragment : Fragment() {
     }
 
     private fun showDrinkTimerTextError() =
-            toast("Could not get timer duration for this drink.")
+            toast(getString(R.string.timer_error))
 
 
     private fun setTotalTime(drinkMade: Drink) {

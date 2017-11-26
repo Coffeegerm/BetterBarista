@@ -30,22 +30,18 @@ import io.github.coffeegerm.brew_it.R
  */
 class CircularProgressView(context: Context, attrs: AttributeSet) : View(context, attrs) {
 
-    private val arcColor: Int = ContextCompat.getColor(context, R.color.colorPrimaryDark)
+    private val arcColor: Int = ContextCompat.getColor(context, R.color.deepBrown)
     private val fillColor: Int = ContextCompat.getColor(context, R.color.lightGreen)
+    // default percentage set to 0
+    private var percentage = 0
 
     // required to draw the arcs
     private val rectF = RectF()
 
-    // Used to draw pretty much anything on a canvas, which is what we will be drawing on
     private val paint = Paint().apply {
-        // how we want the arcs to be draw, we want to make sure the arc centers are not colored
-        // so we use a STROKE instead.
         style = Paint.Style.STROKE
         strokeCap = Paint.Cap.ROUND
     }
-
-    // default percentage set to 0
-    private var percentage = 0
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
@@ -56,10 +52,9 @@ class CircularProgressView(context: Context, attrs: AttributeSet) : View(context
                 val height = (it.height.div(2)).toFloat() // center Y of the canvas
 
                 // place the rectF it at the center of the screen with height and width of 200dp
-                set(width - 300, height - 300, width + 300, height + 300)
+                set(width - 250, height - 250, width + 250, height + 250)
             }
 
-            // draw an arc that will represent an empty loading view
             it.drawArc(rectF, 0f, 360f, false, paint.apply {
                 color = arcColor
 
@@ -82,7 +77,6 @@ class CircularProgressView(context: Context, attrs: AttributeSet) : View(context
         }
     }
 
-    // todo fecator this to calculate for time
     fun setPercentage(percentage: Int) {
         this.percentage = percentage
         invalidate()

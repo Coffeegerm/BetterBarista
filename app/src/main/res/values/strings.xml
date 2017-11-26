@@ -23,6 +23,7 @@
     <string name="drink_image">Drink Image</string>
     <string name="single_drink_image">Single Drink Toolbar Image</string>
     <string name="instructions">Instructions</string>
+    <string name="timer_error">Could not get timer duration for this drink.</string>
 
     <string name="duration">Duration</string>
     <string name="strength">Strength</string>
