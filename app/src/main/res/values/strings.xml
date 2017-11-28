@@ -30,7 +30,8 @@
     <string name="difficulty">Difficulty</string>
 
     <string name="start">Start</string>
-    <string name="stop">Stop</string>
+    <string name="pause">Pause</string>
+    <string name="reset">Reset</string>
 
     <string name="easy">Easy</string>
     <string name="easy_intermediate">Easy - Intermediate</string>
@@ -63,6 +64,7 @@
 
     <string name="cold_brew">Cold Brew</string>
     <string name="cold_brew_description">A summer favorite for everyone that can be made to suit everyone\'s taste.</string>
+    <string name="final_time_for_timer">00:00</string>
 
 
     <!-- Instructions -->

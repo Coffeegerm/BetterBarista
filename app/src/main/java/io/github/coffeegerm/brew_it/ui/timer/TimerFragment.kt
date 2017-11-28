@@ -17,6 +17,7 @@
 package io.github.coffeegerm.brew_it.ui.timer
 
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -31,15 +32,17 @@ import kotlinx.android.synthetic.main.fragment_timer.*
 import org.jetbrains.anko.sdk25.coroutines.onItemSelectedListener
 import org.jetbrains.anko.support.v4.toast
 import timber.log.Timber
+import java.util.*
 import javax.inject.Inject
 
-/**
- * Fragment for handling Timer Activity
- */
 class TimerFragment : Fragment() {
 
+    companion object {
+        var totalTimeInMillis: Long = 0
+    }
+
     private var isButtonPressed: Boolean = false
-    private var totalTime: Long = 0
+    private lateinit var countDownTimer: CountDownTimer
 
     @Inject
     lateinit var drinksRepository: DrinksRepository
@@ -47,12 +50,16 @@ class TimerFragment : Fragment() {
     lateinit var utilities: Utilities
     private lateinit var drinksList: ArrayList<Drink>
 
+    private lateinit var timerUtils: TimerUtils
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
             inflater.inflate(R.layout.fragment_timer, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         syringe.inject(this)
+        timerUtils = TimerUtils()
+        createCountdownTimer()
         drinksList = drinksRepository.getAllDrinks()
         val drinksListNames = ArrayList<String>()
         drinksList.mapTo(drinksListNames) { it.name }
@@ -70,28 +77,14 @@ class TimerFragment : Fragment() {
             }
         }
 
-//        var count = 60
-//        val handler = Handler()
-//
-//        val runnable = object : Runnable {
-//            override fun run() {
-//                if (count <= 100) {
-//                    handler.postDelayed(this, 1000)
-//                    circularView.setPercentage(count)
-//                    count--
-//                }
-//            }
-//        }
-//
-//        handler.post(runnable)
+        reset_timer.setOnClickListener { resetTimer() }
 
         timer_button.setOnClickListener({
-            timer_button.text = if (isButtonPressed) getString(R.string.start) else getString(R.string.stop)
+            timer_button.text = if (isButtonPressed) getString(R.string.start) else getString(R.string.pause)
             when (timer_button.text) {
-                getString(R.string.stop) -> startTimer()
+                getString(R.string.pause) -> startTimer()
                 getString(R.string.start) -> stopTimer()
             }
-            Timber.d(isButtonPressed.toString())
             isButtonPressed = !isButtonPressed
         })
     }
@@ -111,16 +104,40 @@ class TimerFragment : Fragment() {
 
 
     private fun setTotalTime(drinkMade: Drink) {
-        totalTime = (drinkMade.brewDuration * 60).toLong()
-        Timber.i(totalTime.toString())
+        totalTimeInMillis = (drinkMade.brewDuration * 60 * 1000).toLong()
         circularView.setPercentage(100)
     }
 
+    private fun createCountdownTimer() {
+        countDownTimer = object : CountDownTimer(totalTimeInMillis, 1000) {
+            override fun onFinish() {
+                Timber.i("Timer finished")
+                timer_drink_time.text = getString(R.string.final_time_for_timer)
+                isButtonPressed = false
+            }
+
+            override fun onTick(millisUntilFinished: Long) {
+                Timber.i(totalTimeInMillis.toString())
+            }
+        }
+    }
+
     private fun startTimer() {
+        reset_timer.visibility = View.VISIBLE
+        countDownTimer.start()
         Timber.i("Timer started")
     }
 
     private fun stopTimer() {
+        reset_timer.visibility = View.GONE
+        countDownTimer.cancel()
         Timber.i("Timer stopped")
+    }
+
+    private fun resetTimer() {
+        circularView.setPercentage(100)
+        stopTimer()
+        timer_button.text = getString(R.string.start)
+        Timber.i("Timer reset")
     }
 }

@@ -14,21 +14,17 @@
  * limitations under the License.
  */
 
-package io.github.coffeegerm.brew_it.ui.main
+package io.github.coffeegerm.brew_it.ui.timer
 
-import android.app.Activity
-import android.content.Intent
-import android.os.Bundle
+import java.util.concurrent.TimeUnit
 
-/**
- * Activity responsible for showing splash screen pre app launch
- */
+open class TimerUtils {
+    fun getPercentLeft(timeLeftInMillis: Long): Int {
+        return ((timeLeftInMillis.toFloat() / 60000) * 100).toInt()
+    }
 
-class SplashActivity : Activity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        startActivity(Intent(this, MainActivity::class.java))
-        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
-        finish()
+    fun toReadableTime(millis: Long): String {
+        return String.format("%02d:%02d:%02d", TimeUnit.MILLISECONDS.toHours(millis),
+                TimeUnit.MILLISECONDS.toMinutes(millis) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millis)), TimeUnit.MILLISECONDS.toSeconds(millis) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millis)))
     }
 }
