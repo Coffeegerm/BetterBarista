@@ -5,11 +5,7 @@
 Brew It will be an app which attempts to use the latest cutting edge libraries and tools. As a summary:
 
  * Entirely written in [Kotlin](https://kotlinlang.org/)
- * Uses [RxJava](https://github.com/ReactiveX/RxJava) 2
- * Uses all of the [Architecture Components](https://developer.android.com/topic/libraries/architecture/): Room, LiveData and Lifecycle-components
  * Uses [dagger-android](https://google.github.io/dagger/android.html) for dependency injection
-
-# MUST USE ANDROID STUDIO 3.0 FOR COMPILATION
 
 ## Contributions
 
