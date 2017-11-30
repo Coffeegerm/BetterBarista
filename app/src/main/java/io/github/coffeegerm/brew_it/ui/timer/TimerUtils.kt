@@ -16,15 +16,14 @@
 
 package io.github.coffeegerm.brew_it.ui.timer
 
-import java.util.concurrent.TimeUnit
-
 open class TimerUtils {
     fun getPercentLeft(timeLeftInMillis: Long): Int {
         return ((timeLeftInMillis.toFloat() / 60000) * 100).toInt()
     }
 
-    fun toReadableTime(millis: Long): String {
-        return String.format("%02d:%02d:%02d", TimeUnit.MILLISECONDS.toHours(millis),
-                TimeUnit.MILLISECONDS.toMinutes(millis) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millis)), TimeUnit.MILLISECONDS.toSeconds(millis) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millis)))
+    fun convertMillisToMinutes(providedMillis: Long): String {
+        val minutes = (providedMillis / 1000) / 60
+        val seconds = (providedMillis / 1000) % 60
+        return minutes.toString() + ":" + seconds.toString()
     }
 }

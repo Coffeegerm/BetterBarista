@@ -59,7 +59,6 @@ class TimerFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         syringe.inject(this)
         timerUtils = TimerUtils()
-        createCountdownTimer()
         drinksList = drinksRepository.getAllDrinks()
         val drinksListNames = ArrayList<String>()
         drinksList.mapTo(drinksListNames) { it.name }
@@ -105,19 +104,20 @@ class TimerFragment : Fragment() {
 
     private fun setTotalTime(drinkMade: Drink) {
         totalTimeInMillis = (drinkMade.brewDuration * 60 * 1000).toLong()
+        createCountdownTimer(totalTimeInMillis)
         circularView.setPercentage(100)
     }
 
-    private fun createCountdownTimer() {
+    private fun createCountdownTimer(totalTimeInMillis: Long) {
         countDownTimer = object : CountDownTimer(totalTimeInMillis, 1000) {
             override fun onFinish() {
                 Timber.i("Timer finished")
                 timer_drink_time.text = getString(R.string.final_time_for_timer)
-                isButtonPressed = false
             }
 
             override fun onTick(millisUntilFinished: Long) {
-                Timber.i(totalTimeInMillis.toString())
+                timer_drink_time.text = timerUtils.convertMillisToMinutes(millisUntilFinished)
+                Timber.i(circularView.setPercentage(timerUtils.getPercentLeft(millisUntilFinished)).toString())
             }
         }
     }
