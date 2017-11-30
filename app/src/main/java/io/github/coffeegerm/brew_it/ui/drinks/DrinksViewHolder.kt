@@ -26,10 +26,6 @@ import io.github.coffeegerm.brew_it.utilities.Constants.DRINK_ID_PASSED
 import io.github.coffeegerm.brew_it.utilities.Utilities
 import kotlinx.android.synthetic.main.item_drink.view.*
 
-/**
- * TODO: Add class comment header
- */
-
 class DrinksViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     fun bindDrink(item: Drink) {
