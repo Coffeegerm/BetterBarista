@@ -60,10 +60,11 @@
     <string name="french_press_description">When you just want a tasty cup of coffee without all the hassle a French Press might just be your best bet. Ease of use and a great cup of coffee each and every time. </string>
 
     <string name="aeropress">Aeropress</string>
-    <string name="aeropress_description">Marco Arment\'s favorite brewing method.</string>
+    <string name="aeropress_description">An incredible brewing method that can make amazing coffee every time. The true strength to the Aeropress is it\'s versatility. Use it to make a regular cup of coffee or a shot of espresso.</string>
 
     <string name="cold_brew">Cold Brew</string>
-    <string name="cold_brew_description">A summer favorite for everyone that can be made to suit everyone\'s taste.</string>
+    <string name="cold_brew_description">A summer favorite that\'s simple as can be, only takes time.</string>
+
     <string name="final_time_for_timer">00:00</string>
 
 
@@ -91,6 +92,7 @@
         <item>Pour and enjoy your cup of coffee!</item>
     </array>
 
+    <!-- Pour Over instructions -->
     <array name="instructions_pour_over">
         <item>Bring 20 ounces, or 600 grams, of water to a boil.</item>
         <item>Grind 30 grams of coffee beans to a sea salt like coarseness. This ensures that the

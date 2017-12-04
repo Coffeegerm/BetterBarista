@@ -28,6 +28,7 @@ import io.github.coffeegerm.brew_it.data.Drink
 import io.github.coffeegerm.brew_it.ui.drinks.DrinksFragment
 import io.github.coffeegerm.brew_it.ui.more.MoreFragment
 import io.github.coffeegerm.brew_it.ui.timer.TimerFragment
+import io.github.coffeegerm.brew_it.utilities.Constants
 import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_main.*
 import timber.log.Timber
@@ -70,8 +71,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        Timber.i("onActivityResult")
-        if (requestCode == 1) {
+        if (requestCode == Constants.SINGLE_DRINK_REQUEST_CODE) {
             if (resultCode == Activity.RESULT_OK) {
                 navigation.selectedItemId = R.id.navigation_timer
             }
@@ -80,8 +80,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun showFragment(fragment: Fragment) {
         val fragmentTransaction = supportFragmentManager.beginTransaction()
-
-        fragmentTransaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
 
         when (fragment.isAdded) {
             true -> fragmentTransaction.show(fragment)
