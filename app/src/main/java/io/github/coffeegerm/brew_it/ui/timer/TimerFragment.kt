@@ -50,15 +50,12 @@ class TimerFragment : Fragment() {
     lateinit var utilities: Utilities
     private lateinit var drinksList: ArrayList<Drink>
 
-    private lateinit var timerUtils: TimerUtils
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
             inflater.inflate(R.layout.fragment_timer, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         syringe.inject(this)
-        timerUtils = TimerUtils()
         drinksList = drinksRepository.getAllDrinks()
         val drinksListNames = ArrayList<String>()
         drinksList.mapTo(drinksListNames) { it.name }
@@ -116,8 +113,8 @@ class TimerFragment : Fragment() {
             }
 
             override fun onTick(millisUntilFinished: Long) {
-                timer_drink_time.text = timerUtils.convertMillisToMinutes(millisUntilFinished)
-                Timber.i(circularView.setPercentage(timerUtils.getPercentLeft(millisUntilFinished)).toString())
+                timer_drink_time.text = convertMillisToMinutes(millisUntilFinished)
+                Timber.i(circularView.setPercentage(getPercentLeft(millisUntilFinished)).toString())
             }
         }
     }
@@ -139,5 +136,15 @@ class TimerFragment : Fragment() {
         stopTimer()
         timer_button.text = getString(R.string.start)
         Timber.i("Timer reset")
+    }
+
+    fun getPercentLeft(timeLeftInMillis: Long): Int {
+        return ((timeLeftInMillis.toFloat() / 60000) * 100).toInt()
+    }
+
+    fun convertMillisToMinutes(providedMillis: Long): String {
+        val minutes = (providedMillis / 1000) / 60
+        val seconds = (providedMillis / 1000) % 60
+        return minutes.toString() + ":" + seconds.toString()
     }
 }
