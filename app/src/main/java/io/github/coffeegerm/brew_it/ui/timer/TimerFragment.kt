@@ -37,17 +37,14 @@ import javax.inject.Inject
 
 class TimerFragment : Fragment() {
 
-    companion object {
-        var totalTimeInMillis: Long = 0
-    }
-
-    private var isButtonPressed: Boolean = false
-    private lateinit var countDownTimer: CountDownTimer
-
     @Inject
     lateinit var drinksRepository: DrinksRepository
     @Inject
     lateinit var utilities: Utilities
+
+    private var totalTimeInMillis: Long = 0
+    private var isButtonPressed: Boolean = false
+    private lateinit var countDownTimer: CountDownTimer
     private lateinit var drinksList: ArrayList<Drink>
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
@@ -106,6 +103,7 @@ class TimerFragment : Fragment() {
     }
 
     private fun createCountdownTimer(totalTimeInMillis: Long) {
+        timer_drink_time.text = convertMillisToMinutes(totalTimeInMillis)
         countDownTimer = object : CountDownTimer(totalTimeInMillis, 1000) {
             override fun onFinish() {
                 Timber.i("Timer finished")
