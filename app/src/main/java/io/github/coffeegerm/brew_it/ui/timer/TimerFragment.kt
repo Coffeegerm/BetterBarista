@@ -46,6 +46,7 @@ class TimerFragment : Fragment() {
     private var isButtonPressed: Boolean = false
     private lateinit var countDownTimer: CountDownTimer
     private lateinit var drinksList: ArrayList<Drink>
+    private var currentTimerMillisTillFinished: Long = 0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
             inflater.inflate(R.layout.fragment_timer, container, false)
@@ -76,7 +77,7 @@ class TimerFragment : Fragment() {
             timer_button.text = if (isButtonPressed) getString(R.string.start) else getString(R.string.pause)
             when (timer_button.text) {
                 getString(R.string.pause) -> startTimer()
-                getString(R.string.start) -> stopTimer()
+                getString(R.string.start) -> pauseTimer(currentTimerMillisTillFinished)
             }
             isButtonPressed = !isButtonPressed
         })
@@ -111,8 +112,9 @@ class TimerFragment : Fragment() {
             }
 
             override fun onTick(millisUntilFinished: Long) {
+                currentTimerMillisTillFinished = millisUntilFinished
                 timer_drink_time.text = convertMillisToMinutes(millisUntilFinished)
-                Timber.i(circularView.setPercentage(getPercentLeft(millisUntilFinished)).toString())
+                Timber.i(millisUntilFinished.toString())
             }
         }
     }
@@ -123,21 +125,22 @@ class TimerFragment : Fragment() {
         Timber.i("Timer started")
     }
 
-    private fun stopTimer() {
+    private fun pauseTimer(currentTimeUntilFinished: Long) {
         reset_timer.visibility = View.GONE
         countDownTimer.cancel()
-        Timber.i("Timer stopped")
+        createCountdownTimer(currentTimeUntilFinished)
+        Timber.i("Timer paused")
     }
 
     private fun resetTimer() {
         circularView.setPercentage(100)
-        stopTimer()
+        countDownTimer.cancel()
         timer_button.text = getString(R.string.start)
         Timber.i("Timer reset")
     }
 
     fun getPercentLeft(timeLeftInMillis: Long): Int {
-        return ((timeLeftInMillis.toFloat() / 60000) * 100).toInt()
+        return (timeLeftInMillis / 60000 * 100).toInt()
     }
 
     fun convertMillisToMinutes(providedMillis: Long): String {
