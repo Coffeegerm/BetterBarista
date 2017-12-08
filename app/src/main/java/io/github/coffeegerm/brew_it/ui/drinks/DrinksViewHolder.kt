@@ -27,16 +27,16 @@ import io.github.coffeegerm.brew_it.utilities.Utilities
 import kotlinx.android.synthetic.main.item_drink.view.*
 
 class DrinksViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-    fun bindDrink(item: Drink) {
-        itemView.drink_name.text = item.name
-        itemView.drink_time.text = Utilities().convertBrewDuration(item.brewDuration)
-        itemView.drink_image.setImageResource(item.image)
-        val context = itemView.context as Activity
-        itemView.setOnClickListener({
-            val intent = Intent(itemView.context, SingleDrinkActivity::class.java)
-            intent.putExtra(DRINK_ID_PASSED, item.id)
-            context.startActivityForResult(intent, 1)
-        })
-    }
+  
+  fun bindDrink(item: Drink) {
+    itemView.drink_name.text = item.name
+    itemView.drink_time.text = Utilities().convertBrewDuration(item.brewDuration)
+    itemView.drink_image.setImageResource(item.image)
+    val context = itemView.context as Activity
+    itemView.setOnClickListener({
+      val intent = Intent(itemView.context, SingleDrinkActivity::class.java)
+      intent.putExtra(DRINK_ID_PASSED, item.id)
+      context.startActivityForResult(intent, 1)
+    })
+  }
 }

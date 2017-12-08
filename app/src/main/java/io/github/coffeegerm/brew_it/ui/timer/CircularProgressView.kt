@@ -29,56 +29,56 @@ import io.github.coffeegerm.brew_it.R
  * TODO: Add class comment header
  */
 class CircularProgressView(context: Context, attrs: AttributeSet) : View(context, attrs) {
-
-    private val arcColor: Int = ContextCompat.getColor(context, R.color.deepBrown)
-    private val fillColor: Int = ContextCompat.getColor(context, R.color.lightGreen)
-    // default percentage set to 0
-    private var percentage = 0
-
-    // required to draw the arcs
-    private val rectF = RectF()
-
-    private val paint = Paint().apply {
-        style = Paint.Style.STROKE
-        strokeCap = Paint.Cap.ROUND
+  
+  private val arcColor: Int = ContextCompat.getColor(context, R.color.deepBrown)
+  private val fillColor: Int = ContextCompat.getColor(context, R.color.lightGreen)
+  // default percentage set to 0
+  private var percentage = 0
+  
+  // required to draw the arcs
+  private val rectF = RectF()
+  
+  private val paint = Paint().apply {
+    style = Paint.Style.STROKE
+    strokeCap = Paint.Cap.ROUND
+  }
+  
+  override fun onDraw(canvas: Canvas?) {
+    super.onDraw(canvas)
+    
+    canvas?.let {
+      rectF.apply {
+        val width = (it.width.div(2)).toFloat() // center X of the canvas
+        val height = (it.height.div(2)).toFloat() // center Y of the canvas
+        
+        // place the rectF it at the center of the screen with height and width of 200dp
+        set(width - 250, height - 250, width + 250, height + 250)
+      }
+      
+      it.drawArc(rectF, 0f, 360f, false, paint.apply {
+        color = arcColor
+        
+        // how wide the stroke should be, typically more than or equal to the strokeWidth
+        // of the arc representing a filled percentage
+        strokeWidth = 8f
+      })
+      
+      // get the actual percentage as a float
+      val fillPercentage = (360 * (percentage / 100.0)).toFloat()
+      
+      // draw the arc that will represent the percentage filled up
+      it.drawArc(rectF, 270f, fillPercentage, false, paint.apply {
+        color = fillColor // filled percentage color
+        
+        // how wide the stroke should be, typically less than or equal to the strokeWidth
+        // of the empty arc
+        strokeWidth = 15f
+      })
     }
-
-    override fun onDraw(canvas: Canvas?) {
-        super.onDraw(canvas)
-
-        canvas?.let {
-            rectF.apply {
-                val width = (it.width.div(2)).toFloat() // center X of the canvas
-                val height = (it.height.div(2)).toFloat() // center Y of the canvas
-
-                // place the rectF it at the center of the screen with height and width of 200dp
-                set(width - 250, height - 250, width + 250, height + 250)
-            }
-
-            it.drawArc(rectF, 0f, 360f, false, paint.apply {
-                color = arcColor
-
-                // how wide the stroke should be, typically more than or equal to the strokeWidth
-                // of the arc representing a filled percentage
-                strokeWidth = 8f
-            })
-
-            // get the actual percentage as a float
-            val fillPercentage = (360 * (percentage / 100.0)).toFloat()
-
-            // draw the arc that will represent the percentage filled up
-            it.drawArc(rectF, 270f, fillPercentage, false, paint.apply {
-                color = fillColor // filled percentage color
-
-                // how wide the stroke should be, typically less than or equal to the strokeWidth
-                // of the empty arc
-                strokeWidth = 15f
-            })
-        }
-    }
-
-    fun setPercentage(percentage: Int) {
-        this.percentage = percentage
-        invalidate()
-    }
+  }
+  
+  fun setPercentage(percentage: Int) {
+    this.percentage = percentage
+    invalidate()
+  }
 }

@@ -27,19 +27,19 @@ import io.github.coffeegerm.brew_it.data.Drink
  */
 
 class DrinksAdapter : RecyclerView.Adapter<DrinksViewHolder>() {
-
-    private lateinit var drinks: ArrayList<Drink>
-
-    fun setDrinks(providedDrinks: ArrayList<Drink>) {
-        this.drinks = providedDrinks
-    }
-
-    override fun onBindViewHolder(holder: DrinksViewHolder, position: Int) {
-        holder.bindDrink(drinks[position])
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DrinksViewHolder =
-            DrinksViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_drink, parent, false))
-
-    override fun getItemCount(): Int = drinks.size
+  
+  private lateinit var drinks: ArrayList<Drink>
+  
+  fun setDrinks(providedDrinks: ArrayList<Drink>) {
+    this.drinks = providedDrinks
+  }
+  
+  override fun onBindViewHolder(holder: DrinksViewHolder, position: Int) {
+    holder.bindDrink(drinks[position])
+  }
+  
+  override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DrinksViewHolder =
+        DrinksViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_drink, parent, false))
+  
+  override fun getItemCount(): Int = drinks.size
 }

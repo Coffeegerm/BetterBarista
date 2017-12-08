@@ -25,10 +25,10 @@ import android.os.Bundle
  */
 
 class SplashActivity : Activity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        startActivity(Intent(this, MainActivity::class.java))
-        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
-        finish()
-    }
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    startActivity(Intent(this, MainActivity::class.java))
+    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+    finish()
+  }
 }

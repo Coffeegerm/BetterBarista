@@ -31,21 +31,21 @@ import javax.inject.Singleton
 
 @Module
 class AppModule(brewItApplication: BrewItApplication) {
-    var app: BrewItApplication = brewItApplication
-
-    @Provides
-    @Singleton
-    fun provideApplicationContext(): Context = app.applicationContext
-
-    @Provides
-    @Singleton
-    fun provideActivityResources(app: Context): Resources = app.resources
-
-    @Provides
-    @Singleton
-    fun provideDrinksRepository(): DrinksRepository = DrinksRepository()
-
-    @Provides
-    @Singleton
-    fun provideUtilities(): Utilities = Utilities()
+  var app: BrewItApplication = brewItApplication
+  
+  @Provides
+  @Singleton
+  fun provideApplicationContext(): Context = app.applicationContext
+  
+  @Provides
+  @Singleton
+  fun provideActivityResources(app: Context): Resources = app.resources
+  
+  @Provides
+  @Singleton
+  fun provideDrinksRepository(): DrinksRepository = DrinksRepository()
+  
+  @Provides
+  @Singleton
+  fun provideUtilities(): Utilities = Utilities()
 }

@@ -27,7 +27,7 @@ import io.github.coffeegerm.brew_it.R
  * TODO add class header
  */
 class MoreFragment : Fragment() {
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
-            inflater.inflate(R.layout.fragment_more, container, false)
+  
+  override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
+        inflater.inflate(R.layout.fragment_more, container, false)
 }
