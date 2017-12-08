@@ -16,10 +16,7 @@
 
 package io.github.coffeegerm.brew_it.data
 
-import io.github.coffeegerm.brew_it.BrewItApplication.Companion.syringe
 import io.realm.Realm
-import javax.inject.Inject
-import javax.inject.Named
 
 /**
  * Class full of helper methods for accessing database data
@@ -27,12 +24,12 @@ import javax.inject.Named
  */
 
 class DrinksRepository {
-
-    private var realm: Realm = Realm.getDefaultInstance()
-
-    fun getAllDrinks(): ArrayList<Drink> = ArrayList(realm.where(Drink::class.java).findAll())
-
-    fun getSingleDrinkById(id: Int): Drink? = realm.where(Drink::class.java).equalTo("id", id).findFirst()
-
-    fun getSingleDrinkByName(name: String): Drink? = realm.where(Drink::class.java).equalTo("name", name).findFirst()
+  
+  private var realm = Realm.getDefaultInstance()
+  
+  fun getAllDrinks(): ArrayList<Drink> = ArrayList(realm.where(Drink::class.java).findAll())
+  
+  fun getSingleDrinkById(id: Int): Drink? = realm.where(Drink::class.java).equalTo("id", id).findFirst()
+  
+  fun getSingleDrinkByName(name: String): Drink? = realm.where(Drink::class.java).equalTo("name", name).findFirst()
 }

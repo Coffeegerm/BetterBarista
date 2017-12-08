@@ -21,8 +21,8 @@ package io.github.coffeegerm.brew_it.utilities
  */
 
 object Constants {
-    val SHARED_PREFERENCES: String = "SHARED_PREFERENCES"
-    val DATABASE_CREATED: String = "DATABASE_CREATED"
-    val DRINK_ID_PASSED: String = "DRINK_ID_PASSED"
-    val SINGLE_DRINK_REQUEST_CODE: Int = 1
+  val SHARED_PREFERENCES: String = "SHARED_PREFERENCES"
+  val DATABASE_CREATED: String = "DATABASE_CREATED"
+  val DRINK_ID_PASSED: String = "DRINK_ID_PASSED"
+  val SINGLE_DRINK_REQUEST_CODE: Int = 1
 }

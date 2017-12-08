@@ -28,10 +28,10 @@ import javax.inject.Singleton
  */
 
 @Singleton
-@Component(modules = arrayOf(AppModule::class))
+@Component(modules = [(AppModule::class)])
 interface AppComponent {
-    fun inject(mainActivity: MainActivity)
-    fun inject(drinksFragment: DrinksFragment)
-    fun inject(timerFragment: TimerFragment)
-    fun inject(singleDrinkActivity: SingleDrinkActivity)
+  fun inject(mainActivity: MainActivity)
+  fun inject(drinksFragment: DrinksFragment)
+  fun inject(timerFragment: TimerFragment)
+  fun inject(singleDrinkActivity: SingleDrinkActivity)
 }

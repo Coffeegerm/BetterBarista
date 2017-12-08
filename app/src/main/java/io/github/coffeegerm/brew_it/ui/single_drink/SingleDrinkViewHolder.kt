@@ -25,8 +25,8 @@ import kotlinx.android.synthetic.main.item_instructions.view.*
  */
 
 class SingleDrinkViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-    fun bindInstruction(item: String) {
-        itemView.single_drink_instructions.text = item
-    }
+  
+  fun bindInstruction(item: String) {
+    itemView.single_drink_instructions.text = item
+  }
 }
