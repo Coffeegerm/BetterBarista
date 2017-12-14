@@ -22,6 +22,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import io.github.coffeegerm.brew_it.BrewItApplication.Companion.syringe
 import io.github.coffeegerm.brew_it.R
@@ -29,11 +30,12 @@ import io.github.coffeegerm.brew_it.data.Drink
 import io.github.coffeegerm.brew_it.data.DrinksRepository
 import io.github.coffeegerm.brew_it.utilities.Utilities
 import kotlinx.android.synthetic.main.fragment_timer.*
+import org.jetbrains.anko.support.v4.toast
 import timber.log.Timber
 import java.util.*
 import javax.inject.Inject
 
-class TimerFragment : Fragment() {
+class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
   
   @Inject
   lateinit var drinksRepository: DrinksRepository
@@ -57,18 +59,10 @@ class TimerFragment : Fragment() {
     drinksList.mapTo(drinksListNames) { it.name }
     val adapter = ArrayAdapter(activity, android.R.layout.simple_spinner_dropdown_item, drinksListNames)
     spinner.adapter = adapter
-    spinner.onItemSelectedListener {
-      onItemSelected { parent, _, position, _ ->
-        when (parent?.getItemAtPosition(position)) {
-          getString(R.string.coffee) -> setDrinkTimerText(drinkResId = R.string.coffee)
-          getString(R.string.pour_over) -> setDrinkTimerText(drinkResId = R.string.pour_over)
-          getString(R.string.aeropress) -> setDrinkTimerText(drinkResId = R.string.aeropress)
-          getString(R.string.french_press) -> setDrinkTimerText(drinkResId = R.string.french_press)
-          getString(R.string.cold_brew) -> setDrinkTimerText(drinkResId = R.string.cold_brew)
-        }
-      }
-    }
-    
+    spinner.onItemSelectedListener = this
+  
+  
+  
     reset_timer.setOnClickListener { resetTimer() }
     
     timer_button.setOnClickListener({
@@ -79,6 +73,20 @@ class TimerFragment : Fragment() {
       }
       isButtonPressed = !isButtonPressed
     })
+  }
+  
+  override fun onNothingSelected(p0: AdapterView<*>?) {
+    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+  }
+  
+  override fun onItemSelected(parent: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
+    when (parent?.getItemAtPosition(position)) {
+      getString(R.string.coffee) -> setDrinkTimerText(drinkResId = R.string.coffee)
+      getString(R.string.pour_over) -> setDrinkTimerText(drinkResId = R.string.pour_over)
+      getString(R.string.aeropress) -> setDrinkTimerText(drinkResId = R.string.aeropress)
+      getString(R.string.french_press) -> setDrinkTimerText(drinkResId = R.string.french_press)
+      getString(R.string.cold_brew) -> setDrinkTimerText(drinkResId = R.string.cold_brew)
+    }
   }
   
   private fun setDrinkTimerText(drinkResId: Int) {
