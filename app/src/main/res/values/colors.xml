@@ -15,24 +15,24 @@
   -->
 
 <resources>
-    <color name="colorPrimary">#E25239</color>
-    <color name="colorPrimaryDark">#B9442F</color>
-    <color name="colorAccent">#C4A381</color>
-    <color name="lightGreen">#BBD686</color>
-    <color name="deepBrown">#644536</color>
-    <color name="paleYellow">#EEF1BD</color>
-
-    <!-- Text color primary: black -->
-    <color name="textColorPrimary">#0D160B</color>
-    <color name="textColorSecondary">#0D160B</color>
-
-    <!-- Text color inverse -->
-    <color name="textColorPrimaryInverse">#FFFFFF</color>
-    <color name="textColorSecondaryInverse">#D1D1D1</color>
-
-    <!-- Others -->
-    <color name="black">#000</color>
-    <color name="white">#fff</color>
-    <color name="light_grey">#D3D3D3</color>
-    <color name="dark_light_grey">#9A9A9A</color>
+  <color name="colorPrimary">#E25239</color>
+  <color name="colorPrimaryDark">#B9442F</color>
+  <color name="colorAccent">#C4A381</color>
+  <color name="lightGreen">#BBD686</color>
+  <color name="deepBrown">#644536</color>
+  <color name="paleYellow">#EEF1BD</color>
+  
+  <!-- Text color primary: black -->
+  <color name="textColorPrimary">#0D160B</color>
+  <color name="textColorSecondary">#0D160B</color>
+  
+  <!-- Text color inverse -->
+  <color name="textColorPrimaryInverse">#FFFFFF</color>
+  <color name="textColorSecondaryInverse">#D1D1D1</color>
+  
+  <!-- Others -->
+  <color name="black">#000</color>
+  <color name="white">#fff</color>
+  <color name="light_grey">#D3D3D3</color>
+  <color name="dark_light_grey">#9A9A9A</color>
 </resources>

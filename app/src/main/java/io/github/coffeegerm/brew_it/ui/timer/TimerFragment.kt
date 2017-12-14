@@ -43,7 +43,7 @@ class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
   @Inject
   lateinit var utilities: Utilities
   
-  lateinit var timerViewModel: TimerViewModel
+  private lateinit var timerViewModel: TimerViewModel
   
   private var totalTimeInMillis: Long = 0
   private var isButtonPressed: Boolean = false
@@ -57,15 +57,16 @@ class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
     syringe.inject(this)
+    
     timerViewModel = ViewModelProviders.of(this).get(TimerViewModel::class.java)
+    
     drinksList = drinksRepository.getAllDrinks()
     val drinksListNames = ArrayList<String>()
+    
     drinksList.mapTo(drinksListNames) { it.name }
     val adapter = ArrayAdapter(activity, android.R.layout.simple_spinner_dropdown_item, drinksListNames)
     spinner.adapter = adapter
     spinner.onItemSelectedListener = this
-  
-  
   
     reset_timer.setOnClickListener { resetTimer() }
     
@@ -104,7 +105,6 @@ class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
   
   private fun showDrinkTimerTextError() =
         toast(getString(R.string.timer_error))
-  
   
   private fun setTotalTime(drinkMade: Drink) {
     totalTimeInMillis = (drinkMade.brewDuration * 60 * 1000).toLong()

@@ -15,8 +15,8 @@
   -->
 
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- Background color -->
-    <item android:drawable="@color/colorPrimaryDark" />
+  <!-- Background color -->
+  <item android:drawable="@color/colorPrimaryDark" />
   
   <item>
     <bitmap

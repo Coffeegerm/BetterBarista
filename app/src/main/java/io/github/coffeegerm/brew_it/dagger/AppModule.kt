@@ -17,11 +17,13 @@
 package io.github.coffeegerm.brew_it.dagger
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.content.res.Resources
 import dagger.Module
 import dagger.Provides
 import io.github.coffeegerm.brew_it.BrewItApplication
 import io.github.coffeegerm.brew_it.data.DrinksRepository
+import io.github.coffeegerm.brew_it.utilities.Constants
 import io.github.coffeegerm.brew_it.utilities.Utilities
 import javax.inject.Singleton
 
@@ -39,7 +41,11 @@ class AppModule(brewItApplication: BrewItApplication) {
   
   @Provides
   @Singleton
-  fun provideActivityResources(app: Context): Resources = app.resources
+  fun provideActivityResources(): Resources = app.resources
+  
+  @Provides
+  @Singleton
+  fun providesSharedPreferences(): SharedPreferences = app.getSharedPreferences(Constants.SHARED_PREFERENCES, Context.MODE_PRIVATE)
   
   @Provides
   @Singleton
