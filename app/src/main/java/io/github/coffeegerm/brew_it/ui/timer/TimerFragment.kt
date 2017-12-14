@@ -16,6 +16,7 @@
 
 package io.github.coffeegerm.brew_it.ui.timer
 
+import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.support.v4.app.Fragment
@@ -42,6 +43,8 @@ class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
   @Inject
   lateinit var utilities: Utilities
   
+  lateinit var timerViewModel: TimerViewModel
+  
   private var totalTimeInMillis: Long = 0
   private var isButtonPressed: Boolean = false
   private lateinit var countDownTimer: CountDownTimer
@@ -54,6 +57,7 @@ class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
     syringe.inject(this)
+    timerViewModel = ViewModelProviders.of(this).get(TimerViewModel::class.java)
     drinksList = drinksRepository.getAllDrinks()
     val drinksListNames = ArrayList<String>()
     drinksList.mapTo(drinksListNames) { it.name }
@@ -75,12 +79,11 @@ class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
     })
   }
   
-  override fun onNothingSelected(p0: AdapterView<*>?) {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+  override fun onNothingSelected(p0: AdapterView<*>) {
   }
   
-  override fun onItemSelected(parent: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
-    when (parent?.getItemAtPosition(position)) {
+  override fun onItemSelected(parent: AdapterView<*>, p1: View, position: Int, p3: Long) {
+    when (parent.getItemAtPosition(position)) {
       getString(R.string.coffee) -> setDrinkTimerText(drinkResId = R.string.coffee)
       getString(R.string.pour_over) -> setDrinkTimerText(drinkResId = R.string.pour_over)
       getString(R.string.aeropress) -> setDrinkTimerText(drinkResId = R.string.aeropress)
