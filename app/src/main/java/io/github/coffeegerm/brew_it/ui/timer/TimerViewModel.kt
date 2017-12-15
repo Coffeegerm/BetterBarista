@@ -18,25 +18,39 @@ package io.github.coffeegerm.brew_it.ui.timer
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
+import android.content.res.Resources
 import android.os.CountDownTimer
 import io.github.coffeegerm.brew_it.BrewItApplication
 import io.github.coffeegerm.brew_it.data.Drink
+import io.github.coffeegerm.brew_it.data.DrinksRepository
+import io.github.coffeegerm.brew_it.utilities.Utilities
+import javax.inject.Inject
 
-/**
- * TODO create class header
- */
 class TimerViewModel : ViewModel() {
   
   init {
     BrewItApplication.syringe.inject(this)
   }
   
+  @Inject lateinit var drinksRepository: DrinksRepository
+  @Inject lateinit var resources: Resources
+  @Inject lateinit var utils: Utilities
+  
   private var initialTime: Long = 0
   var remainingTime: MutableLiveData<Long> = MutableLiveData()
+  var drinkTimerText: MutableLiveData<String> = MutableLiveData()
   
   private var currentTimerMillisTillFinished: Long = 0
   
   private lateinit var countDownTimer: CountDownTimer
+  
+  fun setDrink(drinkResId: Int) {
+    val drinkMade = drinksRepository.getSingleDrinkByName(resources.getString(drinkResId))
+    drinkMade?.let { setTotalTime(it) }
+    drinkMade?.let {
+      drinkTimerText.postValue(utils.convertBrewDurationForTimer(drinkMade.brewDuration))
+    }
+  }
   
   fun setTotalTime(drinkMade: Drink) {
     initialTime = (drinkMade.brewDuration * 60 * 1000).toLong()
@@ -46,6 +60,7 @@ class TimerViewModel : ViewModel() {
   private fun createCountdownTimer(totalTimeInMillis: Long) {
     countDownTimer = object : CountDownTimer(totalTimeInMillis, 1000) {
       override fun onFinish() {
+        remainingTime.postValue(0)
       }
       
       override fun onTick(millisUntilFinished: Long) {
@@ -61,6 +76,7 @@ class TimerViewModel : ViewModel() {
   
   fun pauseTimer() {
     countDownTimer.cancel()
+    createCountdownTimer(currentTimerMillisTillFinished)
   }
   
   fun resetTimer() {
@@ -70,5 +86,5 @@ class TimerViewModel : ViewModel() {
   fun getPercentLeft(timeLeftInMillis: Long): Int {
     return (timeLeftInMillis / 60000 * 100).toInt()
   }
-
+  
 }

@@ -29,20 +29,14 @@ import io.github.coffeegerm.brew_it.BrewItApplication.Companion.syringe
 import io.github.coffeegerm.brew_it.R
 import io.github.coffeegerm.brew_it.data.Drink
 import io.github.coffeegerm.brew_it.data.DrinksRepository
-import io.github.coffeegerm.brew_it.utilities.Utilities
 import kotlinx.android.synthetic.main.fragment_timer.*
-import org.jetbrains.anko.support.v4.toast
 import java.util.*
 import javax.inject.Inject
 
 class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
   
-  @Inject
-  lateinit var drinksRepository: DrinksRepository
-  @Inject
-  lateinit var utilities: Utilities
-  
-  private lateinit var timerViewModel: TimerViewModel
+  @Inject lateinit var drinksRepository: DrinksRepository
+  @Inject lateinit var timerViewModel: TimerViewModel
   
   private var isButtonPressed: Boolean = false
   private lateinit var drinksList: ArrayList<Drink>
@@ -56,6 +50,8 @@ class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
     
     timerViewModel = ViewModelProviders.of(this).get(TimerViewModel::class.java)
     
+    
+    // todo refactor this to viewmodel
     drinksList = drinksRepository.getAllDrinks()
     val drinksListNames = ArrayList<String>()
     
@@ -63,27 +59,22 @@ class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
     val spinnerAdapter = ArrayAdapter(activity, android.R.layout.simple_spinner_dropdown_item, drinksListNames)
     spinner.adapter = spinnerAdapter
     spinner.onItemSelectedListener = this
-  
-    reset_timer.setOnClickListener { timerViewModel.resetTimer() }
+    
+    reset_timer.setOnClickListener { resetTimer() }
     
     timer_button.setOnClickListener({
       timer_button.text = if (isButtonPressed) getString(R.string.start) else getString(R.string.pause)
       when (timer_button.text) {
-        getString(R.string.pause) -> timerViewModel.startTimer()
-        getString(R.string.start) -> timerViewModel.pauseTimer()
+        getString(R.string.pause) -> startTimer()
+        getString(R.string.start) -> pauseTimer()
       }
       isButtonPressed = !isButtonPressed
     })
-  
-    val remainingTime = Observer<Long> { remainingTime ->
-      timer_drink_time.text = remainingTime?.let { convertMillisToMinutes(it) }
-    }
-  
-    timerViewModel.remainingTime.observe(this, remainingTime)
+    
+    subscribe()
   }
   
-  override fun onNothingSelected(p0: AdapterView<*>) {
-  }
+  override fun onNothingSelected(p0: AdapterView<*>) {}
   
   override fun onItemSelected(parent: AdapterView<*>, p1: View, position: Int, p3: Long) {
     when (parent.getItemAtPosition(position)) {
@@ -95,18 +86,33 @@ class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
     }
   }
   
-  private fun setDrinkTimerText(drinkResId: Int) {
-    val drink = drinksRepository.getSingleDrinkByName(getString(drinkResId))
-  
-    drink?.let { timerViewModel.setTotalTime(it) }
+  private fun subscribe() {
+    val remainingTime = Observer<Long> { remainingTime -> timer_drink_time.text = remainingTime?.let { convertMillisToMinutes(it) } }
     
-    drink?.let {
-      timer_drink_time.text = utilities.convertBrewDurationForTimer(drink.brewDuration)
-    } ?: showDrinkTimerTextError()
+    timerViewModel.remainingTime.observe(this, remainingTime)
+    
+    val drinkTimerText = Observer<String> { drinkTimerText -> timer_drink_time.text = drinkTimerText }
+    timerViewModel.drinkTimerText.observe(this, drinkTimerText)
   }
   
-  private fun showDrinkTimerTextError() =
-        toast(getString(R.string.timer_error))
+  private fun setDrinkTimerText(drinkResId: Int) = timerViewModel.setDrink(drinkResId)
+  
+  
+  private fun startTimer() {
+    reset_timer.visibility = View.VISIBLE
+    timerViewModel.startTimer()
+  }
+  
+  private fun pauseTimer() {
+    reset_timer.visibility = View.GONE
+    timerViewModel.pauseTimer()
+  }
+  
+  private fun resetTimer() {
+    reset_timer.visibility = View.GONE
+    timer_button.setText(R.string.start)
+    timerViewModel.resetTimer()
+  }
   
   private fun convertMillisToMinutes(providedMillis: Long): String {
     val minutes = (providedMillis / 1000) / 60
