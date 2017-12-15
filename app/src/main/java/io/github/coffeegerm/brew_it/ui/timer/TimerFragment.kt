@@ -16,9 +16,9 @@
 
 package io.github.coffeegerm.brew_it.ui.timer
 
+import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.os.CountDownTimer
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -32,7 +32,6 @@ import io.github.coffeegerm.brew_it.data.DrinksRepository
 import io.github.coffeegerm.brew_it.utilities.Utilities
 import kotlinx.android.synthetic.main.fragment_timer.*
 import org.jetbrains.anko.support.v4.toast
-import timber.log.Timber
 import java.util.*
 import javax.inject.Inject
 
@@ -45,11 +44,8 @@ class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
   
   private lateinit var timerViewModel: TimerViewModel
   
-  private var totalTimeInMillis: Long = 0
   private var isButtonPressed: Boolean = false
-  private lateinit var countDownTimer: CountDownTimer
   private lateinit var drinksList: ArrayList<Drink>
-  private var currentTimerMillisTillFinished: Long = 0
   
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
         inflater.inflate(R.layout.fragment_timer, container, false)
@@ -64,20 +60,26 @@ class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
     val drinksListNames = ArrayList<String>()
     
     drinksList.mapTo(drinksListNames) { it.name }
-    val adapter = ArrayAdapter(activity, android.R.layout.simple_spinner_dropdown_item, drinksListNames)
-    spinner.adapter = adapter
+    val spinnerAdapter = ArrayAdapter(activity, android.R.layout.simple_spinner_dropdown_item, drinksListNames)
+    spinner.adapter = spinnerAdapter
     spinner.onItemSelectedListener = this
   
-    reset_timer.setOnClickListener { resetTimer() }
+    reset_timer.setOnClickListener { timerViewModel.resetTimer() }
     
     timer_button.setOnClickListener({
       timer_button.text = if (isButtonPressed) getString(R.string.start) else getString(R.string.pause)
       when (timer_button.text) {
-        getString(R.string.pause) -> startTimer()
-        getString(R.string.start) -> pauseTimer(currentTimerMillisTillFinished)
+        getString(R.string.pause) -> timerViewModel.startTimer()
+        getString(R.string.start) -> timerViewModel.pauseTimer()
       }
       isButtonPressed = !isButtonPressed
     })
+  
+    val remainingTime = Observer<Long> { remainingTime ->
+      timer_drink_time.text = remainingTime?.let { convertMillisToMinutes(it) }
+    }
+  
+    timerViewModel.remainingTime.observe(this, remainingTime)
   }
   
   override fun onNothingSelected(p0: AdapterView<*>) {
@@ -95,8 +97,8 @@ class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
   
   private fun setDrinkTimerText(drinkResId: Int) {
     val drink = drinksRepository.getSingleDrinkByName(getString(drinkResId))
-    
-    drink?.let { setTotalTime(it) }
+  
+    drink?.let { timerViewModel.setTotalTime(it) }
     
     drink?.let {
       timer_drink_time.text = utilities.convertBrewDurationForTimer(drink.brewDuration)
@@ -106,53 +108,7 @@ class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
   private fun showDrinkTimerTextError() =
         toast(getString(R.string.timer_error))
   
-  private fun setTotalTime(drinkMade: Drink) {
-    totalTimeInMillis = (drinkMade.brewDuration * 60 * 1000).toLong()
-    createCountdownTimer(totalTimeInMillis)
-    circularView.setPercentage(100)
-  }
-  
-  private fun createCountdownTimer(totalTimeInMillis: Long) {
-    timer_drink_time.text = convertMillisToMinutes(totalTimeInMillis)
-    countDownTimer = object : CountDownTimer(totalTimeInMillis, 1000) {
-      override fun onFinish() {
-        Timber.i("Timer finished")
-        timer_drink_time.text = getString(R.string.final_time_for_timer)
-      }
-      
-      override fun onTick(millisUntilFinished: Long) {
-        currentTimerMillisTillFinished = millisUntilFinished
-        timer_drink_time.text = convertMillisToMinutes(millisUntilFinished)
-        Timber.i(millisUntilFinished.toString())
-      }
-    }
-  }
-  
-  private fun startTimer() {
-    reset_timer.visibility = View.VISIBLE
-    countDownTimer.start()
-    Timber.i("Timer started")
-  }
-  
-  private fun pauseTimer(currentTimeUntilFinished: Long) {
-    reset_timer.visibility = View.GONE
-    countDownTimer.cancel()
-    createCountdownTimer(currentTimeUntilFinished)
-    Timber.i("Timer paused")
-  }
-  
-  private fun resetTimer() {
-    circularView.setPercentage(100)
-    countDownTimer.cancel()
-    timer_button.text = getString(R.string.start)
-    Timber.i("Timer reset")
-  }
-  
-  fun getPercentLeft(timeLeftInMillis: Long): Int {
-    return (timeLeftInMillis / 60000 * 100).toInt()
-  }
-  
-  fun convertMillisToMinutes(providedMillis: Long): String {
+  private fun convertMillisToMinutes(providedMillis: Long): String {
     val minutes = (providedMillis / 1000) / 60
     val seconds = (providedMillis / 1000) % 60
     return minutes.toString() + ":" + seconds.toString()
