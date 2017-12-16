@@ -31,7 +31,7 @@ import timber.log.Timber.DebugTree
  * inits realm and plants tree for logs
  */
 
-class BrewItApplication : Application() {
+class BetterBaristaApplication : Application() {
   
   companion object {
     lateinit var syringe: AppComponent

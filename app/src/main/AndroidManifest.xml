@@ -19,7 +19,7 @@
     package="io.github.coffeegerm.brew_it">
 
     <application
-        android:name=".BrewItApplication"
+        android:name=".BetterBaristaApplication"
         android:allowBackup="true"
         android:fullBackupContent="false"
         android:icon="@mipmap/ic_launcher"
