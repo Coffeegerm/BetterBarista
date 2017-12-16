@@ -22,11 +22,10 @@ import android.support.v7.widget.GridLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import io.github.coffeegerm.brew_it.BrewItApplication.Companion.syringe
+import io.github.coffeegerm.brew_it.BetterBaristaApplication.Companion.syringe
 import io.github.coffeegerm.brew_it.R
 import io.github.coffeegerm.brew_it.data.DrinksRepository
 import kotlinx.android.synthetic.main.fragment_drinks.*
-import timber.log.Timber
 import javax.inject.Inject
 
 
@@ -36,15 +35,13 @@ import javax.inject.Inject
  */
 class DrinksFragment : Fragment() {
   
-  @Inject
-  lateinit var drinksRepository: DrinksRepository
+  @Inject lateinit var drinksRepository: DrinksRepository
   
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
         inflater.inflate(R.layout.fragment_drinks, container, false)
   
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
-    Timber.i("onViewCreated")
     syringe.inject(this)
     setupAdapter()
   }
@@ -52,11 +49,9 @@ class DrinksFragment : Fragment() {
   private fun setupAdapter() {
     if (isAdded) {
       drinks_recycler_view.layoutManager = GridLayoutManager(activity, 2)
-      Timber.i("layoutManager set")
       val adapter = DrinksAdapter()
       drinks_recycler_view.adapter = adapter
       adapter.setDrinks(drinksRepository.getAllDrinks())
-      Timber.i("Adapter set")
     }
   }
 }
