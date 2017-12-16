@@ -68,7 +68,7 @@ class SingleDrinkActivity : AppCompatActivity() {
     
     start_timer_fab.setOnClickListener({
       val timer_result = Intent()
-//            timer_result.putExtra(Constants.DRINK_ID_PASSED, drinkMade?.id)
+//            timer_result.putExtra(Constants.DRINK_ID_PASSED, drinkTimerText?.id)
       setResult(Activity.RESULT_OK, timer_result)
       finish()
     })

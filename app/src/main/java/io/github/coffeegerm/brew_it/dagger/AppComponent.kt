@@ -29,11 +29,12 @@ import javax.inject.Singleton
  */
 
 @Singleton
-@Component(modules = [(AppModule::class)])
+@Component(modules = [(AppModule::class), (ViewModelModule::class), (ResourceModule::class)])
 interface AppComponent {
   fun inject(mainActivity: MainActivity)
+  fun inject(singleDrinkActivity: SingleDrinkActivity)
+  
   fun inject(drinksFragment: DrinksFragment)
   fun inject(timerFragment: TimerFragment)
   fun inject(timerViewModel: TimerViewModel)
-  fun inject(singleDrinkActivity: SingleDrinkActivity)
 }
