@@ -21,6 +21,7 @@ import android.arch.lifecycle.ViewModel
 import android.content.res.Resources
 import android.os.CountDownTimer
 import io.github.coffeegerm.brew_it.BrewItApplication
+import io.github.coffeegerm.brew_it.R
 import io.github.coffeegerm.brew_it.data.Drink
 import io.github.coffeegerm.brew_it.data.DrinksRepository
 import io.github.coffeegerm.brew_it.utilities.Utilities
@@ -37,12 +38,12 @@ class TimerViewModel : ViewModel() {
   @Inject lateinit var utils: Utilities
   
   private var initialTime: Long = 0
-  var remainingTime: MutableLiveData<Long> = MutableLiveData()
-  var drinkTimerText: MutableLiveData<String> = MutableLiveData()
-  
   private var currentTimerMillisTillFinished: Long = 0
-  
   private lateinit var countDownTimer: CountDownTimer
+  
+  var remainingTime: MutableLiveData<String> = MutableLiveData()
+  var drinkTimerText: MutableLiveData<String> = MutableLiveData()
+  var percentRemaining: MutableLiveData<Int> = MutableLiveData()
   
   fun setDrink(drinkResId: Int) {
     val drinkMade = drinksRepository.getSingleDrinkByName(resources.getString(drinkResId))
@@ -52,7 +53,7 @@ class TimerViewModel : ViewModel() {
     }
   }
   
-  fun setTotalTime(drinkMade: Drink) {
+  private fun setTotalTime(drinkMade: Drink) {
     initialTime = (drinkMade.brewDuration * 60 * 1000).toLong()
     createCountdownTimer(initialTime)
   }
@@ -60,14 +61,21 @@ class TimerViewModel : ViewModel() {
   private fun createCountdownTimer(totalTimeInMillis: Long) {
     countDownTimer = object : CountDownTimer(totalTimeInMillis, 1000) {
       override fun onFinish() {
-        remainingTime.postValue(0)
+        remainingTime.postValue(resources.getString(R.string.final_time_for_timer))
       }
       
       override fun onTick(millisUntilFinished: Long) {
-        remainingTime.postValue(millisUntilFinished)
+        remainingTime.postValue(convertMillisToMinutes(millisUntilFinished))
+        percentRemaining.postValue(getPercentLeft(millisUntilFinished))
         currentTimerMillisTillFinished = millisUntilFinished
       }
     }
+  }
+  
+  private fun convertMillisToMinutes(providedMillis: Long): String {
+    val minutes = (providedMillis / 1000) / 60
+    val seconds = (providedMillis / 1000) % 60
+    return minutes.toString() + ":" + seconds.toString()
   }
   
   fun startTimer() {
@@ -81,10 +89,9 @@ class TimerViewModel : ViewModel() {
   
   fun resetTimer() {
     countDownTimer.cancel()
+    createCountdownTimer(initialTime)
   }
   
-  fun getPercentLeft(timeLeftInMillis: Long): Int {
-    return (timeLeftInMillis / 60000 * 100).toInt()
-  }
+  fun getPercentLeft(timeLeftInMillis: Long): Int = ((timeLeftInMillis.toFloat() / initialTime.toFloat()) * 100).toInt()
   
 }
