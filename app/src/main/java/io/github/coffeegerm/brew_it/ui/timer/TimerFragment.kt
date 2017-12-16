@@ -50,7 +50,6 @@ class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
     
     timerViewModel = ViewModelProviders.of(this).get(TimerViewModel::class.java)
     
-    
     // todo refactor this to viewmodel
     drinksList = drinksRepository.getAllDrinks()
     val drinksListNames = ArrayList<String>()
@@ -87,16 +86,20 @@ class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
   }
   
   private fun subscribe() {
-    val remainingTime = Observer<Long> { remainingTime -> timer_drink_time.text = remainingTime?.let { convertMillisToMinutes(it) } }
-    
+    // Observes the changes to remaining time string and set it to the timer.
+    val remainingTime = Observer<String> { remainingTime -> timer_drink_time.text = remainingTime }
     timerViewModel.remainingTime.observe(this, remainingTime)
-    
+  
+    // Observes what drink is chosen and set the text accordingly
     val drinkTimerText = Observer<String> { drinkTimerText -> timer_drink_time.text = drinkTimerText }
     timerViewModel.drinkTimerText.observe(this, drinkTimerText)
+  
+    // Observes what percentage is left in the timer and presents it to the user
+    val percentageLeft = Observer<Int> { percentageLeft -> percentageLeft?.let { circularView.setPercentage(it) } }
+    timerViewModel.percentRemaining.observe(this, percentageLeft)
   }
   
   private fun setDrinkTimerText(drinkResId: Int) = timerViewModel.setDrink(drinkResId)
-  
   
   private fun startTimer() {
     reset_timer.visibility = View.VISIBLE
@@ -109,14 +112,9 @@ class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
   }
   
   private fun resetTimer() {
+    circularView.setPercentage(100)
     reset_timer.visibility = View.GONE
     timer_button.setText(R.string.start)
     timerViewModel.resetTimer()
-  }
-  
-  private fun convertMillisToMinutes(providedMillis: Long): String {
-    val minutes = (providedMillis / 1000) / 60
-    val seconds = (providedMillis / 1000) % 60
-    return minutes.toString() + ":" + seconds.toString()
   }
 }
