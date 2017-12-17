@@ -20,7 +20,7 @@ import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.content.res.Resources
 import android.os.CountDownTimer
-import io.github.coffeegerm.brew_it.BetterBaristaApplication
+import io.github.coffeegerm.brew_it.BetterBaristaApp
 import io.github.coffeegerm.brew_it.R
 import io.github.coffeegerm.brew_it.data.Drink
 import io.github.coffeegerm.brew_it.data.DrinksRepository
@@ -30,7 +30,7 @@ import javax.inject.Inject
 class TimerViewModel : ViewModel() {
   
   init {
-    BetterBaristaApplication.syringe.inject(this)
+    BetterBaristaApp.syringe.inject(this)
   }
   
   @Inject lateinit var drinksRepository: DrinksRepository

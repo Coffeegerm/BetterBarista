@@ -17,7 +17,7 @@
 package io.github.coffeegerm.brew_it.ui.drinks
 
 import android.arch.lifecycle.ViewModel
-import io.github.coffeegerm.brew_it.BetterBaristaApplication
+import io.github.coffeegerm.brew_it.BetterBaristaApp
 import io.github.coffeegerm.brew_it.data.DrinksRepository
 import javax.inject.Inject
 
@@ -27,7 +27,7 @@ import javax.inject.Inject
 class DrinksViewModel : ViewModel() {
   
   init {
-    BetterBaristaApplication.syringe.inject(this)
+    BetterBaristaApp.syringe.inject(this)
   }
   
   @Inject lateinit var drinksRepo: DrinksRepository
