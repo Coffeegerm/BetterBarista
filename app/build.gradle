@@ -72,3 +72,5 @@ kotlin {
     coroutines "enable"
   }
 }
+
+apply plugin: 'com.google.gms.google-services'

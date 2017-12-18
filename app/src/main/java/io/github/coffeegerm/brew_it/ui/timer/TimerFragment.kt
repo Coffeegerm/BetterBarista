@@ -72,6 +72,7 @@ class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
   override fun onNothingSelected(p0: AdapterView<*>) {}
   
   override fun onItemSelected(parent: AdapterView<*>, p1: View, position: Int, p3: Long) {
+    circularView.setPercentage(100)
     when (parent.getItemAtPosition(position)) {
       getString(R.string.coffee) -> setDrinkTimerText(drinkResId = R.string.coffee)
       getString(R.string.pour_over) -> setDrinkTimerText(drinkResId = R.string.pour_over)
@@ -85,17 +86,19 @@ class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
     // Observes the changes to remaining time string and set it to the timer.
     val remainingTime = Observer<String> { remainingTime -> timer_drink_time.text = remainingTime }
     timerViewModel.remainingTime.observe(this, remainingTime)
-  
+    
     // Observes what drink is chosen and set the text accordingly
     val drinkTimerText = Observer<String> { drinkTimerText -> timer_drink_time.text = drinkTimerText }
     timerViewModel.drinkTimerText.observe(this, drinkTimerText)
-  
+    
     // Observes what percentage is left in the timer and presents it to the user
     val percentageLeft = Observer<Int> { percentageLeft -> percentageLeft?.let { circularView.setPercentage(it) } }
     timerViewModel.percentRemaining.observe(this, percentageLeft)
   }
   
-  private fun setDrinkTimerText(drinkResId: Int) = timerViewModel.setDrink(drinkResId)
+  private fun setDrinkTimerText(drinkResId: Int) {
+    timerViewModel.setDrink(drinkResId)
+  }
   
   private fun startTimer() {
     reset_timer.visibility = View.VISIBLE

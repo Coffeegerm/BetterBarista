@@ -38,11 +38,8 @@ import javax.inject.Inject
 
 class SingleDrinkActivity : AppCompatActivity() {
   
-  @Inject
-  lateinit var drinksRepository: DrinksRepository
-  
-  @Inject
-  lateinit var utilities: Utilities
+  @Inject lateinit var drinksRepository: DrinksRepository
+  @Inject lateinit var utilities: Utilities
   
   private lateinit var singleDrinkAdapter: SingleDrinkAdapter
   
@@ -67,10 +64,10 @@ class SingleDrinkActivity : AppCompatActivity() {
     if (drinkMade != null) getInstructions(drinkMade)
     
     start_timer_fab.setOnClickListener({
-      val timer_result = Intent()
+      val switchToTimerIntent = Intent()
       // todo on single drink chosen set spinner selection
-      //timer_result.putExtra(Constants.DRINK_ID_PASSED, drinkTimerText?.id)
-      setResult(Activity.RESULT_OK, timer_result)
+      switchToTimerIntent.putExtra(Constants.DRINK_ID_PASSED, drinkMade?.id)
+      setResult(Activity.RESULT_OK, switchToTimerIntent)
       finish()
     })
   }

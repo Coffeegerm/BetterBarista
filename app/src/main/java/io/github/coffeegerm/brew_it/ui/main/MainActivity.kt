@@ -40,8 +40,6 @@ class MainActivity : AppCompatActivity() {
   private val timerFragment: TimerFragment by lazy { TimerFragment() }
   private val moreFragment: MoreFragment by lazy { MoreFragment() }
   
-  private var currentFragment: Fragment? = null
-  
   private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
     when (item.itemId) {
       R.id.navigation_drinks -> {
@@ -57,52 +55,36 @@ class MainActivity : AppCompatActivity() {
         return@OnNavigationItemSelectedListener true
       }
     }
-    false
+    true
   }
   
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
-    
+    navigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
     syringe.inject(this)
     initRealmData()
-    
     showFragment(drinksFragment)
-    navigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
   }
   
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
     if (requestCode == Constants.SINGLE_DRINK_REQUEST_CODE) {
       if (resultCode == Activity.RESULT_OK) {
+        val drinkIdChosen = data?.getIntExtra(Constants.DRINK_ID_PASSED, 0)
+        Timber.i(drinkIdChosen.toString())
+        drinkIdChosen?.minus(1)
+        Timber.i(drinkIdChosen.toString())
         navigation.selectedItemId = R.id.navigation_timer
       }
     }
   }
   
-  private fun showFragment(fragment: Fragment) {
-    val fragmentTransaction = supportFragmentManager.beginTransaction()
-    
-    when (fragment.isAdded) {
-      true -> fragmentTransaction.show(fragment)
-      false -> fragmentTransaction.add(R.id.fragment_container, fragment)
-    }
-    
-    //old fragment
-    currentFragment?.let {
-      fragmentTransaction.hide(it)
-    }
-    
-    fragmentTransaction.commitAllowingStateLoss()
-    
-    //set new current fragment
-    currentFragment = fragment
-  }
+  private fun showFragment(fragment: Fragment) = supportFragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commitNowAllowingStateLoss()
   
   private fun initRealmData() {
     val realm = Realm.getDefaultInstance()
     realm.executeTransaction {
       realm.deleteAll()
-      Timber.d("All realm entries deleted")
       val drink = Drink()
       
       drink.id = 1
@@ -149,8 +131,6 @@ class MainActivity : AppCompatActivity() {
       drink.strength = getString(R.string.regular_strong)
       drink.difficulty = getString(R.string.easy)
       realm.insertOrUpdate(drink)
-      
-      Timber.d("Realm entries created")
     }
   }
   

@@ -86,6 +86,10 @@ class TimerViewModel : ViewModel() {
     createCountdownTimer(initialTime)
   }
   
+  fun cancelTimer() {
+    countDownTimer.cancel()
+  }
+  
   fun getPercentLeft(timeLeftInMillis: Long): Int = ((timeLeftInMillis.toFloat() / initialTime.toFloat()) * 100).toInt()
   
 }
