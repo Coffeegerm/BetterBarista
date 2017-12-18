@@ -22,7 +22,7 @@ import android.os.Bundle
 import android.support.design.widget.AppBarLayout
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import io.github.coffeegerm.brew_it.BetterBaristaApplication.Companion.syringe
+import io.github.coffeegerm.brew_it.BetterBaristaApp.Companion.syringe
 import io.github.coffeegerm.brew_it.R
 import io.github.coffeegerm.brew_it.data.Drink
 import io.github.coffeegerm.brew_it.data.DrinksRepository
@@ -68,7 +68,8 @@ class SingleDrinkActivity : AppCompatActivity() {
     
     start_timer_fab.setOnClickListener({
       val timer_result = Intent()
-//            timer_result.putExtra(Constants.DRINK_ID_PASSED, drinkTimerText?.id)
+      // todo on single drink chosen set spinner selection
+      //timer_result.putExtra(Constants.DRINK_ID_PASSED, drinkTimerText?.id)
       setResult(Activity.RESULT_OK, timer_result)
       finish()
     })

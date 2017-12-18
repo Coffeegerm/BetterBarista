@@ -18,6 +18,7 @@ package io.github.coffeegerm.brew_it.dagger
 
 import dagger.Module
 import dagger.Provides
+import io.github.coffeegerm.brew_it.ui.more.MoreViewModel
 import io.github.coffeegerm.brew_it.ui.timer.TimerViewModel
 import javax.inject.Singleton
 
@@ -27,4 +28,8 @@ class ViewModelModule {
   @Provides
   @Singleton
   fun providesTimerFragmentViewModel(): TimerViewModel = TimerViewModel()
+  
+  @Provides
+  @Singleton
+  fun providesMoreViewModel(): MoreViewModel = MoreViewModel()
 }

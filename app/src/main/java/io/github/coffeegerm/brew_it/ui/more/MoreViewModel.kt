@@ -14,22 +14,10 @@
  * limitations under the License.
  */
 
-package io.github.coffeegerm.brew_it.ui.drinks
+package io.github.coffeegerm.brew_it.ui.more
 
 import android.arch.lifecycle.ViewModel
-import io.github.coffeegerm.brew_it.BetterBaristaApp
-import io.github.coffeegerm.brew_it.data.DrinksRepository
-import javax.inject.Inject
 
-/**
- * TODO: Add class comment header
- */
-class DrinksViewModel : ViewModel() {
-  
-  init {
-    BetterBaristaApp.syringe.inject(this)
-  }
-  
-  @Inject lateinit var drinksRepo: DrinksRepository
-  
+class MoreViewModel : ViewModel() {
+
 }

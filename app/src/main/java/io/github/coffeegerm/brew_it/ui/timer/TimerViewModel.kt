@@ -20,7 +20,7 @@ import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.content.res.Resources
 import android.os.CountDownTimer
-import io.github.coffeegerm.brew_it.BetterBaristaApplication
+import io.github.coffeegerm.brew_it.BetterBaristaApp
 import io.github.coffeegerm.brew_it.R
 import io.github.coffeegerm.brew_it.data.Drink
 import io.github.coffeegerm.brew_it.data.DrinksRepository
@@ -30,7 +30,7 @@ import javax.inject.Inject
 class TimerViewModel : ViewModel() {
   
   init {
-    BetterBaristaApplication.syringe.inject(this)
+    BetterBaristaApp.syringe.inject(this)
   }
   
   @Inject lateinit var drinksRepository: DrinksRepository
@@ -48,9 +48,7 @@ class TimerViewModel : ViewModel() {
   fun setDrink(drinkResId: Int) {
     val drinkMade = drinksRepository.getSingleDrinkByName(resources.getString(drinkResId))
     drinkMade?.let { setTotalTime(it) }
-    drinkMade?.let {
-      drinkTimerText.postValue(utils.convertBrewDurationForTimer(drinkMade.brewDuration))
-    }
+    drinkMade?.let { drinkTimerText.postValue(utils.convertBrewDurationForTimer(drinkMade.brewDuration)) }
   }
   
   private fun setTotalTime(drinkMade: Drink) {
@@ -72,11 +70,7 @@ class TimerViewModel : ViewModel() {
     }
   }
   
-  private fun convertMillisToMinutes(providedMillis: Long): String {
-    val minutes = (providedMillis / 1000) / 60
-    val seconds = (providedMillis / 1000) % 60
-    return minutes.toString() + ":" + seconds.toString()
-  }
+  private fun convertMillisToMinutes(providedMillis: Long): String = ((providedMillis / 1000) / 60).toString() + ":" + ((providedMillis / 1000) % 60).toString()
   
   fun startTimer() {
     countDownTimer.start()

@@ -22,7 +22,7 @@ import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
-import io.github.coffeegerm.brew_it.BetterBaristaApplication.Companion.syringe
+import io.github.coffeegerm.brew_it.BetterBaristaApp.Companion.syringe
 import io.github.coffeegerm.brew_it.R
 import io.github.coffeegerm.brew_it.data.Drink
 import io.github.coffeegerm.brew_it.ui.drinks.DrinksFragment
@@ -31,6 +31,7 @@ import io.github.coffeegerm.brew_it.ui.timer.TimerFragment
 import io.github.coffeegerm.brew_it.utilities.Constants
 import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_main.*
+import org.jetbrains.anko.toast
 import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
@@ -151,5 +152,13 @@ class MainActivity : AppCompatActivity() {
       
       Timber.d("Realm entries created")
     }
+  }
+  
+  private var backPressed: Long = 0
+  
+  override fun onBackPressed() {
+    if (backPressed + 2000 > System.currentTimeMillis()) super.onBackPressed()
+    else toast("Press back once more to close")
+    backPressed = System.currentTimeMillis()
   }
 }

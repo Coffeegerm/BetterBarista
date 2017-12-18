@@ -25,12 +25,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import io.github.coffeegerm.brew_it.BetterBaristaApplication.Companion.syringe
+import io.github.coffeegerm.brew_it.BetterBaristaApp.Companion.syringe
 import io.github.coffeegerm.brew_it.R
 import io.github.coffeegerm.brew_it.data.Drink
 import io.github.coffeegerm.brew_it.data.DrinksRepository
 import kotlinx.android.synthetic.main.fragment_timer.*
-import java.util.*
 import javax.inject.Inject
 
 class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
@@ -40,6 +39,7 @@ class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
   
   private var isButtonPressed: Boolean = false
   private lateinit var drinksList: ArrayList<Drink>
+  private var drinksListNames = ArrayList<String>()
   
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
         inflater.inflate(R.layout.fragment_timer, container, false)
@@ -49,11 +49,9 @@ class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
     syringe.inject(this)
     
     timerViewModel = ViewModelProviders.of(this).get(TimerViewModel::class.java)
+    subscribe()
     
-    // todo refactor this to viewmodel
     drinksList = drinksRepository.getAllDrinks()
-    val drinksListNames = ArrayList<String>()
-    
     drinksList.mapTo(drinksListNames) { it.name }
     val spinnerAdapter = ArrayAdapter(activity, android.R.layout.simple_spinner_dropdown_item, drinksListNames)
     spinner.adapter = spinnerAdapter
@@ -69,8 +67,6 @@ class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
       }
       isButtonPressed = !isButtonPressed
     })
-    
-    subscribe()
   }
   
   override fun onNothingSelected(p0: AdapterView<*>) {}
