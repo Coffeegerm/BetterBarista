@@ -20,6 +20,8 @@ import dagger.Component
 import io.github.coffeegerm.brew_it.ui.drinks.DrinksFragment
 import io.github.coffeegerm.brew_it.ui.drinks.DrinksViewModel
 import io.github.coffeegerm.brew_it.ui.main.MainActivity
+import io.github.coffeegerm.brew_it.ui.more.MoreFragment
+import io.github.coffeegerm.brew_it.ui.more.MoreViewModel
 import io.github.coffeegerm.brew_it.ui.single_drink.SingleDrinkActivity
 import io.github.coffeegerm.brew_it.ui.timer.TimerFragment
 import io.github.coffeegerm.brew_it.ui.timer.TimerViewModel
@@ -39,4 +41,6 @@ interface AppComponent {
   fun inject(drinksViewModel: DrinksViewModel)
   fun inject(timerFragment: TimerFragment)
   fun inject(timerViewModel: TimerViewModel)
+  fun inject(moreFragment: MoreFragment)
+  fun inject(moreViewModel: MoreViewModel)
 }

@@ -48,9 +48,7 @@ class TimerViewModel : ViewModel() {
   fun setDrink(drinkResId: Int) {
     val drinkMade = drinksRepository.getSingleDrinkByName(resources.getString(drinkResId))
     drinkMade?.let { setTotalTime(it) }
-    drinkMade?.let {
-      drinkTimerText.postValue(utils.convertBrewDurationForTimer(drinkMade.brewDuration))
-    }
+    drinkMade?.let { drinkTimerText.postValue(utils.convertBrewDurationForTimer(drinkMade.brewDuration)) }
   }
   
   private fun setTotalTime(drinkMade: Drink) {
@@ -72,11 +70,7 @@ class TimerViewModel : ViewModel() {
     }
   }
   
-  private fun convertMillisToMinutes(providedMillis: Long): String {
-    val minutes = (providedMillis / 1000) / 60
-    val seconds = (providedMillis / 1000) % 60
-    return minutes.toString() + ":" + seconds.toString()
-  }
+  private fun convertMillisToMinutes(providedMillis: Long): String = ((providedMillis / 1000) / 60).toString() + ":" + ((providedMillis / 1000) % 60).toString()
   
   fun startTimer() {
     countDownTimer.start()
