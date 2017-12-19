@@ -19,16 +19,11 @@ package io.github.coffeegerm.brew_it.ui.main
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.BottomNavigationView
-import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
-import io.github.coffeegerm.brew_it.BetterBaristaApp.Companion.syringe
 import io.github.coffeegerm.brew_it.R
 import io.github.coffeegerm.brew_it.data.Drink
-import io.github.coffeegerm.brew_it.ui.drinks.DrinksFragment
-import io.github.coffeegerm.brew_it.ui.more.MoreFragment
-import io.github.coffeegerm.brew_it.ui.timer.TimerFragment
 import io.github.coffeegerm.brew_it.utilities.Constants
+import io.github.coffeegerm.brew_it.utilities.FragmentNavigation
 import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.toast
@@ -36,35 +31,11 @@ import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
   
-  private val drinksFragment: DrinksFragment by lazy { DrinksFragment() }
-  private val timerFragment: TimerFragment by lazy { TimerFragment() }
-  private val moreFragment: MoreFragment by lazy { MoreFragment() }
-  
-  private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
-    when (item.itemId) {
-      R.id.navigation_drinks -> {
-        showFragment(drinksFragment)
-        return@OnNavigationItemSelectedListener true
-      }
-      R.id.navigation_timer -> {
-        showFragment(timerFragment)
-        return@OnNavigationItemSelectedListener true
-      }
-      R.id.navigation_more -> {
-        showFragment(moreFragment)
-        return@OnNavigationItemSelectedListener true
-      }
-    }
-    true
-  }
-  
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
-    navigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
-    syringe.inject(this)
+    navigation.setOnNavigationItemSelectedListener(FragmentNavigation(supportFragmentManager))
     initRealmData()
-    showFragment(drinksFragment)
   }
   
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -79,15 +50,13 @@ class MainActivity : AppCompatActivity() {
     }
   }
   
-  private fun showFragment(fragment: Fragment) = supportFragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commitNowAllowingStateLoss()
-  
   private fun initRealmData() {
     val realm = Realm.getDefaultInstance()
     realm.executeTransaction {
       realm.deleteAll()
       val drink = Drink()
       
-      drink.id = 1
+      drink.id = 0
       drink.name = getString(R.string.coffee)
       drink.description = getString(R.string.coffee_description)
       drink.image = R.drawable.coffee
@@ -96,7 +65,7 @@ class MainActivity : AppCompatActivity() {
       drink.difficulty = getString(R.string.easy)
       realm.insertOrUpdate(drink)
       
-      drink.id = 2
+      drink.id = 1
       drink.name = getString(R.string.pour_over)
       drink.description = getString(R.string.pour_over_description)
       drink.brewDuration = 10
@@ -105,7 +74,7 @@ class MainActivity : AppCompatActivity() {
       drink.difficulty = getString(R.string.intermediate)
       realm.insertOrUpdate(drink)
       
-      drink.id = 3
+      drink.id = 2
       drink.name = getString(R.string.french_press)
       drink.description = getString(R.string.french_press_description)
       drink.image = R.drawable.french_press
@@ -114,7 +83,7 @@ class MainActivity : AppCompatActivity() {
       drink.difficulty = getString(R.string.intermediate)
       realm.insertOrUpdate(drink)
       
-      drink.id = 4
+      drink.id = 3
       drink.name = getString(R.string.aeropress)
       drink.description = getString(R.string.aeropress_description)
       drink.image = R.drawable.aeropress
@@ -123,7 +92,7 @@ class MainActivity : AppCompatActivity() {
       drink.difficulty = getString(R.string.difficult)
       realm.insertOrUpdate(drink)
       
-      drink.id = 5
+      drink.id = 4
       drink.name = getString(R.string.cold_brew)
       drink.description = getString(R.string.cold_brew_description)
       drink.image = R.drawable.iced_coffee

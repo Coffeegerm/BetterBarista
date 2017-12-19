@@ -18,10 +18,8 @@ package io.github.coffeegerm.brew_it.ui.timer
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
-import android.content.res.Resources
 import android.os.CountDownTimer
 import io.github.coffeegerm.brew_it.BetterBaristaApp
-import io.github.coffeegerm.brew_it.R
 import io.github.coffeegerm.brew_it.data.Drink
 import io.github.coffeegerm.brew_it.data.DrinksRepository
 import io.github.coffeegerm.brew_it.utilities.Utilities
@@ -34,7 +32,6 @@ class TimerViewModel : ViewModel() {
   }
   
   @Inject lateinit var drinksRepository: DrinksRepository
-  @Inject lateinit var resources: Resources
   @Inject lateinit var utils: Utilities
   
   private var initialTime: Long = 0
@@ -45,8 +42,8 @@ class TimerViewModel : ViewModel() {
   var drinkTimerText: MutableLiveData<String> = MutableLiveData()
   var percentRemaining: MutableLiveData<Int> = MutableLiveData()
   
-  fun setDrink(drinkResId: Int) {
-    val drinkMade = drinksRepository.getSingleDrinkByName(resources.getString(drinkResId))
+  fun setDrink(drinkId: Int) {
+    val drinkMade = drinksRepository.getSingleDrinkById(drinkId)
     drinkMade?.let { setTotalTime(it) }
     drinkMade?.let { drinkTimerText.postValue(utils.convertBrewDurationForTimer(drinkMade.brewDuration)) }
   }
@@ -59,7 +56,7 @@ class TimerViewModel : ViewModel() {
   private fun createCountdownTimer(totalTimeInMillis: Long) {
     countDownTimer = object : CountDownTimer(totalTimeInMillis, 1000) {
       override fun onFinish() {
-        remainingTime.postValue(resources.getString(R.string.final_time_for_timer))
+        remainingTime.postValue("00:00")
       }
       
       override fun onTick(millisUntilFinished: Long) {

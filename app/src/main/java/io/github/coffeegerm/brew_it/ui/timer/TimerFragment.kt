@@ -74,11 +74,11 @@ class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
   override fun onItemSelected(parent: AdapterView<*>, p1: View, position: Int, p3: Long) {
     circularView.setPercentage(100)
     when (parent.getItemAtPosition(position)) {
-      getString(R.string.coffee) -> setDrinkTimerText(drinkResId = R.string.coffee)
-      getString(R.string.pour_over) -> setDrinkTimerText(drinkResId = R.string.pour_over)
-      getString(R.string.aeropress) -> setDrinkTimerText(drinkResId = R.string.aeropress)
-      getString(R.string.french_press) -> setDrinkTimerText(drinkResId = R.string.french_press)
-      getString(R.string.cold_brew) -> setDrinkTimerText(drinkResId = R.string.cold_brew)
+      getString(R.string.coffee) -> setDrinkTimerText(0)
+      getString(R.string.pour_over) -> setDrinkTimerText(1)
+      getString(R.string.aeropress) -> setDrinkTimerText(2)
+      getString(R.string.french_press) -> setDrinkTimerText(3)
+      getString(R.string.cold_brew) -> setDrinkTimerText(4)
     }
   }
   
