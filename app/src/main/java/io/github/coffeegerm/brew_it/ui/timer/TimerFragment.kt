@@ -28,14 +28,12 @@ import android.widget.ArrayAdapter
 import io.github.coffeegerm.brew_it.BetterBaristaApp.Companion.syringe
 import io.github.coffeegerm.brew_it.R
 import kotlinx.android.synthetic.main.fragment_timer.*
-import javax.inject.Inject
 
 class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
   
-  @Inject lateinit var timerViewModel: TimerViewModel
+  lateinit var timerViewModel: TimerViewModel
   
   private var isButtonPressed: Boolean = false
-  private var drinksListNames = ArrayList<String>()
   
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
         inflater.inflate(R.layout.fragment_timer, container, false)
@@ -47,10 +45,6 @@ class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
     timerViewModel = ViewModelProviders.of(this).get(TimerViewModel::class.java)
     timerViewModel.getDrinkNames()
     subscribe()
-    
-    val spinnerAdapter = ArrayAdapter(activity, android.R.layout.simple_spinner_dropdown_item, drinksListNames)
-    spinner.adapter = spinnerAdapter
-    spinner.onItemSelectedListener = this
     
     reset_timer.setOnClickListener { resetTimer() }
     
@@ -78,7 +72,7 @@ class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
   }
   
   private fun subscribe() {
-    val drinkNames = Observer<ArrayList<String>> { drinkNames -> drinksListNames = drinkNames!! }
+    val drinkNames = Observer<ArrayList<String>> { drinkNames -> setupSpinner(drinkNames!!) }
     timerViewModel.drinksListNames.observe(this, drinkNames)
     
     // Observes the changes to remaining time string and set it to the timer.
@@ -92,6 +86,12 @@ class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
     // Observes what percentage is left in the timer and presents it to the user
     val percentageLeft = Observer<Int> { percentageLeft -> percentageLeft?.let { circularView.setPercentage(it) } }
     timerViewModel.percentRemaining.observe(this, percentageLeft)
+  }
+  
+  private fun setupSpinner(drinkListNames: ArrayList<String>) {
+    val spinnerAdapter = ArrayAdapter(activity, android.R.layout.simple_spinner_dropdown_item, drinkListNames)
+    spinner.adapter = spinnerAdapter
+    spinner.onItemSelectedListener = this
   }
   
   private fun setDrinkTimerText(drinkResId: Int) {

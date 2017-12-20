@@ -32,7 +32,7 @@ import javax.inject.Singleton
  */
 
 @Singleton
-@Component(modules = [(AppModule::class), (ViewModelModule::class), (ResourceModule::class)])
+@Component(modules = [(AppModule::class), (ResourceModule::class)])
 interface AppComponent {
   fun inject(mainActivity: MainActivity)
   fun inject(singleDrinkActivity: SingleDrinkActivity)

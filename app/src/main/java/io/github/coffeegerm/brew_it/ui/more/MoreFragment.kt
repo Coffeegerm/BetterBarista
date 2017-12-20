@@ -27,11 +27,10 @@ import android.view.ViewGroup
 import io.github.coffeegerm.brew_it.BetterBaristaApp
 import io.github.coffeegerm.brew_it.R
 import kotlinx.android.synthetic.main.fragment_more.*
-import javax.inject.Inject
 
 class MoreFragment : Fragment() {
   
-  @Inject lateinit var moreViewModel: MoreViewModel
+  lateinit var moreViewModel: MoreViewModel
   
   init {
     BetterBaristaApp.syringe.inject(this)

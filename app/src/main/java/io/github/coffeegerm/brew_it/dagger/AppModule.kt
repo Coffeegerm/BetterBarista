@@ -30,8 +30,8 @@ import javax.inject.Singleton
  */
 
 @Module
-class AppModule(brewItApplication: BetterBaristaApp) {
-  var app: BetterBaristaApp = brewItApplication
+class AppModule(betterBaristaApp: BetterBaristaApp) {
+  var app = betterBaristaApp
   
   @Provides
   @Singleton

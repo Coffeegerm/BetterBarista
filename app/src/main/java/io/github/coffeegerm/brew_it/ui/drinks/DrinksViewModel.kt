@@ -31,11 +31,10 @@ class DrinksViewModel : ViewModel() {
   
   @Inject lateinit var drinksRepo: DrinksRepository
   
-  var drinks: MutableLiveData<ArrayList<Drink>>
+  var drinks: MutableLiveData<ArrayList<Drink>> = MutableLiveData()
   
   init {
     BetterBaristaApp.syringe.inject(this)
-    drinks = MutableLiveData()
     getDrinks()
   }
   

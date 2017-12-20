@@ -56,7 +56,5 @@ class FragmentNavigation(private val supportFragmentManager: FragmentManager) : 
     return true
   }
   
-  private fun showFragment(fragment: Fragment) {
-    supportFragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commitNowAllowingStateLoss()
-  }
+  private fun showFragment(fragment: Fragment) = supportFragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commitNowAllowingStateLoss()
 }
