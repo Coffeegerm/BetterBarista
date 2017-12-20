@@ -18,6 +18,8 @@
   xmlns:tools="http://schemas.android.com/tools"
   package="io.github.coffeegerm.brew_it">
 
+  <uses-permission android:name="android.permission.INTERNET" />
+
   <application
     android:name=".BetterBaristaApp"
     android:allowBackup="true"

@@ -27,18 +27,14 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import io.github.coffeegerm.brew_it.BetterBaristaApp.Companion.syringe
 import io.github.coffeegerm.brew_it.R
-import io.github.coffeegerm.brew_it.data.Drink
-import io.github.coffeegerm.brew_it.data.DrinksRepository
 import kotlinx.android.synthetic.main.fragment_timer.*
 import javax.inject.Inject
 
 class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
   
-  @Inject lateinit var drinksRepository: DrinksRepository
   @Inject lateinit var timerViewModel: TimerViewModel
   
   private var isButtonPressed: Boolean = false
-  private lateinit var drinksList: ArrayList<Drink>
   private var drinksListNames = ArrayList<String>()
   
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
@@ -49,10 +45,9 @@ class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
     syringe.inject(this)
     
     timerViewModel = ViewModelProviders.of(this).get(TimerViewModel::class.java)
+    timerViewModel.getDrinkNames()
     subscribe()
     
-    drinksList = drinksRepository.getAllDrinks()
-    drinksList.mapTo(drinksListNames) { it.name }
     val spinnerAdapter = ArrayAdapter(activity, android.R.layout.simple_spinner_dropdown_item, drinksListNames)
     spinner.adapter = spinnerAdapter
     spinner.onItemSelectedListener = this
@@ -71,9 +66,9 @@ class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
   
   override fun onNothingSelected(p0: AdapterView<*>) {}
   
-  override fun onItemSelected(parent: AdapterView<*>, p1: View, position: Int, p3: Long) {
+  override fun onItemSelected(parent: AdapterView<*>?, aView: View?, position: Int, aLong: Long) {
     circularView.setPercentage(100)
-    when (parent.getItemAtPosition(position)) {
+    when (parent?.getItemAtPosition(position)) {
       getString(R.string.coffee) -> setDrinkTimerText(0)
       getString(R.string.pour_over) -> setDrinkTimerText(1)
       getString(R.string.aeropress) -> setDrinkTimerText(2)
@@ -83,6 +78,9 @@ class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
   }
   
   private fun subscribe() {
+    val drinkNames = Observer<ArrayList<String>> { drinkNames -> drinksListNames = drinkNames!! }
+    timerViewModel.drinksListNames.observe(this, drinkNames)
+    
     // Observes the changes to remaining time string and set it to the timer.
     val remainingTime = Observer<String> { remainingTime -> timer_drink_time.text = remainingTime }
     timerViewModel.remainingTime.observe(this, remainingTime)

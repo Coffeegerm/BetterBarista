@@ -18,6 +18,7 @@ package io.github.coffeegerm.brew_it.dagger
 
 import dagger.Module
 import dagger.Provides
+import io.github.coffeegerm.brew_it.ui.drinks.DrinksViewModel
 import io.github.coffeegerm.brew_it.ui.more.MoreViewModel
 import io.github.coffeegerm.brew_it.ui.timer.TimerViewModel
 
@@ -29,4 +30,7 @@ class ViewModelModule {
   
   @Provides
   fun providesMoreViewModel(): MoreViewModel = MoreViewModel()
+  
+  @Provides
+  fun providesDrinksViewModel(): DrinksViewModel = DrinksViewModel()
 }

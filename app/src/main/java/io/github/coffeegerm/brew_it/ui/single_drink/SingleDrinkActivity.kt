@@ -31,11 +31,6 @@ import io.github.coffeegerm.brew_it.utilities.Utilities
 import kotlinx.android.synthetic.main.activity_single_drink.*
 import javax.inject.Inject
 
-
-/**
- * TODO: Add class comment header
- */
-
 class SingleDrinkActivity : AppCompatActivity() {
   
   @Inject lateinit var drinksRepository: DrinksRepository
@@ -76,8 +71,8 @@ class SingleDrinkActivity : AppCompatActivity() {
     single_drink_image.setImageResource(drinkMade.image)
     collapsing_toolbar.title = " "
     setSupportActionBar(toolbar)
-    supportActionBar?.setDisplayHomeAsUpEnabled(true)
-    supportActionBar?.setDisplayShowHomeEnabled(true)
+    supportActionBar?.setDisplayHomeAsUpEnabled(false)
+    supportActionBar?.setDisplayShowHomeEnabled(false)
     single_drink_app_bar.addOnOffsetChangedListener(object : AppBarLayout.OnOffsetChangedListener {
       internal var isShow = false
       internal var scrollRange = -1
@@ -88,9 +83,13 @@ class SingleDrinkActivity : AppCompatActivity() {
         }
         if (scrollRange + verticalOffset == 0) {
           collapsing_toolbar.title = drinkMade.name
+          supportActionBar?.setDisplayHomeAsUpEnabled(true)
+          supportActionBar?.setDisplayShowHomeEnabled(true)
           isShow = true
         } else if (isShow) {
           collapsing_toolbar.title = " "
+          supportActionBar?.setDisplayHomeAsUpEnabled(false)
+          supportActionBar?.setDisplayShowHomeEnabled(false)
           isShow = false
         }
       }

@@ -27,7 +27,7 @@ import io.github.coffeegerm.brew_it.utilities.FragmentNavigation
 import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.toast
-import timber.log.Timber
+
 
 class MainActivity : AppCompatActivity() {
   
@@ -42,9 +42,7 @@ class MainActivity : AppCompatActivity() {
     if (requestCode == Constants.SINGLE_DRINK_REQUEST_CODE) {
       if (resultCode == Activity.RESULT_OK) {
         val drinkIdChosen = data?.getIntExtra(Constants.DRINK_ID_PASSED, 0)
-        Timber.i(drinkIdChosen.toString())
         drinkIdChosen?.minus(1)
-        Timber.i(drinkIdChosen.toString())
         navigation.selectedItemId = R.id.navigation_timer
       }
     }

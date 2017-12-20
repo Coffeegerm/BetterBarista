@@ -16,6 +16,8 @@
 
 package io.github.coffeegerm.brew_it.ui.drinks
 
+import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
@@ -24,7 +26,7 @@ import android.view.View
 import android.view.ViewGroup
 import io.github.coffeegerm.brew_it.BetterBaristaApp.Companion.syringe
 import io.github.coffeegerm.brew_it.R
-import io.github.coffeegerm.brew_it.data.DrinksRepository
+import io.github.coffeegerm.brew_it.data.Drink
 import kotlinx.android.synthetic.main.fragment_drinks.*
 import javax.inject.Inject
 
@@ -33,9 +35,12 @@ import javax.inject.Inject
  * Fragment Responsible for controlling the Recycler view of drinks
  * As well as beginning the SingleDrinkActivity
  */
+
 class DrinksFragment : Fragment() {
   
-  @Inject lateinit var drinksRepository: DrinksRepository
+  @Inject lateinit var drinksViewModel: DrinksViewModel
+  
+  var drinks: ArrayList<Drink> = ArrayList()
   
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
         inflater.inflate(R.layout.fragment_drinks, container, false)
@@ -43,7 +48,14 @@ class DrinksFragment : Fragment() {
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
     syringe.inject(this)
+    drinksViewModel = ViewModelProviders.of(this).get(DrinksViewModel::class.java)
+    subscribe()
     setupAdapter()
+  }
+  
+  private fun subscribe() {
+    val drinksObserver = Observer<ArrayList<Drink>> { drinks -> this.drinks = drinks!! }
+    drinksViewModel.drinks.observe(this, drinksObserver)
   }
   
   private fun setupAdapter() {
@@ -51,7 +63,7 @@ class DrinksFragment : Fragment() {
       drinks_recycler_view.layoutManager = GridLayoutManager(activity, 2)
       val adapter = DrinksAdapter()
       drinks_recycler_view.adapter = adapter
-      adapter.setDrinks(drinksRepository.getAllDrinks())
+      adapter.setDrinks(drinks)
     }
   }
 }

@@ -20,6 +20,9 @@ import android.app.Activity
 import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.view.View
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
+import io.github.coffeegerm.brew_it.R
 import io.github.coffeegerm.brew_it.data.Drink
 import io.github.coffeegerm.brew_it.ui.single_drink.SingleDrinkActivity
 import io.github.coffeegerm.brew_it.utilities.Constants.DRINK_ID_PASSED
@@ -31,7 +34,8 @@ class DrinksViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
   fun bindDrink(item: Drink) {
     itemView.drink_name.text = item.name
     itemView.drink_time.text = Utilities().convertBrewDuration(item.brewDuration)
-    itemView.drink_image.setImageResource(item.image)
+    val requestOptions = RequestOptions.placeholderOf(R.drawable.coffee)
+    Glide.with(itemView).load(item.image).apply(requestOptions).into(itemView.drink_image)
     val context = itemView.context as Activity
     itemView.setOnClickListener({
       val intent = Intent(itemView.context, SingleDrinkActivity::class.java)

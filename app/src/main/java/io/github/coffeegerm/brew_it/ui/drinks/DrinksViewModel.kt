@@ -16,20 +16,29 @@
 
 package io.github.coffeegerm.brew_it.ui.drinks
 
+import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import io.github.coffeegerm.brew_it.BetterBaristaApp
+import io.github.coffeegerm.brew_it.data.Drink
 import io.github.coffeegerm.brew_it.data.DrinksRepository
 import javax.inject.Inject
+
 
 /**
  * TODO: Add class comment header
  */
 class DrinksViewModel : ViewModel() {
   
+  @Inject lateinit var drinksRepo: DrinksRepository
+  
+  var drinks: MutableLiveData<ArrayList<Drink>>
+  
   init {
     BetterBaristaApp.syringe.inject(this)
+    drinks = MutableLiveData()
+    getDrinks()
   }
   
-  @Inject lateinit var drinksRepo: DrinksRepository
+  private fun getDrinks() = drinks.postValue(drinksRepo.getAllDrinks())
   
 }

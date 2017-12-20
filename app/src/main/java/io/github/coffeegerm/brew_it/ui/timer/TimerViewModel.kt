@@ -41,6 +41,14 @@ class TimerViewModel : ViewModel() {
   var remainingTime: MutableLiveData<String> = MutableLiveData()
   var drinkTimerText: MutableLiveData<String> = MutableLiveData()
   var percentRemaining: MutableLiveData<Int> = MutableLiveData()
+  var drinksListNames: MutableLiveData<ArrayList<String>> = MutableLiveData()
+  
+  fun getDrinkNames() {
+    val allDrinks = drinksRepository.getAllDrinks()
+    val drinkNames = ArrayList<String>()
+    allDrinks.mapTo(drinkNames) { it.name }
+    drinksListNames.postValue(drinkNames)
+  }
   
   fun setDrink(drinkId: Int) {
     val drinkMade = drinksRepository.getSingleDrinkById(drinkId)
