@@ -16,6 +16,7 @@
 
 package io.github.coffeegerm.brew_it.dagger
 
+import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import android.content.res.Resources
@@ -31,7 +32,12 @@ import javax.inject.Singleton
 
 @Module
 class AppModule(betterBaristaApp: BetterBaristaApp) {
+  
   var app = betterBaristaApp
+  
+  @Provides
+  @Singleton
+  fun providesApplication(): Application = app
   
   @Provides
   @Singleton

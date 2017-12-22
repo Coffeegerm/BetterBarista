@@ -18,12 +18,12 @@ package io.github.coffeegerm.brew_it.ui.timer
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
-import android.os.CountDownTimer
+import android.os.Handler
 import io.github.coffeegerm.brew_it.BetterBaristaApp
 import io.github.coffeegerm.brew_it.data.Drink
 import io.github.coffeegerm.brew_it.data.DrinksRepository
-import io.github.coffeegerm.brew_it.utilities.Utilities
 import javax.inject.Inject
+
 
 class TimerViewModel : ViewModel() {
   
@@ -32,11 +32,23 @@ class TimerViewModel : ViewModel() {
   }
   
   @Inject lateinit var drinksRepository: DrinksRepository
-  @Inject lateinit var utils: Utilities
   
-  private var initialTime: Long = 0
-  private var currentTimerMillisTillFinished: Long = 0
-  private lateinit var countDownTimer: CountDownTimer
+  private var constantInitialTime: Long = 0
+  private var runningTime: Long = 0
+  
+  val handler = Handler()
+  private val runnable = object : Runnable {
+    override fun run() {
+      remainingTime.postValue(convertMillisToMinutes(runningTime))
+      if (timerRunning) {
+        runningTime -= 1000
+        percentRemaining.postValue(getPercentLeft(runningTime))
+      }
+      handler.postDelayed(this, 1000)
+    }
+  }
+  
+  private var timerRunning = false
   
   var remainingTime: MutableLiveData<String> = MutableLiveData()
   var drinkTimerText: MutableLiveData<String> = MutableLiveData()
@@ -53,48 +65,48 @@ class TimerViewModel : ViewModel() {
   fun setDrink(drinkId: Int) {
     val drinkMade = drinksRepository.getSingleDrinkById(drinkId)
     drinkMade?.let { setTotalTime(it) }
-    drinkMade?.let { drinkTimerText.postValue(utils.convertBrewDurationForTimer(drinkMade.brewDuration)) }
+    drinkMade?.let { drinkTimerText.postValue(convertBrewDurationForTimer(drinkMade.brewDuration)) }
   }
   
   private fun setTotalTime(drinkMade: Drink) {
-    initialTime = (drinkMade.brewDuration * 60 * 1000).toLong()
-    createCountdownTimer(initialTime)
+    constantInitialTime = (drinkMade.brewDuration * 60 * 1000).toLong()
+    runningTime = (drinkMade.brewDuration * 60 * 1000).toLong()
   }
   
-  private fun createCountdownTimer(totalTimeInMillis: Long) {
-    countDownTimer = object : CountDownTimer(totalTimeInMillis, 1000) {
-      override fun onFinish() {
-        remainingTime.postValue("00:00")
-      }
-      
-      override fun onTick(millisUntilFinished: Long) {
-        remainingTime.postValue(convertMillisToMinutes(millisUntilFinished))
-        percentRemaining.postValue(getPercentLeft(millisUntilFinished))
-        currentTimerMillisTillFinished = millisUntilFinished
-      }
+  private fun convertMillisToMinutes(providedMillis: Long): String {
+    val minutes = ((providedMillis / 1000) / 60)
+    val seconds = ((providedMillis / 1000) % 60)
+    return if (seconds < 10) {
+      minutes.toString() + ":" + "0" + seconds.toString()
+    } else {
+      minutes.toString() + ":" + seconds.toString()
     }
   }
   
-  private fun convertMillisToMinutes(providedMillis: Long): String = ((providedMillis / 1000) / 60).toString() + ":" + ((providedMillis / 1000) % 60).toString()
-  
   fun startTimer() {
-    countDownTimer.start()
+    timerRunning = true
+    handler.post(runnable)
   }
   
   fun pauseTimer() {
-    countDownTimer.cancel()
-    createCountdownTimer(currentTimerMillisTillFinished)
+    handler.removeCallbacks(runnable)
+    timerRunning = false
   }
   
   fun resetTimer() {
-    countDownTimer.cancel()
-    createCountdownTimer(initialTime)
+    runningTime = constantInitialTime
+    timerRunning = false
   }
   
-  fun cancelTimer() {
-    countDownTimer.cancel()
+  private fun convertBrewDurationForTimer(originalValue: Int): String {
+    return if (originalValue >= 60) {
+      val simplifiedTime = originalValue / 60
+      simplifiedTime.toString() + ":00 hrs"
+    } else {
+      originalValue.toString() + ":00"
+    }
   }
   
-  fun getPercentLeft(timeLeftInMillis: Long): Int = ((timeLeftInMillis.toFloat() / initialTime.toFloat()) * 100).toInt()
+  fun getPercentLeft(timeLeftInMillis: Long): Int = ((timeLeftInMillis.toFloat() / constantInitialTime.toFloat()) * 100).toInt()
   
 }

@@ -26,14 +26,13 @@ import io.github.coffeegerm.brew_it.R
 import io.github.coffeegerm.brew_it.data.Drink
 import io.github.coffeegerm.brew_it.ui.single_drink.SingleDrinkActivity
 import io.github.coffeegerm.brew_it.utilities.Constants.DRINK_ID_PASSED
-import io.github.coffeegerm.brew_it.utilities.Utilities
 import kotlinx.android.synthetic.main.item_drink.view.*
 
 class DrinksViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
   
   fun bindDrink(item: Drink) {
     itemView.drink_name.text = item.name
-    itemView.drink_time.text = Utilities().convertBrewDuration(item.brewDuration)
+    itemView.drink_time.text = convertBrewDuration(item.brewDuration)
     val requestOptions = RequestOptions.placeholderOf(R.drawable.coffee)
     Glide.with(itemView).load(item.image).apply(requestOptions).into(itemView.drink_image)
     val context = itemView.context as Activity
@@ -43,4 +42,14 @@ class DrinksViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
       context.startActivityForResult(intent, 1)
     })
   }
+  
+  private fun convertBrewDuration(originalValue: Int): String {
+    return if (originalValue >= 60) {
+      val simplifiedTime = originalValue / 60
+      simplifiedTime.toString() + ":00 hrs"
+    } else {
+      originalValue.toString() + ":00 min"
+    }
+  }
+  
 }

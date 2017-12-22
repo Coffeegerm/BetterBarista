@@ -27,14 +27,12 @@ import io.github.coffeegerm.brew_it.R
 import io.github.coffeegerm.brew_it.data.Drink
 import io.github.coffeegerm.brew_it.data.DrinksRepository
 import io.github.coffeegerm.brew_it.utilities.Constants
-import io.github.coffeegerm.brew_it.utilities.Utilities
 import kotlinx.android.synthetic.main.activity_single_drink.*
 import javax.inject.Inject
 
 class SingleDrinkActivity : AppCompatActivity() {
   
   @Inject lateinit var drinksRepository: DrinksRepository
-  @Inject lateinit var utilities: Utilities
   
   private lateinit var singleDrinkAdapter: SingleDrinkAdapter
   
@@ -49,7 +47,7 @@ class SingleDrinkActivity : AppCompatActivity() {
     drinkMade?.let {
       setupToolbar(drinkMade)
       drink_description.text = drinkMade.description
-      drink_duration.text = utilities.convertBrewDuration(drinkMade.brewDuration)
+      drink_duration.text = convertBrewDuration(drinkMade.brewDuration)
       drink_strength.text = drinkMade.strength
       drink_difficulty.text = drinkMade.difficulty
     }
@@ -111,6 +109,15 @@ class SingleDrinkActivity : AppCompatActivity() {
     (0 until instructionsFromResources.size).mapTo(instructionsToBeUsed) { "${it.plus(1)}. " + instructionsFromResources[it] }
     singleDrinkAdapter.setInstructions(instructionsToBeUsed)
     singleDrinkAdapter.notifyDataSetChanged()
+  }
+  
+  private fun convertBrewDuration(originalValue: Int): String {
+    return if (originalValue >= 60) {
+      val simplifiedTime = originalValue / 60
+      simplifiedTime.toString() + ":00 hrs"
+    } else {
+      originalValue.toString() + ":00 min"
+    }
   }
   
   override fun onSupportNavigateUp(): Boolean {
