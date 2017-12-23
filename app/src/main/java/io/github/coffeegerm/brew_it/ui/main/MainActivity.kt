@@ -98,6 +98,15 @@ class MainActivity : AppCompatActivity() {
       drink.strength = getString(R.string.regular_strong)
       drink.difficulty = getString(R.string.easy)
       realm.insertOrUpdate(drink)
+  
+      drink.id = 5
+      drink.name = getString(R.string.kalita_wave)
+      drink.description = getString(R.string.kalita_wave_description)
+      drink.image = R.drawable.kalita_wave
+      drink.brewDuration = 10
+      drink.strength = getString(R.string.regular_strong)
+      drink.difficulty = getString(R.string.intermediate)
+      realm.insertOrUpdate(drink)
     }
   }
   

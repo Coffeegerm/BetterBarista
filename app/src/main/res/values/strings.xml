@@ -25,6 +25,8 @@
   <string name="instructions">Instructions</string>
   <string name="timer_error">Could not get timer duration for this drink.</string>
   
+  <string name="image_source">Images provided by Unsplash</string>
+  
   <string name="duration">Duration</string>
   <string name="strength">Strength</string>
   <string name="difficulty">Difficulty</string>
@@ -65,6 +67,9 @@
   <string name="cold_brew">Cold Brew</string>
   <string name="cold_brew_description">A summer favorite that\'s simple as can be, only takes time.</string>
   
+  <string name="kalita_wave">Kalita Wave</string>
+  <string name="kalita_wave_description">Similar to his brother, the pour over, the Kalita Wave is an amazing choice for creating coffee. Simple, elegant, and tasteful, every cup you make can be masterpiece. A bonus perk with the Kalita Wave resides in the fact that it isn\'t made of porcelain, so it is great for the hiker\'s and camper\'s!</string>
+  
   <string name="final_time_for_timer">00:00</string>
   <string name="feedback">Feedback</string>
   
@@ -96,7 +101,7 @@
   <!-- Pour Over instructions -->
   <array name="instructions_pour_over">
     <item>Bring 20 ounces, or 600 grams, of water to a boil.</item>
-    <item>Grind 30 grams of coffee beans to a sea salt like coarseness. This ensures that the
+    <item>Grind 30 grams of coffee beans to a sea-salt like coarseness. This ensures that the
       water does not simply flow through.
     </item>
     <item>Place filter into your chosen dripper.</item>
@@ -106,7 +111,7 @@
     <item>Pour enough water over the grounds so as to get them all wet and allow them to bloom,
       puff up. This releases Co2 from the grounds and lets the oxygen burst.
     </item>
-    <item>Starting from the center of the grounds starting pouring slowly in a spiral formation.
+    <item>Starting from the center of the grounds start pouring slowly in a spiral formation.
       Careful not to pour too fast and aim for the dark spots of the grounds so you get all
       the flavor from the grounds.
     </item>
@@ -144,6 +149,26 @@
     <item>Stir using provided paddle to ensure that all grounds are wet.</item>
     <item>Insert plunger and press to extract coffee.</item>
     <item>Taste and dilute if too potent.</item>
+  </array>
+  
+  <array name="instructions_kalita_wave">
+    <item>Bring 20 ounces, or 600 grams, of water to a boil.</item>
+    <item>Grind 30 grams of coffee beans to a sea-salt like coarseness. This ensures that the
+      water does not simply flow through.
+    </item>
+    <item>Place filter into your wave.</item>
+    <item>Wet the filter so as to prevent any filter taste making it\'s way into your coffee.
+    </item>
+    <item>Add coffee grounds to filter.</item>
+    <item>Pour enough water over the grounds so as to get them all wet and allow them to bloom,
+      puff up. This releases Co2 from the grounds and lets the oxygen burst.
+    </item>
+    <item>Starting from the center of the grounds start pouring slowly in a spiral formation.
+      Careful not to pour too fast and aim for the dark spots of the grounds so you get all
+      the flavor from the grounds.
+    </item>
+    <item>Once your carafe or cup is full you\'re done! Enjoy your freshly made cup of coffee!
+    </item>
   </array>
 
 </resources>

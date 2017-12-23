@@ -18,8 +18,9 @@ package io.github.coffeegerm.brew_it
 
 import android.app.Application
 import io.github.coffeegerm.brew_it.dagger.AppComponent
-import io.github.coffeegerm.brew_it.dagger.AppModule
+import io.github.coffeegerm.brew_it.dagger.BetterBaristaModule
 import io.github.coffeegerm.brew_it.dagger.DaggerAppComponent
+import io.github.coffeegerm.brew_it.dagger.ResourceModule
 import io.realm.Realm
 import io.realm.RealmConfiguration
 import timber.log.Timber
@@ -40,7 +41,7 @@ class BetterBaristaApp : Application() {
   override fun onCreate() {
     super.onCreate()
     initRealm()
-    syringe = DaggerAppComponent.builder().appModule(AppModule(this)).build()
+    syringe = buildDagger()
     
     if (BuildConfig.DEBUG) {
       Timber.plant(DebugTree())
@@ -48,6 +49,10 @@ class BetterBaristaApp : Application() {
       //custom production tree. set up so logs are sent to crashlytics along with the stack trace or something
     }
   }
+  
+  private fun buildDagger() = DaggerAppComponent.builder()
+        .resourceModule(ResourceModule())
+        .build()
   
   private fun initRealm() {
     Realm.init(this)

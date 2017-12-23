@@ -37,7 +37,7 @@ import kotlinx.android.synthetic.main.fragment_drinks.*
 
 class DrinksFragment : Fragment() {
   
-  lateinit var drinksViewModel: DrinksViewModel
+  private lateinit var drinksViewModel: DrinksViewModel
   
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
         inflater.inflate(R.layout.fragment_drinks, container, false)

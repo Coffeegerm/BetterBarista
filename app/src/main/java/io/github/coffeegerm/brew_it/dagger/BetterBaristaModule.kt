@@ -27,11 +27,11 @@ import io.github.coffeegerm.brew_it.utilities.Constants
 import javax.inject.Singleton
 
 /**
- * Dagger AppModule that provides items for injection
+ * Dagger BetterBaristaModule that provides items for injection
  */
 
 @Module
-class AppModule(betterBaristaApp: BetterBaristaApp) {
+class BetterBaristaModule(betterBaristaApp: BetterBaristaApp) {
   
   var app = betterBaristaApp
   

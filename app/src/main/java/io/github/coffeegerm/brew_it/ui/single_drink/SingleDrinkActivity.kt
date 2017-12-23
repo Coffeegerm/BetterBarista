@@ -22,6 +22,7 @@ import android.os.Bundle
 import android.support.design.widget.AppBarLayout
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import io.github.coffeegerm.brew_it.BetterBaristaApp.Companion.syringe
 import io.github.coffeegerm.brew_it.R
 import io.github.coffeegerm.brew_it.data.Drink
@@ -66,7 +67,7 @@ class SingleDrinkActivity : AppCompatActivity() {
   }
   
   private fun setupToolbar(drinkMade: Drink) {
-    single_drink_image.setImageResource(drinkMade.image)
+    Glide.with(single_drink_image).load(drinkMade.image).into(single_drink_image)
     collapsing_toolbar.title = " "
     setSupportActionBar(toolbar)
     supportActionBar?.setDisplayHomeAsUpEnabled(false)
@@ -101,6 +102,7 @@ class SingleDrinkActivity : AppCompatActivity() {
       getString(R.string.pour_over) -> formatInstructionList(instructionsFromResources = resources.getStringArray(R.array.instructions_pour_over))
       getString(R.string.cold_brew) -> formatInstructionList(instructionsFromResources = resources.getStringArray(R.array.instructions_cold_brew_coffee))
       getString(R.string.aeropress) -> formatInstructionList(instructionsFromResources = resources.getStringArray(R.array.instructions_aeropress))
+      getString(R.string.kalita_wave) -> formatInstructionList(instructionsFromResources = resources.getStringArray(R.array.instructions_kalita_wave))
     }
   }
   
