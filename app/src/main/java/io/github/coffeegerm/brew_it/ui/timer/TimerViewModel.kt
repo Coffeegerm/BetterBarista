@@ -64,6 +64,10 @@ class TimerViewModel : ViewModel() {
   }
   
   fun setDrink(drinkId: Int) {
+    if (timerRunning) {
+      timerRunning = false
+      isTimerRunning.postValue(timerRunning)
+    }
     percentRemaining.postValue(100)
     val drinkMade = drinksRepository.getSingleDrinkById(drinkId)
     drinkMade?.let { setTotalTime(it) }

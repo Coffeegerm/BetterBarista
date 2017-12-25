@@ -44,8 +44,7 @@ class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
     subscribe()
     
     reset_timer.setOnClickListener { resetTimer() }
-  
-    // todo refactor this
+    
     timer_button.setOnClickListener({
       timer_button.text = if (isButtonPressed) getString(R.string.start) else getString(R.string.pause)
       when (timer_button.text) {
@@ -67,6 +66,9 @@ class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
   override fun onItemSelected(parent: AdapterView<*>?, aView: View?, position: Int, aLong: Long) = setDrinkTimerText(position)
   
   private fun subscribe() {
+    val controlStartPause = Observer<Boolean> { isTimerRunning -> isTimerRunning?.let { controlStartPause(isTimerRunning) } }
+    timerViewModel.isTimerRunning.observe(this, controlStartPause)
+    
     val isTimerRunning = Observer<Boolean> { isTimerRunning -> isTimerRunning?.let { resetVisibility(it) } }
     timerViewModel.isTimerRunning.observe(this, isTimerRunning)
     
@@ -90,6 +92,13 @@ class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
     when (timerRunning) {
       true -> reset_timer.visibility = View.VISIBLE
       false -> reset_timer.visibility = View.GONE
+    }
+  }
+  
+  private fun controlStartPause(timerRunning: Boolean) {
+    when (timerRunning) {
+      true -> timer_button.text = getString(R.string.pause)
+      false -> timer_button.text = getString(R.string.start)
     }
   }
   

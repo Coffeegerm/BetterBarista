@@ -17,7 +17,6 @@
 package io.github.coffeegerm.brew_it.ui.single_drink
 
 import android.app.Activity
-import android.arch.lifecycle.Observer
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.AppBarLayout
@@ -51,22 +50,18 @@ class SingleDrinkActivity : AppCompatActivity() {
       drink_description.text = drinkMade.description
       drink_duration.text = convertBrewDuration(drinkMade.brewDuration)
       drink_strength.text = drinkMade.strength
+      drink_temp.text = drinkMade.temperature
       drink_difficulty.text = drinkMade.difficulty
     }
     
     if (drinkMade != null) getInstructions(drinkMade)
     
-    start_timer_fab.setOnClickListener({
-      val switchToTimerIntent = Intent()
-      // todo on single drink chosen set spinner selection
-      switchToTimerIntent.putExtra(Constants.DRINK_ID_PASSED, drinkMade?.id)
-      setResult(Activity.RESULT_OK, switchToTimerIntent)
-      finish()
-    })
+    start_timer_fab.setOnClickListener({ drinkMade?.let { drink -> switchToTimer(drink) } })
+    
+    lower_fab.setOnClickListener { drinkMade?.let { drink -> switchToTimer(drink) } }
   }
   
-  fun subscribe() {
-  }
+  fun subscribe() {}
   
   private fun setupToolbar(drinkMade: Drink) {
     Glide.with(single_drink_image).load(drinkMade.image).into(single_drink_image)
@@ -135,6 +130,14 @@ class SingleDrinkActivity : AppCompatActivity() {
     } else {
       originalValue.toString() + ":00 min"
     }
+  }
+  
+  fun switchToTimer(drinkMade: Drink) {
+    val switchToTimerIntent = Intent()
+    // todo on single drink chosen set spinner selection
+    switchToTimerIntent.putExtra(Constants.DRINK_ID_PASSED, drinkMade.id)
+    setResult(Activity.RESULT_OK, switchToTimerIntent)
+    finish()
   }
   
   override fun onSupportNavigateUp(): Boolean {

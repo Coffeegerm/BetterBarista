@@ -24,23 +24,26 @@
   <string name="single_drink_image">Single Drink Toolbar Image</string>
   <string name="instructions">Instructions</string>
   <string name="timer_error">Could not get timer duration for this drink.</string>
-  
+  <string name="final_time_for_timer">00:00</string>
+  <string name="feedback">Feedback</string>
+
   <string name="image_source">Images provided by Unsplash</string>
-  
+
   <string name="duration">Duration</string>
   <string name="strength">Strength</string>
+  <string name="temperature">Temp.</string>
   <string name="difficulty">Difficulty</string>
-  
+
   <string name="start">Start</string>
   <string name="pause">Pause</string>
   <string name="reset">Reset</string>
-  
+
   <string name="easy">Easy</string>
   <string name="easy_intermediate">Easy - Intermediate</string>
   <string name="intermediate">Intermediate</string>
   <string name="intermediate_difficult">Intermediate - Difficult</string>
   <string name="difficult">Difficult</string>
-  
+
   <string name="weak">Weak</string>
   <string name="weak_regular">Weak - Regular</string>
   <string name="regular">Regular</string>
@@ -48,62 +51,58 @@
   <string name="strong">Strong</string>
   <string name="strong_potent">Strong - Potent</string>
   <string name="potent">Potent</string>
-  
+
   <string name="hot">Hot</string>
   <string name="cold">Cold</string>
   <string name="hot_or_cold">Hot/Cold</string>
-  
+
   <string name="coffee">Coffee</string>
   <string name="coffee_description">The classic cup of coffee, easy to make and even easier to enjoy.</string>
-  
+
   <string name="pour_over">Pour Over</string>
   <string name="pour_over_description">A brewing method not to be looked down upon, the pour over is an skill that every great barista should master.</string>
-  
+
   <string name="mocha">Mocha</string>
   <string name="mocha_description">A blend of espresso and chocolate make this drink an all year favorite for some.</string>
-  
+
   <string name="french_press">French Press</string>
   <string name="french_press_description">When you just want a tasty cup of coffee without all the hassle a French Press might just be your best bet. Ease of use and a great cup of coffee each and every time. </string>
-  
+
   <string name="aeropress">Aeropress</string>
   <string name="aeropress_description">An incredible brewing method that can make amazing coffee every time. The true strength to the Aeropress is it\'s versatility. Use it to make a regular cup of coffee or a shot of espresso.</string>
-  
+
   <string name="cold_brew">Cold Brew</string>
   <string name="cold_brew_description">A summer favorite that\'s simple as can be, only takes time.</string>
-  
+
   <string name="kalita_wave">Kalita Wave</string>
   <string name="kalita_wave_description">Similar to his brother, the pour over, the Kalita Wave is an amazing choice for creating coffee. Simple, elegant, and tasteful, every cup you make can be masterpiece. A bonus perk with the Kalita Wave resides in the fact that it isn\'t made of porcelain, so it is great for the hiker\'s and camper\'s!</string>
-  
+
   <string name="espresso">Espresso</string>
   <string name="espresso_description">The concentrated base of coffee that is used for nearly every other form of coffee other than a drip or pour over, this is truly a skill that every barista has to master.</string>
-  
+
   <string name="chai_latte">Chai Latte</string>
   <string name="chai_latte_description">Creamy, sweet, and spicy? A Chai Latte can be all of these or none, but that\'s the beauty of it really. Simply a blend of milk and Chai Tea this drink can be made to suit exactly what you want.</string>
-  
+
   <string name="dirty_chai">Dirty Chai</string>
   <string name="dirty_chai_description">Remember that Chai Latte from yesterday? Why don\'t you throw in a shot of espresso and see how much better the world is this way.</string>
-  
+
   <string name="americano">Americano</string>
   <string name="americano_description">Want something a little different from a regular cup of coffee, but the same strength? Look no further! The Americano was first created in WWII when American soldier\'s were stationed oversea\'s and had very little to drink other than espresso, so working with what they had they added some hot water to the espresso and the Americano was born!</string>
-  
+
   <string name="cappuccino">Cappuccino</string>
   <string name="cappuccino_description">A classic Italian coffee beverage generally served with two shots of espresso and steamed milk foam, the only thing stopping you from drinking this right now is time.</string>
-  
+
   <string name="black_eye">Black Eye</string>
   <string name="black_eye_description">Love your cup of coffee every morning but need an extra little kick sometimes? This drink can do just that. A shot of espresso topped off with however much coffee you want and you\'re ready to start your day.</string>
-  
+
   <string name="red_eye">Red Eye</string>
   <string name="red_eye_description">Black Eye too weak for you? Yeah, me too. This is my favorite way to start the day. Two shots of espresso and some amazing coffee on top and my computer can\'t take how fast my finger\'s move.</string>
-  
+
   <string name="green_eye">Green Eye</string>
   <string name="green_eye_description">When finals are right around the corner possibly the best thing to keep you awake is a Green Eye. Three shots of espresso and coffee on top of that? This thing will keep you going all night long.</string>
-  
-  <string name="final_time_for_timer">00:00</string>
-  <string name="feedback">Feedback</string>
-  
-  
+
   <!-- Instructions -->
-  
+
   <!-- Instructions for coffee -->
   <array name="instructions_coffee">
     <item>Grind coffee if necessary and load into filter of selected coffee pot.</item>
@@ -112,7 +111,7 @@
     <item>Wait for brewing to complete.</item>
     <item>Pour and enjoy!</item>
   </array>
-  
+
   <!-- Instructions for French Press -->
   <array name="instructions_french_press">
     <item>Grind 1/2 cup of fresh coffee beans.</item>
@@ -125,7 +124,7 @@
     <item>Plunge press slowly!</item>
     <item>Pour and enjoy your cup of coffee!</item>
   </array>
-  
+
   <!-- Pour Over instructions -->
   <array name="instructions_pour_over">
     <item>Bring 20 ounces, or 600 grams, of water to a boil.</item>
@@ -146,7 +145,7 @@
     <item>Once your carafe or cup is full you\'re done! Enjoy your freshly made cup of coffee!
     </item>
   </array>
-  
+
   <!-- Instructions for cold brew coffee -->
   <array name="instructions_cold_brew_coffee">
     <item>Grind one pound of coffee beans coarsely.</item>
@@ -163,7 +162,7 @@
       favorite!
     </item>
   </array>
-  
+
   <array name="instructions_aeropress">
     <item>Bring your water to a boil. Aim for somewhere between 174 and 195 degree\'s
       fahrenheit.
@@ -178,7 +177,7 @@
     <item>Insert plunger and press to extract coffee.</item>
     <item>Taste and dilute if too potent.</item>
   </array>
-  
+
   <array name="instructions_kalita_wave">
     <item>Bring 20 ounces, or 600 grams, of water to a boil.</item>
     <item>Grind 30 grams of coffee beans to a sea-salt like coarseness. This ensures that the
@@ -198,37 +197,143 @@
     <item>Once your carafe or cup is full you\'re done! Enjoy your freshly made cup of coffee!
     </item>
   </array>
-  
+
   <array name="instructions_espresso">
-    <item></item>
+    <item>Grind your coffee beans to a very fine consistency, you want the grounds to somewhat stick
+      together when you rub your finger through them.
+    </item>
+    <item>Fill your portafilter with 18 to 21 grams of ground coffee.</item>
+    <item>Run your finger over the portafilter to even out the grounds and to fill any air
+      pockets.
+    </item>
+    <item>Use your tamp to compress the grounds, while keeping your arm level, and press evenly.
+    </item>
+    <item>Place the portafilter in your espresso machines grouphead and begin the brewing process.
+      (This may vary machine to machine.)
+    </item>
+    <item>Espresso should begin to pour from the portafilter soon and you\'ll have your espresso.
+    </item>
   </array>
-  
+
   <array name="instructions_chai_latte">
-    <item></item>
+    <item>If using fresh Chai Tea, go ahead and steep the tea leaves in hot water for 3-5 minutes.
+    </item>
+    <item>Warm some milk if wanting a warm latte, otherwise proceed to next step.</item>
+    <item>Combine milk and tea, over ice if wanting cold, in cup.</item>
+    <item>Add honey or sugar to taste.</item>
+    <item>Lastly, sprinkle over top with nutmeg or cinnamon if desired.</item>
   </array>
-  
+
   <array name="instructions_dirty_chai">
-    <item></item>
+    <item>Grind 18 to 21 grams of coffee beans to a very fine consistency, you want the grounds to
+      somewhat stick
+      together when you rub your finger through them.
+    </item>
+    <item>Fill your portafilter with the ground coffee.</item>
+    <item>Run your finger over the portafilter to even out the grounds and to fill any air
+      pockets.
+    </item>
+    <item>Use your tamp to compress the grounds, while keeping your arm level, and press evenly.
+    </item>
+    <item>Place the portafilter in your espresso machines grouphead and begin the brewing process.
+      (This may vary machine to machine.)
+    </item>
+    <item>Espresso should begin to pour from the portafilter into your cup.
+    </item>
+    <item>If using fresh Chai Tea, go ahead and steep the tea leaves in hot water for 3-5 minutes.
+    </item>
+    <item>Warm some milk if wanting a warm latte, otherwise proceed to next step.</item>
+    <item>Combine milk and tea, over ice if wanting cold, in cup.</item>
+    <item>Add honey or sugar to taste.</item>
+    <item>Lastly, sprinkle over top with nutmeg or cinnamon if desired.</item>
   </array>
-  
+
   <array name="instructions_americano">
-    <item></item>
+    <item>Grind 18 to 21 grams of coffee beans to a very fine consistency, you want the grounds to
+      somewhat stick
+      together when you rub your finger through them.
+    </item>
+    <item>Fill your portafilter with the ground coffee.</item>
+    <item>Run your finger over the portafilter to even out the grounds and to fill any air
+      pockets.
+    </item>
+    <item>Use your tamp to compress the grounds, while keeping your arm level, and press evenly.
+    </item>
+    <item>Place the portafilter in your espresso machines grouphead and begin the brewing process.
+      (This may vary machine to machine.)
+    </item>
+    <item>Pour hot water into the cup you intend to drink from.</item>
+    <item>Once the espresso is done brewing add this to your water and enjoy!</item>
   </array>
-  
+
   <array name="instructions_cappuccino">
-    <item></item>
+    <item>Grind 18 to 21 grams of coffee beans to a very fine consistency, you want the grounds to
+      somewhat stick
+      together when you rub your finger through them.
+    </item>
+    <item>Fill your portafilter with the ground coffee.</item>
+    <item>Run your finger over the portafilter to even out the grounds and to fill any air
+      pockets.
+    </item>
+    <item>Use your tamp to compress the grounds, while keeping your arm level, and press evenly.
+    </item>
+    <item>Place the portafilter in your espresso machines grouphead and begin the brewing process.
+      (This may vary machine to machine.)
+    </item>
   </array>
-  
+
   <array name="instructions_black_eye">
-    <item></item>
+    <item>Grind 18 to 21 grams of coffee beans to a very fine consistency, you want the grounds to
+      somewhat stick
+      together when you rub your finger through them.
+    </item>
+    <item>Fill your portafilter with the ground coffee.</item>
+    <item>Run your finger over the portafilter to even out the grounds and to fill any air
+      pockets.
+    </item>
+    <item>Use your tamp to compress the grounds, while keeping your arm level, and press evenly.
+    </item>
+    <item>Place the portafilter in your espresso machines grouphead and begin the brewing process.
+      (This may vary machine to machine.)
+    </item>
+    <item>Give the espresso time to brew and pour into your cup.</item>
+    <item>Add drip coffee over your espresso and enjoy your beverage.</item>
   </array>
-  
+
   <array name="instructions_red_eye">
-    <item></item>
+    <item>Grind 18 to 21 grams of coffee beans to a very fine consistency, you want the grounds to
+      somewhat stick
+      together when you rub your finger through them.
+    </item>
+    <item>Fill your portafilter with the ground coffee.</item>
+    <item>Run your finger over the portafilter to even out the grounds and to fill any air
+      pockets.
+    </item>
+    <item>Use your tamp to compress the grounds, while keeping your arm level, and press evenly.
+    </item>
+    <item>Place the portafilter in your espresso machines grouphead and begin the brewing process.
+      (This may vary machine to machine.)
+    </item>
+    <item>Repeat once more for an additional shot of espresso</item>
+    <item>Add drip coffee over your espresso shots and enjoy your beverage.</item>
   </array>
-  
+
   <array name="instructions_green_eye">
-    <item></item>
+    <item>Grind 18 to 21 grams of coffee beans to a very fine consistency, you want the grounds to
+      somewhat stick
+      together when you rub your finger through them.
+    </item>
+    <item>Fill your portafilter with the ground coffee.</item>
+    <item>Run your finger over the portafilter to even out the grounds and to fill any air
+      pockets.
+    </item>
+    <item>Use your tamp to compress the grounds, while keeping your arm level, and press evenly.
+    </item>
+    <item>Place the portafilter in your espresso machines grouphead and begin the brewing process.
+      (This may vary machine to machine.)
+    </item>
+    <item>Repeat two more times for an additional shots of espresso</item>
+    <item>Add drip coffee over your espresso shots and enjoy your beverage.</item>
   </array>
 
 </resources>
