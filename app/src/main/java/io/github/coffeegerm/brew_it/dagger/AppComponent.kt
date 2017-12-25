@@ -23,6 +23,7 @@ import io.github.coffeegerm.brew_it.ui.main.MainActivity
 import io.github.coffeegerm.brew_it.ui.more.MoreFragment
 import io.github.coffeegerm.brew_it.ui.more.MoreViewModel
 import io.github.coffeegerm.brew_it.ui.single_drink.SingleDrinkActivity
+import io.github.coffeegerm.brew_it.ui.single_drink.SingleDrinkViewModel
 import io.github.coffeegerm.brew_it.ui.timer.TimerFragment
 import io.github.coffeegerm.brew_it.ui.timer.TimerViewModel
 import javax.inject.Singleton
@@ -36,10 +37,10 @@ import javax.inject.Singleton
 interface AppComponent {
   fun inject(mainActivity: MainActivity)
   fun inject(singleDrinkActivity: SingleDrinkActivity)
+  fun inject(singleDrinkViewModel: SingleDrinkViewModel)
   
   fun inject(drinksFragment: DrinksFragment)
   fun inject(drinksViewModel: DrinksViewModel)
-  fun inject(timerFragment: TimerFragment)
   fun inject(timerViewModel: TimerViewModel)
   fun inject(moreFragment: MoreFragment)
   fun inject(moreViewModel: MoreViewModel)

@@ -49,6 +49,10 @@
   <string name="strong_potent">Strong - Potent</string>
   <string name="potent">Potent</string>
   
+  <string name="hot">Hot</string>
+  <string name="cold">Cold</string>
+  <string name="hot_or_cold">Hot/Cold</string>
+  
   <string name="coffee">Coffee</string>
   <string name="coffee_description">The classic cup of coffee, easy to make and even easier to enjoy.</string>
   
@@ -69,6 +73,30 @@
   
   <string name="kalita_wave">Kalita Wave</string>
   <string name="kalita_wave_description">Similar to his brother, the pour over, the Kalita Wave is an amazing choice for creating coffee. Simple, elegant, and tasteful, every cup you make can be masterpiece. A bonus perk with the Kalita Wave resides in the fact that it isn\'t made of porcelain, so it is great for the hiker\'s and camper\'s!</string>
+  
+  <string name="espresso">Espresso</string>
+  <string name="espresso_description">The concentrated base of coffee that is used for nearly every other form of coffee other than a drip or pour over, this is truly a skill that every barista has to master.</string>
+  
+  <string name="chai_latte">Chai Latte</string>
+  <string name="chai_latte_description">Creamy, sweet, and spicy? A Chai Latte can be all of these or none, but that\'s the beauty of it really. Simply a blend of milk and Chai Tea this drink can be made to suit exactly what you want.</string>
+  
+  <string name="dirty_chai">Dirty Chai</string>
+  <string name="dirty_chai_description">Remember that Chai Latte from yesterday? Why don\'t you throw in a shot of espresso and see how much better the world is this way.</string>
+  
+  <string name="americano">Americano</string>
+  <string name="americano_description">Want something a little different from a regular cup of coffee, but the same strength? Look no further! The Americano was first created in WWII when American soldier\'s were stationed oversea\'s and had very little to drink other than espresso, so working with what they had they added some hot water to the espresso and the Americano was born!</string>
+  
+  <string name="cappuccino">Cappuccino</string>
+  <string name="cappuccino_description">A classic Italian coffee beverage generally served with two shots of espresso and steamed milk foam, the only thing stopping you from drinking this right now is time.</string>
+  
+  <string name="black_eye">Black Eye</string>
+  <string name="black_eye_description">Love your cup of coffee every morning but need an extra little kick sometimes? This drink can do just that. A shot of espresso topped off with however much coffee you want and you\'re ready to start your day.</string>
+  
+  <string name="red_eye">Red Eye</string>
+  <string name="red_eye_description">Black Eye too weak for you? Yeah, me too. This is my favorite way to start the day. Two shots of espresso and some amazing coffee on top and my computer can\'t take how fast my finger\'s move.</string>
+  
+  <string name="green_eye">Green Eye</string>
+  <string name="green_eye_description">When finals are right around the corner possibly the best thing to keep you awake is a Green Eye. Three shots of espresso and coffee on top of that? This thing will keep you going all night long.</string>
   
   <string name="final_time_for_timer">00:00</string>
   <string name="feedback">Feedback</string>
@@ -169,6 +197,38 @@
     </item>
     <item>Once your carafe or cup is full you\'re done! Enjoy your freshly made cup of coffee!
     </item>
+  </array>
+  
+  <array name="instructions_espresso">
+    <item></item>
+  </array>
+  
+  <array name="instructions_chai_latte">
+    <item></item>
+  </array>
+  
+  <array name="instructions_dirty_chai">
+    <item></item>
+  </array>
+  
+  <array name="instructions_americano">
+    <item></item>
+  </array>
+  
+  <array name="instructions_cappuccino">
+    <item></item>
+  </array>
+  
+  <array name="instructions_black_eye">
+    <item></item>
+  </array>
+  
+  <array name="instructions_red_eye">
+    <item></item>
+  </array>
+  
+  <array name="instructions_green_eye">
+    <item></item>
   </array>
 
 </resources>

@@ -25,7 +25,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import io.github.coffeegerm.brew_it.BetterBaristaApp.Companion.syringe
 import io.github.coffeegerm.brew_it.R
 import kotlinx.android.synthetic.main.fragment_timer.*
 
@@ -40,14 +39,13 @@ class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
   
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
-    syringe.inject(this)
-    
     timerViewModel = ViewModelProviders.of(this).get(TimerViewModel::class.java)
     timerViewModel.getDrinkNames()
     subscribe()
     
     reset_timer.setOnClickListener { resetTimer() }
-    
+  
+    // todo refactor this
     timer_button.setOnClickListener({
       timer_button.text = if (isButtonPressed) getString(R.string.start) else getString(R.string.pause)
       when (timer_button.text) {
@@ -58,20 +56,20 @@ class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
     })
   }
   
-  override fun onNothingSelected(p0: AdapterView<*>) {}
-  
-  override fun onItemSelected(parent: AdapterView<*>?, aView: View?, position: Int, aLong: Long) {
-    circularView.setPercentage(100)
-    when (parent?.getItemAtPosition(position)) {
-      getString(R.string.coffee) -> setDrinkTimerText(0)
-      getString(R.string.pour_over) -> setDrinkTimerText(1)
-      getString(R.string.aeropress) -> setDrinkTimerText(2)
-      getString(R.string.french_press) -> setDrinkTimerText(3)
-      getString(R.string.cold_brew) -> setDrinkTimerText(4)
-    }
+  private fun setupSpinner(drinkListNames: ArrayList<String>) {
+    val spinnerAdapter = ArrayAdapter(activity, android.R.layout.simple_spinner_dropdown_item, drinkListNames)
+    spinner.adapter = spinnerAdapter
+    spinner.onItemSelectedListener = this
   }
   
+  override fun onNothingSelected(p0: AdapterView<*>) {}
+  
+  override fun onItemSelected(parent: AdapterView<*>?, aView: View?, position: Int, aLong: Long) = setDrinkTimerText(position)
+  
   private fun subscribe() {
+    val isTimerRunning = Observer<Boolean> { isTimerRunning -> isTimerRunning?.let { resetVisibility(it) } }
+    timerViewModel.isTimerRunning.observe(this, isTimerRunning)
+    
     val drinkNames = Observer<ArrayList<String>> { drinkNames -> setupSpinner(drinkNames!!) }
     timerViewModel.drinksListNames.observe(this, drinkNames)
     
@@ -88,30 +86,19 @@ class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
     timerViewModel.percentRemaining.observe(this, percentageLeft)
   }
   
-  private fun setupSpinner(drinkListNames: ArrayList<String>) {
-    val spinnerAdapter = ArrayAdapter(activity, android.R.layout.simple_spinner_dropdown_item, drinkListNames)
-    spinner.adapter = spinnerAdapter
-    spinner.onItemSelectedListener = this
+  private fun resetVisibility(timerRunning: Boolean) {
+    when (timerRunning) {
+      true -> reset_timer.visibility = View.VISIBLE
+      false -> reset_timer.visibility = View.GONE
+    }
   }
   
-  private fun setDrinkTimerText(drinkResId: Int) {
-    timerViewModel.setDrink(drinkResId)
-  }
+  private fun setDrinkTimerText(drinkResId: Int) = timerViewModel.setDrink(drinkResId)
   
-  private fun startTimer() {
-    reset_timer.visibility = View.VISIBLE
-    timerViewModel.startTimer()
-  }
+  private fun startTimer() = timerViewModel.startTimer()
   
-  private fun pauseTimer() {
-    reset_timer.visibility = View.GONE
-    timerViewModel.pauseTimer()
-  }
+  private fun pauseTimer() = timerViewModel.pauseTimer()
   
-  private fun resetTimer() {
-    circularView.setPercentage(100)
-    reset_timer.visibility = View.GONE
-    timer_button.setText(R.string.start)
-    timerViewModel.resetTimer()
-  }
+  private fun resetTimer() = timerViewModel.resetTimer()
+  
 }

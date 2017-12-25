@@ -17,11 +17,20 @@
 package io.github.coffeegerm.brew_it.ui.single_drink
 
 import android.arch.lifecycle.ViewModel
+import io.github.coffeegerm.brew_it.BetterBaristaApp
+import io.github.coffeegerm.brew_it.data.DrinksRepository
+import javax.inject.Inject
 
 /**
  * TODO: Add class comment header
  */
 
 class SingleDrinkViewModel: ViewModel() {
-
+  
+  @Inject lateinit var drinksRepository: DrinksRepository
+  
+  init {
+    BetterBaristaApp.syringe.inject(this)
+  }
+  
 }

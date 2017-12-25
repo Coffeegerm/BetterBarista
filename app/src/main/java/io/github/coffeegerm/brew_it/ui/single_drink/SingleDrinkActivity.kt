@@ -17,6 +17,7 @@
 package io.github.coffeegerm.brew_it.ui.single_drink
 
 import android.app.Activity
+import android.arch.lifecycle.Observer
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.AppBarLayout
@@ -35,13 +36,13 @@ class SingleDrinkActivity : AppCompatActivity() {
   
   @Inject lateinit var drinksRepository: DrinksRepository
   
-  private lateinit var singleDrinkAdapter: SingleDrinkAdapter
+  private var singleDrinkAdapter: SingleDrinkAdapter = SingleDrinkAdapter()
   
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_single_drink)
     syringe.inject(this)
-    singleDrinkAdapter = SingleDrinkAdapter()
+    setupInstructionsAdapter()
     val drinkId = intent.getIntExtra(Constants.DRINK_ID_PASSED, 0)
     val drinkMade = drinksRepository.getSingleDrinkById(drinkId)
     
@@ -53,8 +54,6 @@ class SingleDrinkActivity : AppCompatActivity() {
       drink_difficulty.text = drinkMade.difficulty
     }
     
-    single_drink_recycler_view.layoutManager = LinearLayoutManager(applicationContext)
-    single_drink_recycler_view.adapter = singleDrinkAdapter
     if (drinkMade != null) getInstructions(drinkMade)
     
     start_timer_fab.setOnClickListener({
@@ -64,6 +63,9 @@ class SingleDrinkActivity : AppCompatActivity() {
       setResult(Activity.RESULT_OK, switchToTimerIntent)
       finish()
     })
+  }
+  
+  fun subscribe() {
   }
   
   private fun setupToolbar(drinkMade: Drink) {
@@ -95,14 +97,27 @@ class SingleDrinkActivity : AppCompatActivity() {
     })
   }
   
+  private fun setupInstructionsAdapter() {
+    single_drink_recycler_view.layoutManager = LinearLayoutManager(applicationContext)
+    single_drink_recycler_view.adapter = singleDrinkAdapter
+  }
+  
   private fun getInstructions(drinkMade: Drink) {
-    when (drinkMade.name) {
-      getString(R.string.coffee) -> formatInstructionList(instructionsFromResources = resources.getStringArray(R.array.instructions_coffee))
-      getString(R.string.french_press) -> formatInstructionList(instructionsFromResources = resources.getStringArray(R.array.instructions_french_press))
-      getString(R.string.pour_over) -> formatInstructionList(instructionsFromResources = resources.getStringArray(R.array.instructions_pour_over))
-      getString(R.string.cold_brew) -> formatInstructionList(instructionsFromResources = resources.getStringArray(R.array.instructions_cold_brew_coffee))
-      getString(R.string.aeropress) -> formatInstructionList(instructionsFromResources = resources.getStringArray(R.array.instructions_aeropress))
-      getString(R.string.kalita_wave) -> formatInstructionList(instructionsFromResources = resources.getStringArray(R.array.instructions_kalita_wave))
+    when (drinkMade.id) {
+      0 -> formatInstructionList(instructionsFromResources = resources.getStringArray(R.array.instructions_coffee))
+      1 -> formatInstructionList(instructionsFromResources = resources.getStringArray(R.array.instructions_french_press))
+      2 -> formatInstructionList(instructionsFromResources = resources.getStringArray(R.array.instructions_pour_over))
+      3 -> formatInstructionList(instructionsFromResources = resources.getStringArray(R.array.instructions_cold_brew_coffee))
+      4 -> formatInstructionList(instructionsFromResources = resources.getStringArray(R.array.instructions_aeropress))
+      5 -> formatInstructionList(instructionsFromResources = resources.getStringArray(R.array.instructions_kalita_wave))
+      6 -> formatInstructionList(instructionsFromResources = resources.getStringArray(R.array.instructions_espresso))
+      7 -> formatInstructionList(instructionsFromResources = resources.getStringArray(R.array.instructions_chai_latte))
+      8 -> formatInstructionList(instructionsFromResources = resources.getStringArray(R.array.instructions_dirty_chai))
+      9 -> formatInstructionList(instructionsFromResources = resources.getStringArray(R.array.instructions_americano))
+      10 -> formatInstructionList(instructionsFromResources = resources.getStringArray(R.array.instructions_cappuccino))
+      11 -> formatInstructionList(instructionsFromResources = resources.getStringArray(R.array.instructions_black_eye))
+      12 -> formatInstructionList(instructionsFromResources = resources.getStringArray(R.array.instructions_red_eye))
+      13 -> formatInstructionList(instructionsFromResources = resources.getStringArray(R.array.instructions_green_eye))
     }
   }
   

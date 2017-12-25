@@ -48,12 +48,13 @@ class TimerViewModel : ViewModel() {
     }
   }
   
-  private var timerRunning = false
+  var timerRunning = false
   
   var remainingTime: MutableLiveData<String> = MutableLiveData()
   var drinkTimerText: MutableLiveData<String> = MutableLiveData()
   var percentRemaining: MutableLiveData<Int> = MutableLiveData()
   var drinksListNames: MutableLiveData<ArrayList<String>> = MutableLiveData()
+  var isTimerRunning: MutableLiveData<Boolean> = MutableLiveData()
   
   fun getDrinkNames() {
     val allDrinks = drinksRepository.getAllDrinks()
@@ -63,6 +64,7 @@ class TimerViewModel : ViewModel() {
   }
   
   fun setDrink(drinkId: Int) {
+    percentRemaining.postValue(100)
     val drinkMade = drinksRepository.getSingleDrinkById(drinkId)
     drinkMade?.let { setTotalTime(it) }
     drinkMade?.let { drinkTimerText.postValue(convertBrewDurationForTimer(drinkMade.brewDuration)) }
@@ -85,17 +87,21 @@ class TimerViewModel : ViewModel() {
   
   fun startTimer() {
     timerRunning = true
+    isTimerRunning.postValue(timerRunning)
     handler.post(runnable)
   }
   
   fun pauseTimer() {
     handler.removeCallbacks(runnable)
     timerRunning = false
+    isTimerRunning.postValue(timerRunning)
   }
   
   fun resetTimer() {
     runningTime = constantInitialTime
+    percentRemaining.postValue(100)
     timerRunning = false
+    isTimerRunning.postValue(timerRunning)
   }
   
   private fun convertBrewDurationForTimer(originalValue: Int): String {
