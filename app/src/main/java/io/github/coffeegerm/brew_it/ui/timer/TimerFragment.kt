@@ -30,7 +30,7 @@ import kotlinx.android.synthetic.main.fragment_timer.*
 
 class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
   
-  lateinit var timerViewModel: TimerViewModel
+  private lateinit var timerViewModel: TimerViewModel
   
   private var isButtonPressed: Boolean = false
   
@@ -42,14 +42,14 @@ class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
     timerViewModel = ViewModelProviders.of(this).get(TimerViewModel::class.java)
     timerViewModel.getDrinkNames()
     subscribe()
-    
-    reset_timer.setOnClickListener { resetTimer() }
+  
+    reset_timer.setOnClickListener { timerViewModel.resetTimer() }
     
     timer_button.setOnClickListener({
       timer_button.text = if (isButtonPressed) getString(R.string.start) else getString(R.string.pause)
       when (timer_button.text) {
-        getString(R.string.pause) -> startTimer()
-        getString(R.string.start) -> pauseTimer()
+        getString(R.string.pause) -> timerViewModel.startTimer()
+        getString(R.string.start) -> timerViewModel.pauseTimer()
       }
       isButtonPressed = !isButtonPressed
     })
@@ -66,26 +66,22 @@ class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
   override fun onItemSelected(parent: AdapterView<*>?, aView: View?, position: Int, aLong: Long) = setDrinkTimerText(position)
   
   private fun subscribe() {
-    val controlStartPause = Observer<Boolean> { isTimerRunning -> isTimerRunning?.let { controlStartPause(isTimerRunning) } }
-    timerViewModel.isTimerRunning.observe(this, controlStartPause)
-    
-    val isTimerRunning = Observer<Boolean> { isTimerRunning -> isTimerRunning?.let { resetVisibility(it) } }
-    timerViewModel.isTimerRunning.observe(this, isTimerRunning)
-    
-    val drinkNames = Observer<ArrayList<String>> { drinkNames -> setupSpinner(drinkNames!!) }
-    timerViewModel.drinksListNames.observe(this, drinkNames)
+    timerViewModel.isTimerRunning.observe(this, Observer<Boolean> { isTimerRunning -> isTimerRunning?.let { controlStartPause(isTimerRunning) } })
+  
+    // Observes if the timer is running to control the reset button visibility
+    timerViewModel.isTimerRunning.observe(this, Observer<Boolean> { isTimerRunning -> isTimerRunning?.let { resetVisibility(it) } })
+  
+    // Receives the drink names for the spinner from the ViewModel
+    timerViewModel.drinksListNames.observe(this, Observer<ArrayList<String>> { drinkNames -> setupSpinner(drinkNames!!) })
     
     // Observes the changes to remaining time string and set it to the timer.
-    val remainingTime = Observer<String> { remainingTime -> timer_drink_time.text = remainingTime }
-    timerViewModel.remainingTime.observe(this, remainingTime)
+    timerViewModel.remainingTime.observe(this, Observer<String> { remainingTime -> timer_drink_time.text = remainingTime })
     
     // Observes what drink is chosen and set the text accordingly
-    val drinkTimerText = Observer<String> { drinkTimerText -> timer_drink_time.text = drinkTimerText }
-    timerViewModel.drinkTimerText.observe(this, drinkTimerText)
+    timerViewModel.drinkTimerText.observe(this, Observer<String> { drinkTimerText -> timer_drink_time.text = drinkTimerText })
     
     // Observes what percentage is left in the timer and presents it to the user
-    val percentageLeft = Observer<Int> { percentageLeft -> percentageLeft?.let { circularView.setPercentage(it) } }
-    timerViewModel.percentRemaining.observe(this, percentageLeft)
+    timerViewModel.percentRemaining.observe(this, Observer<Int> { percentageLeft -> percentageLeft?.let { circularView.setPercentage(it) } })
   }
   
   private fun resetVisibility(timerRunning: Boolean) {
@@ -103,11 +99,4 @@ class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
   }
   
   private fun setDrinkTimerText(drinkResId: Int) = timerViewModel.setDrink(drinkResId)
-  
-  private fun startTimer() = timerViewModel.startTimer()
-  
-  private fun pauseTimer() = timerViewModel.pauseTimer()
-  
-  private fun resetTimer() = timerViewModel.resetTimer()
-  
 }

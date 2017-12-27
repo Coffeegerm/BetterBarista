@@ -15,6 +15,8 @@
   -->
 
 <resources>
+  <string name="close_message">Press back once more to close Better Barista.</string>
+  
   <string name="app_name">Better Barista</string>
   <string name="splash_activity_text">Better\nBarista</string>
   <string name="title_drinks">Drinks</string>

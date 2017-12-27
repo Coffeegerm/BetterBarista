@@ -132,9 +132,8 @@ class SingleDrinkActivity : AppCompatActivity() {
     }
   }
   
-  fun switchToTimer(drinkMade: Drink) {
+  private fun switchToTimer(drinkMade: Drink) {
     val switchToTimerIntent = Intent()
-    // todo on single drink chosen set spinner selection
     switchToTimerIntent.putExtra(Constants.DRINK_ID_PASSED, drinkMade.id)
     setResult(Activity.RESULT_OK, switchToTimerIntent)
     finish()
