@@ -92,9 +92,9 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_marginBottom="8dp"
-          android:baselineAligned="false"
+          android:baselineAligned="true"
           android:orientation="horizontal"
-          android:weightSum="4">
+          android:weightSum="3">
 
           <LinearLayout
             android:layout_width="0dp"
@@ -144,29 +144,6 @@
 
           </LinearLayout>
 
-          <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <TextView
-              android:id="@+id/drink_temp"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_gravity="center"
-              android:layout_marginBottom="8dp"
-              android:fontFamily="@font/raleway_italic" />
-
-            <TextView
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_gravity="center"
-              android:fontFamily="@font/raleway_bold"
-              android:text="@string/temperature"
-              android:textSize="@dimen/label_text_size" />
-
-          </LinearLayout>
 
           <LinearLayout
             android:layout_width="0dp"
@@ -237,16 +214,6 @@
           </LinearLayout>
 
         </android.support.v7.widget.CardView>
-
-        <android.support.design.widget.FloatingActionButton
-          android:id="@+id/lower_fab"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginEnd="8dp"
-          app:fabSize="mini"
-          app:layout_anchor="@id/instructions_card_view"
-          app:layout_anchorGravity="bottom|right|end"
-          app:srcCompat="@drawable/timer_black_24dp" />
 
       </android.support.design.widget.CoordinatorLayout>
 

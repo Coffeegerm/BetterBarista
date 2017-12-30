@@ -20,7 +20,7 @@
   android:layout_height="match_parent"
   android:background="@color/colorPrimary">
   
-  <io.github.coffeegerm.brew_it.ui.timer.CircularProgressView
+  <io.github.coffeegerm.betterbarista.ui.timer.CircularProgressView
     android:id="@+id/circularView"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
