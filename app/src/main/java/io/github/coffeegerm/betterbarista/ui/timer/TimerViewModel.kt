@@ -19,7 +19,7 @@ package io.github.coffeegerm.betterbarista.ui.timer
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.os.Handler
-import io.github.coffeegerm.betterbarista.BetterBaristaApp
+import io.github.coffeegerm.betterbarista.BetterBarista
 import io.github.coffeegerm.betterbarista.data.Drink
 import io.github.coffeegerm.betterbarista.data.DrinksRepository
 import javax.inject.Inject
@@ -28,10 +28,12 @@ import javax.inject.Inject
 class TimerViewModel : ViewModel() {
   
   init {
-    BetterBaristaApp.syringe.inject(this)
+    BetterBarista.syringe.inject(this)
   }
   
   @Inject lateinit var drinksRepository: DrinksRepository
+  
+  val oneSecond: Long = 1000
   
   private var constantInitialTime: Long = 0
   private var runningTime: Long = 0
@@ -41,14 +43,14 @@ class TimerViewModel : ViewModel() {
     override fun run() {
       if (timerRunning) {
         if (runningTime > 0) {
-          runningTime -= 1000
+          runningTime -= oneSecond
           remainingTime.postValue(convertMillisToMinutes(runningTime))
           percentRemaining.postValue(getPercentLeft(runningTime))
         } else {
           remainingTime.postValue(convertMillisToMinutes(0))
         }
       }
-      handler.postDelayed(this, 1000)
+      handler.postDelayed(this, oneSecond)
     }
   }
   
@@ -83,16 +85,6 @@ class TimerViewModel : ViewModel() {
     runningTime = (drinkMade.brewDuration * 60 * 1000).toLong()
   }
   
-  private fun convertMillisToMinutes(providedMillis: Long): String {
-    val minutes = ((providedMillis / 1000) / 60)
-    val seconds = ((providedMillis / 1000) % 60)
-    return if (seconds < 10) {
-      minutes.toString() + ":" + "0" + seconds.toString()
-    } else {
-      minutes.toString() + ":" + seconds.toString()
-    }
-  }
-  
   fun startTimer() {
     timerRunning = true
     isTimerRunning.postValue(timerRunning)
@@ -107,9 +99,20 @@ class TimerViewModel : ViewModel() {
   
   fun resetTimer() {
     runningTime = constantInitialTime
+    drinkTimerText.postValue(convertMillisToMinutes(runningTime))
     percentRemaining.postValue(100)
     timerRunning = false
     isTimerRunning.postValue(timerRunning)
+  }
+  
+  private fun convertMillisToMinutes(providedMillis: Long): String {
+    val minutes = ((providedMillis / 1000) / 60)
+    val seconds = ((providedMillis / 1000) % 60)
+    return if (seconds < 10) {
+      minutes.toString() + ":" + "0" + seconds.toString()
+    } else {
+      minutes.toString() + ":" + seconds.toString()
+    }
   }
   
   private fun convertBrewDurationForTimer(originalValue: Int): String {

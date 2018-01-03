@@ -21,13 +21,16 @@ import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
+import io.github.coffeegerm.betterbarista.R
 import io.github.coffeegerm.betterbarista.data.Drink
-import io.github.coffeegerm.betterbarista.ui.main.imagePlaceholder
 import io.github.coffeegerm.betterbarista.ui.single_drink.SingleDrinkActivity
 import io.github.coffeegerm.betterbarista.utilities.Constants.DRINK_ID_PASSED
 import kotlinx.android.synthetic.main.item_drink.view.*
 
 class DrinksViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+  
+  private val imagePlaceholder = RequestOptions.placeholderOf(R.drawable.placeholder)!!
   
   fun bindDrink(item: Drink) {
     itemView.drink_name.text = item.name

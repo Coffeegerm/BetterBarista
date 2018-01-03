@@ -18,6 +18,7 @@ package io.github.coffeegerm.betterbarista
 
 import android.app.Application
 import io.github.coffeegerm.betterbarista.dagger.AppComponent
+import io.github.coffeegerm.betterbarista.dagger.BetterBaristaModule
 import io.github.coffeegerm.betterbarista.dagger.DaggerAppComponent
 import io.github.coffeegerm.betterbarista.dagger.ResourceModule
 import io.github.coffeegerm.betterbarista.data.Drink
@@ -26,13 +27,7 @@ import io.realm.RealmConfiguration
 import timber.log.Timber
 import timber.log.Timber.DebugTree
 
-
-/**
- * Application class that builds dagger component,
- * inits realm and plants tree for logs
- */
-
-class BetterBaristaApp : Application() {
+class BetterBarista : Application() {
   
   companion object {
     lateinit var syringe: AppComponent
@@ -40,29 +35,25 @@ class BetterBaristaApp : Application() {
   
   override fun onCreate() {
     super.onCreate()
-    initRealm()
-    syringe = buildDagger()
+    Realm.init(this)
+    syringe = DaggerAppComponent.builder()
+          .betterBaristaModule(BetterBaristaModule(this))
+          .resourceModule(ResourceModule())
+          .build()
+  
+    val realmConfig: RealmConfiguration = RealmConfiguration
+          .Builder()
+          .schemaVersion(3)
+          .deleteRealmIfMigrationNeeded()
+          .build()
+    Realm.setDefaultConfiguration(realmConfig)
+    initRealmData()
     
     if (BuildConfig.DEBUG) {
       Timber.plant(DebugTree())
     } else {
       //custom production tree. set up so logs are sent to crashlytics along with the stack trace or something
     }
-  }
-  
-  private fun buildDagger() = DaggerAppComponent.builder()
-        .resourceModule(ResourceModule())
-        .build()
-  
-  private fun initRealm() {
-    Realm.init(this)
-    val realmConfig: RealmConfiguration = RealmConfiguration
-          .Builder()
-          .deleteRealmIfMigrationNeeded()
-          .build()
-    Realm.setDefaultConfiguration(realmConfig)
-  
-    initRealmData()
   }
   
   private fun initRealmData() {

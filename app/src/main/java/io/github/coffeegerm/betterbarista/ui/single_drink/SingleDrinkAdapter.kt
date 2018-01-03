@@ -32,9 +32,7 @@ class SingleDrinkAdapter : RecyclerView.Adapter<SingleDrinkViewHolder>() {
     this.instructionList = providedInstructions
   }
   
-  override fun onBindViewHolder(holder: SingleDrinkViewHolder, position: Int) {
-    holder.bindInstruction(instructionList[position])
-  }
+  override fun onBindViewHolder(holder: SingleDrinkViewHolder, position: Int) = holder.bindInstruction(instructionList[position])
   
   override fun getItemCount(): Int = instructionList.size
   

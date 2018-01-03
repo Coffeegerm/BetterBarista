@@ -34,9 +34,8 @@ class DrinksAdapter : RecyclerView.Adapter<DrinksViewHolder>() {
     this.drinks = providedDrinks
   }
   
-  override fun onBindViewHolder(holder: DrinksViewHolder, position: Int) {
-    holder.bindDrink(drinks[position])
-  }
+  override fun onBindViewHolder(holder: DrinksViewHolder, position: Int) = holder.bindDrink(drinks[position])
+  
   
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DrinksViewHolder =
         DrinksViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_drink, parent, false))

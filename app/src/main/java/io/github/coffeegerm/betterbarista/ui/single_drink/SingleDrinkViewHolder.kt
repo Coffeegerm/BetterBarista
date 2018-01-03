@@ -20,12 +20,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import kotlinx.android.synthetic.main.item_instructions.view.*
 
-/**
- * TODO: Add class comment header
- */
-
 class SingleDrinkViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-  
   fun bindInstruction(item: String) {
     itemView.single_drink_instructions.text = item
   }

@@ -25,7 +25,6 @@ import android.support.design.widget.AppBarLayout
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import io.github.coffeegerm.betterbarista.BetterBaristaApp.Companion.syringe
 import io.github.coffeegerm.betterbarista.R
 import io.github.coffeegerm.betterbarista.data.Drink
 import io.github.coffeegerm.betterbarista.utilities.Constants
@@ -40,7 +39,6 @@ class SingleDrinkActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_single_drink)
-    syringe.inject(this)
     singleDrinkViewModel = ViewModelProviders.of(this).get(SingleDrinkViewModel::class.java)
     subscribe()
     single_drink_recycler_view.layoutManager = LinearLayoutManager(applicationContext)
@@ -51,6 +49,7 @@ class SingleDrinkActivity : AppCompatActivity() {
   
   private fun subscribe() {
     singleDrinkViewModel.drinkMade.observe(this, Observer<Drink> { drinkMade -> drinkMade?.let { setDrinkInformation(it) } })
+    singleDrinkViewModel.instructions.observe(this, Observer<Array<out String>> { instructions -> instructions?.let { formatInstructionList(it) } })
   }
   
   private fun setDrinkInformation(drinkMade: Drink) {
@@ -59,7 +58,6 @@ class SingleDrinkActivity : AppCompatActivity() {
     drink_duration.text = convertBrewDuration(drinkMade.brewDuration)
     drink_strength.text = drinkMade.strength
     drink_difficulty.text = drinkMade.difficulty
-    getInstructions(drinkMade)
     start_timer_fab.setOnClickListener({ drinkMade.let { drink -> switchToTimer(drink) } })
   }
   
@@ -90,25 +88,6 @@ class SingleDrinkActivity : AppCompatActivity() {
         }
       }
     })
-  }
-  
-  private fun getInstructions(drinkMade: Drink) {
-    when (drinkMade.id) {
-      0 -> formatInstructionList(instructionsFromResources = resources.getStringArray(R.array.instructions_coffee))
-      1 -> formatInstructionList(instructionsFromResources = resources.getStringArray(R.array.instructions_french_press))
-      2 -> formatInstructionList(instructionsFromResources = resources.getStringArray(R.array.instructions_pour_over))
-      3 -> formatInstructionList(instructionsFromResources = resources.getStringArray(R.array.instructions_cold_brew_coffee))
-      4 -> formatInstructionList(instructionsFromResources = resources.getStringArray(R.array.instructions_aeropress))
-      5 -> formatInstructionList(instructionsFromResources = resources.getStringArray(R.array.instructions_kalita_wave))
-      6 -> formatInstructionList(instructionsFromResources = resources.getStringArray(R.array.instructions_espresso))
-      7 -> formatInstructionList(instructionsFromResources = resources.getStringArray(R.array.instructions_chai_latte))
-      8 -> formatInstructionList(instructionsFromResources = resources.getStringArray(R.array.instructions_dirty_chai))
-      9 -> formatInstructionList(instructionsFromResources = resources.getStringArray(R.array.instructions_americano))
-      10 -> formatInstructionList(instructionsFromResources = resources.getStringArray(R.array.instructions_cappuccino))
-      11 -> formatInstructionList(instructionsFromResources = resources.getStringArray(R.array.instructions_black_eye))
-      12 -> formatInstructionList(instructionsFromResources = resources.getStringArray(R.array.instructions_red_eye))
-      13 -> formatInstructionList(instructionsFromResources = resources.getStringArray(R.array.instructions_green_eye))
-    }
   }
   
   private fun formatInstructionList(instructionsFromResources: Array<out String>) {

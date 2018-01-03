@@ -22,7 +22,7 @@ import android.content.SharedPreferences
 import android.content.res.Resources
 import dagger.Module
 import dagger.Provides
-import io.github.coffeegerm.betterbarista.BetterBaristaApp
+import io.github.coffeegerm.betterbarista.BetterBarista
 import io.github.coffeegerm.betterbarista.utilities.Constants
 import javax.inject.Singleton
 
@@ -31,9 +31,9 @@ import javax.inject.Singleton
  */
 
 @Module
-class BetterBaristaModule(betterBaristaApp: BetterBaristaApp) {
+class BetterBaristaModule(betterBarista: BetterBarista) {
   
-  var app = betterBaristaApp
+  var app = betterBarista
   
   @Provides
   @Singleton

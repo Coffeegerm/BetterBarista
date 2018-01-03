@@ -24,7 +24,7 @@ import android.support.v7.widget.GridLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import io.github.coffeegerm.betterbarista.BetterBaristaApp.Companion.syringe
+import io.github.coffeegerm.betterbarista.BetterBarista.Companion.syringe
 import io.github.coffeegerm.betterbarista.R
 import io.github.coffeegerm.betterbarista.data.Drink
 import kotlinx.android.synthetic.main.fragment_drinks.*
@@ -39,6 +39,8 @@ class DrinksFragment : Fragment() {
   
   private lateinit var drinksViewModel: DrinksViewModel
   
+  private val drinksAdapter = DrinksAdapter()
+  
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
         inflater.inflate(R.layout.fragment_drinks, container, false)
   
@@ -46,18 +48,13 @@ class DrinksFragment : Fragment() {
     super.onViewCreated(view, savedInstanceState)
     syringe.inject(this)
     drinksViewModel = ViewModelProviders.of(this).get(DrinksViewModel::class.java)
+    drinks_recycler_view.layoutManager = GridLayoutManager(activity, 2)
+    drinks_recycler_view.adapter = drinksAdapter
     subscribe()
   }
   
-  private fun subscribe() {
-    val drinksObserver = Observer<ArrayList<Drink>> { drinks -> setupAdapter(drinks!!) }
-    drinksViewModel.drinks.observe(this, drinksObserver)
-  }
+  private fun subscribe() = drinksViewModel.drinks.observe(this, Observer<ArrayList<Drink>> { drinks -> setAdapterDrinks(drinks!!) })
   
-  private fun setupAdapter(drinks: ArrayList<Drink>) {
-    drinks_recycler_view.layoutManager = GridLayoutManager(activity, 2)
-    val adapter = DrinksAdapter()
-    drinks_recycler_view.adapter = adapter
-    adapter.setDrinks(drinks)
-  }
+  private fun setAdapterDrinks(drinks: ArrayList<Drink>) = drinksAdapter.setDrinks(drinks)
+  
 }

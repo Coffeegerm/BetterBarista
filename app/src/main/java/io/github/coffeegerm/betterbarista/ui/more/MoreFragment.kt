@@ -16,7 +16,6 @@
 
 package io.github.coffeegerm.betterbarista.ui.more
 
-import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -24,30 +23,17 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import io.github.coffeegerm.betterbarista.BetterBaristaApp
 import io.github.coffeegerm.betterbarista.R
 import kotlinx.android.synthetic.main.fragment_more.*
 
 class MoreFragment : Fragment() {
-  
-  lateinit var moreViewModel: MoreViewModel
-  
-  init {
-    BetterBaristaApp.syringe.inject(this)
-  }
   
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
         inflater.inflate(R.layout.fragment_more, container, false)
   
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
-    moreViewModel = ViewModelProviders.of(this).get(MoreViewModel::class.java)
-    subscribe()
     feedback.setOnClickListener { sendEmail() }
-  }
-  
-  private fun subscribe() {
-  
   }
   
   private fun sendEmail() {

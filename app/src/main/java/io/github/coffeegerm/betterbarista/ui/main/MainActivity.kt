@@ -17,17 +17,17 @@
 package io.github.coffeegerm.betterbarista.ui.main
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import com.bumptech.glide.request.RequestOptions
 import io.github.coffeegerm.betterbarista.R
+import io.github.coffeegerm.betterbarista.data.User
 import io.github.coffeegerm.betterbarista.utilities.Constants
 import io.github.coffeegerm.betterbarista.utilities.FragmentNavigation
+import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.longToast
-
-val imagePlaceholder = RequestOptions.placeholderOf(R.drawable.placeholder)!!
 
 class MainActivity : AppCompatActivity() {
   
@@ -35,6 +35,17 @@ class MainActivity : AppCompatActivity() {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
     navigation.setOnNavigationItemSelectedListener(FragmentNavigation(supportFragmentManager))
+    val prefs = getSharedPreferences(Constants.SHARED_PREFERENCES, Context.MODE_PRIVATE)
+    if (!prefs.getBoolean(Constants.USER_CREATED, false)) {
+      val realmInst = Realm.getDefaultInstance()
+      realmInst.executeTransaction {
+        val user = User()
+        user.totalTimeBrewing = 0
+        user.drinksFinishedMaking = 0
+        realmInst.insertOrUpdate(user)
+        prefs.edit().putBoolean(Constants.USER_CREATED, true).apply()
+      }
+    }
   }
   
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

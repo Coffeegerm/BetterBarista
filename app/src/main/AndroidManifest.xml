@@ -21,7 +21,7 @@
   <uses-permission android:name="android.permission.INTERNET" />
 
   <application
-    android:name="io.github.coffeegerm.betterbarista.BetterBaristaApp"
+    android:name="io.github.coffeegerm.betterbarista.BetterBarista"
     android:allowBackup="true"
     android:fullBackupContent="false"
     android:icon="@mipmap/ic_launcher"

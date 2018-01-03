@@ -18,7 +18,7 @@ package io.github.coffeegerm.betterbarista.ui.drinks
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
-import io.github.coffeegerm.betterbarista.BetterBaristaApp
+import io.github.coffeegerm.betterbarista.BetterBarista
 import io.github.coffeegerm.betterbarista.data.Drink
 import io.github.coffeegerm.betterbarista.data.DrinksRepository
 import javax.inject.Inject
@@ -34,7 +34,7 @@ class DrinksViewModel : ViewModel() {
   var drinks: MutableLiveData<ArrayList<Drink>> = MutableLiveData()
   
   init {
-    BetterBaristaApp.syringe.inject(this)
+    BetterBarista.syringe.inject(this)
     getDrinks()
   }
   
