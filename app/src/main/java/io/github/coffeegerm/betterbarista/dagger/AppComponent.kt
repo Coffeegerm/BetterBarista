@@ -17,11 +17,10 @@
 package io.github.coffeegerm.betterbarista.dagger
 
 import dagger.Component
-import io.github.coffeegerm.betterbarista.ui.drinks.DrinksFragment
-import io.github.coffeegerm.betterbarista.ui.drinks.DrinksViewModel
-import io.github.coffeegerm.betterbarista.ui.single_drink.SingleDrinkActivity
-import io.github.coffeegerm.betterbarista.ui.single_drink.SingleDrinkViewModel
-import io.github.coffeegerm.betterbarista.ui.timer.TimerViewModel
+import io.github.coffeegerm.betterbarista.ui.children.drinks.DrinksFragment
+import io.github.coffeegerm.betterbarista.ui.children.drinks.DrinksViewModel
+import io.github.coffeegerm.betterbarista.ui.children.drinks.single_drink.SingleDrinkViewModel
+import io.github.coffeegerm.betterbarista.ui.children.timer.TimerViewModel
 import javax.inject.Singleton
 
 /**

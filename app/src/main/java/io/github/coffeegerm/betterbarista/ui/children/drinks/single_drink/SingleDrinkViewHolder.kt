@@ -14,21 +14,14 @@
  * limitations under the License.
  */
 
-package io.github.coffeegerm.betterbarista.ui.main
+package io.github.coffeegerm.betterbarista.ui.children.drinks.single_drink
 
-import android.app.Activity
-import android.content.Intent
-import android.os.Bundle
+import android.support.v7.widget.RecyclerView
+import android.view.View
+import kotlinx.android.synthetic.main.item_instructions.view.*
 
-/**
- * Activity responsible for showing splash screen pre app launch
- */
-
-class SplashActivity : Activity() {
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    startActivity(Intent(this, MainActivity::class.java))
-    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
-    finish()
+class SingleDrinkViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+  fun bindInstruction(item: String) {
+    itemView.single_drink_instructions.text = item
   }
 }

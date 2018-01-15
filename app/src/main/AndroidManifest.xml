@@ -31,7 +31,7 @@
     android:theme="@style/AppTheme"
     tools:ignore="GoogleAppIndexingWarning">
     <activity
-      android:name="io.github.coffeegerm.betterbarista.ui.main.SplashActivity"
+      android:name="io.github.coffeegerm.betterbarista.ui.SplashActivity"
       android:theme="@style/SplashTheme">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
@@ -39,9 +39,9 @@
       </intent-filter>
     </activity>
     <activity
-      android:name="io.github.coffeegerm.betterbarista.ui.main.MainActivity"
+      android:name="io.github.coffeegerm.betterbarista.ui.MainActivity"
       android:label="@string/app_name" />
-    <activity android:name="io.github.coffeegerm.betterbarista.ui.single_drink.SingleDrinkActivity" />
+    <activity android:name="io.github.coffeegerm.betterbarista.ui.children.drinks.single_drink.SingleDrinkActivity" />
   </application>
 
 </manifest>

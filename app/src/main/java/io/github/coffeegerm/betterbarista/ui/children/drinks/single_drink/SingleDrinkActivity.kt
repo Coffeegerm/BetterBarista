@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package io.github.coffeegerm.betterbarista.ui.single_drink
+package io.github.coffeegerm.betterbarista.ui.children.drinks.single_drink
 
 import android.app.Activity
 import android.arch.lifecycle.Observer
@@ -26,7 +26,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import io.github.coffeegerm.betterbarista.R
-import io.github.coffeegerm.betterbarista.data.Drink
+import io.github.coffeegerm.betterbarista.data.model.Drink
 import io.github.coffeegerm.betterbarista.utilities.Constants
 import kotlinx.android.synthetic.main.activity_single_drink.*
 

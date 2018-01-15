@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package io.github.coffeegerm.betterbarista.ui.timer
+package io.github.coffeegerm.betterbarista.ui.children.timer
 
 import android.content.Context
 import android.graphics.Canvas

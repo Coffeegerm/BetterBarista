@@ -21,11 +21,11 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.view.MenuItem
 import io.github.coffeegerm.betterbarista.R
-import io.github.coffeegerm.betterbarista.ui.drinks.DrinksFragment
-import io.github.coffeegerm.betterbarista.ui.more.MoreFragment
-import io.github.coffeegerm.betterbarista.ui.timer.TimerFragment
+import io.github.coffeegerm.betterbarista.ui.children.drinks.DrinksFragment
+import io.github.coffeegerm.betterbarista.ui.children.more.MoreFragment
+import io.github.coffeegerm.betterbarista.ui.children.timer.TimerFragment
 
-class FragmentNavigation(private val supportFragmentManager: FragmentManager) : BottomNavigationView.OnNavigationItemSelectedListener {
+class NavigationOnItemSelectedListener(private val supportFragmentManager: FragmentManager) : BottomNavigationView.OnNavigationItemSelectedListener {
   
   private var coldLaunch = true
   

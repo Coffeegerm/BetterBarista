@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 Coffee and Cream Studios
+ * Copyright 2018 Coffee and Cream Studios
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,17 +14,21 @@
  * limitations under the License.
  */
 
-package io.github.coffeegerm.betterbarista.data
+package io.github.coffeegerm.betterbarista.ui
 
-import io.realm.RealmObject
+import android.app.Activity
+import android.content.Intent
+import android.os.Bundle
 
-open class Drink : RealmObject() {
-  var id: Int = 0
-  var name: String = ""
-  var description: String = ""
-  var temperature: String = ""
-  var image: Int = 0
-  var brewDuration: Int = 0 // minutes
-  var strength: String = ""
-  var difficulty: String = ""
+/**
+ * Activity responsible for showing splash screen pre app launch
+ */
+
+class SplashActivity : Activity() {
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    startActivity(Intent(this, MainActivity::class.java))
+    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+    finish()
+  }
 }

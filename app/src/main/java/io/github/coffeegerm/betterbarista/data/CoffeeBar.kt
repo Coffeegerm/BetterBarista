@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Coffee and Cream Studios
+ * Copyright 2017 Coffee and Cream Studios
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,11 +16,19 @@
 
 package io.github.coffeegerm.betterbarista.data
 
-import io.realm.RealmObject
+import io.github.coffeegerm.betterbarista.data.model.Drink
+import io.realm.Realm
 
-open class User : RealmObject() {
+/**
+ * Class full of helper methods for accessing database data
+ * Injected into classes using Dagger2
+ */
+
+class CoffeeBar {
   
-  var totalTimeBrewing: Long = 0
-  var drinksFinishedMaking: Int = 0
+  private var realm = Realm.getDefaultInstance()
   
+  fun getAllDrinks(): ArrayList<Drink> = ArrayList(realm.where(Drink::class.java).findAll())
+  
+  fun getSingleDrinkById(id: Int): Drink? = realm.where(Drink::class.java).equalTo("id", id).findFirst()
 }

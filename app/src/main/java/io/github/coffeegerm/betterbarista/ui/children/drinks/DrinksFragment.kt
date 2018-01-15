@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package io.github.coffeegerm.betterbarista.ui.drinks
+package io.github.coffeegerm.betterbarista.ui.children.drinks
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
@@ -26,7 +26,7 @@ import android.view.View
 import android.view.ViewGroup
 import io.github.coffeegerm.betterbarista.BetterBarista.Companion.syringe
 import io.github.coffeegerm.betterbarista.R
-import io.github.coffeegerm.betterbarista.data.Drink
+import io.github.coffeegerm.betterbarista.data.model.Drink
 import kotlinx.android.synthetic.main.fragment_drinks.*
 
 

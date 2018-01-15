@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
-package io.github.coffeegerm.betterbarista.ui.single_drink
+package io.github.coffeegerm.betterbarista.data.model
 
-import android.support.v7.widget.RecyclerView
-import android.view.View
-import kotlinx.android.synthetic.main.item_instructions.view.*
+import io.realm.RealmObject
 
-class SingleDrinkViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-  fun bindInstruction(item: String) {
-    itemView.single_drink_instructions.text = item
-  }
+open class Drink : RealmObject() {
+  var id: Int = 0
+  var name: String = ""
+  var description: String = ""
+  var temperature: String = ""
+  var image: Int = 0
+  var brewDuration: Int = 0 // minutes
+  var strength: String = ""
+  var difficulty: String = ""
 }

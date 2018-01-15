@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package io.github.coffeegerm.betterbarista.ui.drinks
+package io.github.coffeegerm.betterbarista.ui.children.drinks
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import io.github.coffeegerm.betterbarista.BetterBarista
-import io.github.coffeegerm.betterbarista.data.Drink
-import io.github.coffeegerm.betterbarista.data.DrinksRepository
+import io.github.coffeegerm.betterbarista.data.model.Drink
+import io.github.coffeegerm.betterbarista.data.CoffeeBar
 import javax.inject.Inject
 
 
@@ -29,7 +29,7 @@ import javax.inject.Inject
  */
 class DrinksViewModel : ViewModel() {
   
-  @Inject lateinit var drinksRepo: DrinksRepository
+  @Inject lateinit var drinksRepo: CoffeeBar
   
   var drinks: MutableLiveData<ArrayList<Drink>> = MutableLiveData()
   

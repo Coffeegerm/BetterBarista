@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package io.github.coffeegerm.betterbarista.ui.more
+package io.github.coffeegerm.betterbarista.ui.children.more
 
 import android.content.Intent
 import android.net.Uri

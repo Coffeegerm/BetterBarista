@@ -14,20 +14,20 @@
  * limitations under the License.
  */
 
-package io.github.coffeegerm.betterbarista.ui.single_drink
+package io.github.coffeegerm.betterbarista.ui.children.drinks.single_drink
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.content.res.Resources
 import io.github.coffeegerm.betterbarista.BetterBarista
 import io.github.coffeegerm.betterbarista.R
-import io.github.coffeegerm.betterbarista.data.Drink
-import io.github.coffeegerm.betterbarista.data.DrinksRepository
+import io.github.coffeegerm.betterbarista.data.model.Drink
+import io.github.coffeegerm.betterbarista.data.CoffeeBar
 import javax.inject.Inject
 
 class SingleDrinkViewModel : ViewModel() {
   
-  @Inject lateinit var drinksRepository: DrinksRepository
+  @Inject lateinit var coffeeBar: CoffeeBar
   @Inject lateinit var resources: Resources
   
   init {
@@ -38,7 +38,7 @@ class SingleDrinkViewModel : ViewModel() {
   var instructions: MutableLiveData<Array<out String>> = MutableLiveData()
   
   fun getDrink(drinkId: Int) {
-    drinkMade.postValue(drinksRepository.getSingleDrinkById(drinkId))
+    drinkMade.postValue(coffeeBar.getSingleDrinkById(drinkId))
     getInstructions(drinkId)
   }
   

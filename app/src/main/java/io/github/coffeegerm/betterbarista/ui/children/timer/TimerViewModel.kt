@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package io.github.coffeegerm.betterbarista.ui.timer
+package io.github.coffeegerm.betterbarista.ui.children.timer
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.os.Handler
 import io.github.coffeegerm.betterbarista.BetterBarista
-import io.github.coffeegerm.betterbarista.data.Drink
-import io.github.coffeegerm.betterbarista.data.DrinksRepository
+import io.github.coffeegerm.betterbarista.data.model.Drink
+import io.github.coffeegerm.betterbarista.data.CoffeeBar
 import javax.inject.Inject
 
 
@@ -31,7 +31,7 @@ class TimerViewModel : ViewModel() {
     BetterBarista.syringe.inject(this)
   }
   
-  @Inject lateinit var drinksRepository: DrinksRepository
+  @Inject lateinit var coffeeBar: CoffeeBar
   
   val oneSecond: Long = 1000
   
@@ -63,7 +63,7 @@ class TimerViewModel : ViewModel() {
   var isTimerRunning: MutableLiveData<Boolean> = MutableLiveData()
   
   fun getDrinkNames() {
-    val allDrinks = drinksRepository.getAllDrinks()
+    val allDrinks = coffeeBar.getAllDrinks()
     val drinkNames = ArrayList<String>()
     allDrinks.mapTo(drinkNames) { it.name }
     drinksListNames.postValue(drinkNames)
@@ -75,7 +75,7 @@ class TimerViewModel : ViewModel() {
       isTimerRunning.postValue(timerRunning)
     }
     percentRemaining.postValue(100)
-    val drinkMade = drinksRepository.getSingleDrinkById(drinkId)
+    val drinkMade = coffeeBar.getSingleDrinkById(drinkId)
     drinkMade?.let { setTotalTime(it) }
     drinkMade?.let { drinkTimerText.postValue(convertBrewDurationForTimer(drinkMade.brewDuration)) }
   }

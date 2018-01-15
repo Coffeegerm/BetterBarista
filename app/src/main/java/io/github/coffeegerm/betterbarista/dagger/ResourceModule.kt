@@ -18,18 +18,11 @@ package io.github.coffeegerm.betterbarista.dagger
 
 import dagger.Module
 import dagger.Provides
-import io.github.coffeegerm.betterbarista.data.DrinksRepository
-import io.github.coffeegerm.betterbarista.utilities.Utilities
-import javax.inject.Singleton
+import io.github.coffeegerm.betterbarista.data.CoffeeBar
 
 @Module
 class ResourceModule {
   
   @Provides
-  @Singleton
-  fun provideDrinksRepository(): DrinksRepository = DrinksRepository()
-  
-  @Provides
-  @Singleton
-  fun provideUtilities(): Utilities = Utilities()
+  fun providesCoffeeBar(): CoffeeBar = CoffeeBar()
 }

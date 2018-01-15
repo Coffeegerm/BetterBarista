@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package io.github.coffeegerm.betterbarista.ui.drinks
+package io.github.coffeegerm.betterbarista.ui.children.drinks
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import io.github.coffeegerm.betterbarista.R
-import io.github.coffeegerm.betterbarista.data.Drink
+import io.github.coffeegerm.betterbarista.data.model.Drink
 
 /**
  * TODO: Add class comment header
