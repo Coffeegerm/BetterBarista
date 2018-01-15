@@ -28,7 +28,7 @@ import io.github.coffeegerm.betterbarista.data.model.Drink
 
 class DrinksAdapter : RecyclerView.Adapter<DrinksViewHolder>() {
   
-  private lateinit var drinks: ArrayList<Drink>
+  private var drinks: ArrayList<Drink> = mutableListOf<Drink>() as ArrayList<Drink>
   
   fun setDrinks(providedDrinks: ArrayList<Drink>) {
     this.drinks = providedDrinks

@@ -22,14 +22,14 @@ apply plugin: 'realm-android'
 android {
   kapt { generateStubs = true }
   compileSdkVersion 27
-  buildToolsVersion "27.0.1"
+  buildToolsVersion "27.0.3"
   defaultConfig {
     applicationId "io.github.coffeegerm.brew_it"
     minSdkVersion 19
     targetSdkVersion 27
     multiDexEnabled true
-    versionCode 6
-    versionName "1.1"
+    versionCode 7
+    versionName "1.2"
     testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     vectorDrawables.useSupportLibrary = true
   }

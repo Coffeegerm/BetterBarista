@@ -16,9 +16,8 @@
 
 <resources>
   <string name="close_message">Press back once more to close Better Barista.</string>
-  
+
   <string name="app_name">Better Barista</string>
-  <string name="splash_activity_text">Better\nBarista</string>
   <string name="title_drinks">Drinks</string>
   <string name="title_timer">Timer</string>
   <string name="title_more">More</string>
@@ -74,7 +73,7 @@
   <string name="aeropress_description">An incredible brewing method that can make amazing coffee every time. The true strength to the Aeropress is it\'s versatility. Use it to make a regular cup of coffee or a shot of espresso.</string>
 
   <string name="cold_brew">Cold Brew</string>
-  <string name="cold_brew_description">A summer favorite that\'s simple as can be, only takes time.</string>
+  <string name="cold_brew_description">When the heat starts to bear down on you, look to this drink for the best way to cool off.</string>
 
   <string name="kalita_wave">Kalita Wave</string>
   <string name="kalita_wave_description">Similar to his brother, the pour over, the Kalita Wave is an amazing choice for creating coffee. Simple, elegant, and tasteful, every cup you make can be masterpiece. A bonus perk with the Kalita Wave resides in the fact that it isn\'t made of porcelain, so it is great for the hiker\'s and camper\'s!</string>

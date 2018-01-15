@@ -17,6 +17,7 @@
 package io.github.coffeegerm.betterbarista
 
 import android.app.Application
+import io.github.coffeegerm.betterbarista.BuildConfig.DEBUG
 import io.github.coffeegerm.betterbarista.dagger.AppComponent
 import io.github.coffeegerm.betterbarista.dagger.BetterBaristaModule
 import io.github.coffeegerm.betterbarista.dagger.DaggerAppComponent
@@ -24,8 +25,8 @@ import io.github.coffeegerm.betterbarista.dagger.ResourceModule
 import io.github.coffeegerm.betterbarista.data.model.Drink
 import io.realm.Realm
 import io.realm.RealmConfiguration
-import timber.log.Timber
 import timber.log.Timber.DebugTree
+import timber.log.Timber.plant
 
 class BetterBarista : Application() {
   
@@ -40,7 +41,7 @@ class BetterBarista : Application() {
           .betterBaristaModule(BetterBaristaModule(this))
           .resourceModule(ResourceModule())
           .build()
-  
+    
     val realmConfig: RealmConfiguration = RealmConfiguration
           .Builder()
           .schemaVersion(4)
@@ -49,9 +50,7 @@ class BetterBarista : Application() {
     Realm.setDefaultConfiguration(realmConfig)
     initRealmData()
     
-    if (BuildConfig.DEBUG) {
-      Timber.plant(DebugTree())
-    } else {
+    if (DEBUG) plant(DebugTree()) else {
       //custom production tree. set up so logs are sent to crashlytics along with the stack trace or something
     }
   }

@@ -26,7 +26,7 @@ import io.github.coffeegerm.betterbarista.R
  */
 class SingleDrinkAdapter : RecyclerView.Adapter<SingleDrinkViewHolder>() {
   
-  private lateinit var instructionList: ArrayList<String>
+  private var instructionList: ArrayList<String> = mutableListOf<String>() as ArrayList<String>
   
   fun setInstructions(providedInstructions: ArrayList<String>) {
     this.instructionList = providedInstructions
