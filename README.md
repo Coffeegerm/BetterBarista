@@ -1,15 +1,16 @@
-# Brew It (work-in-progress 👷🔧️👷‍♀️⛏)
+# Better Barista
 
 ## Android development
 
-Brew It will be an app which attempts to use the latest cutting edge libraries and tools. As a summary:
+Better Barista is an app which attempts to use the latest cutting edge libraries and tools. As a summary:
 
  * Entirely written in [Kotlin](https://kotlinlang.org/)
  * Uses [dagger-android](https://google.github.io/dagger/android.html) for dependency injection
 
 ## Contributions
 
-Contributions are welcome and intended to use to learn from it and would love feedback from anyone
+Contributions are welcome and will be review on submission, if I feel that the addition is valuable I will merge 
+the contricution and cite you as a source
 
 ## License
 
