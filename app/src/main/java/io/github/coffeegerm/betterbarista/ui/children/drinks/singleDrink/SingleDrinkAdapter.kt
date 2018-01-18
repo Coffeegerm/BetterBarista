@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package io.github.coffeegerm.betterbarista.ui.children.drinks.single_drink
+package io.github.coffeegerm.betterbarista.ui.children.drinks.singleDrink
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater

@@ -30,6 +30,9 @@
 
   <string name="image_source">Images provided by Unsplash</string>
 
+  <string name="mailto" translatable="false">mailto:coffeeandcreamstudios@gmail.com</string>
+  <string name="emailSubject" translatable="false">Better Barista feedback</string>
+
   <string name="duration">Duration</string>
   <string name="strength">Strength</string>
   <string name="temperature">Temp.</string>

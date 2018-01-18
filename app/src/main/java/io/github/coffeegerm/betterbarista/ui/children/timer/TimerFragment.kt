@@ -42,7 +42,7 @@ class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
     timerViewModel = ViewModelProviders.of(this).get(TimerViewModel::class.java)
     timerViewModel.getDrinkNames()
     subscribe()
-  
+    
     reset_timer.setOnClickListener { timerViewModel.resetTimer() }
     
     timer_button.setOnClickListener({
@@ -61,16 +61,17 @@ class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
     spinner.onItemSelectedListener = this
   }
   
-  override fun onNothingSelected(p0: AdapterView<*>) {}
+  override fun onNothingSelected(parent: AdapterView<*>) {}
   
   override fun onItemSelected(parent: AdapterView<*>?, aView: View?, position: Int, aLong: Long) = setDrinkTimerText(position)
   
   private fun subscribe() {
+    // Observes the state of the timer and if its running, controlling the view of the start/pause button
     timerViewModel.isTimerRunning.observe(this, Observer<Boolean> { isTimerRunning -> isTimerRunning?.let { controlStartPause(isTimerRunning) } })
-  
+    
     // Observes if the timer is running to control the reset button visibility
     timerViewModel.isTimerRunning.observe(this, Observer<Boolean> { isTimerRunning -> isTimerRunning?.let { resetVisibility(it) } })
-  
+    
     // Receives the drink names for the spinner from the ViewModel
     timerViewModel.drinksListNames.observe(this, Observer<ArrayList<String>> { drinkNames -> setupSpinner(drinkNames!!) })
     

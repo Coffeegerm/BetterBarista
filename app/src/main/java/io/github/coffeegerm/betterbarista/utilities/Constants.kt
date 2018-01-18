@@ -17,9 +17,8 @@
 package io.github.coffeegerm.betterbarista.utilities
 
 object Constants {
-  val SHARED_PREFERENCES: String = "SHARED_PREFERENCES"
-  val DATABASE_CREATED: String = "DATABASE_CREATED"
-  val DRINK_ID_PASSED: String = "DRINK_ID_PASSED"
-  val SINGLE_DRINK_REQUEST_CODE: Int = 1
-  val USER_CREATED = "USER_CREATED"
+  const val SHARED_PREFERENCES: String = "SHARED_PREFERENCES"
+  const val DRINK_ID_PASSED: String = "DRINK_ID_PASSED"
+  const val SINGLE_DRINK_REQUEST_CODE: Int = 1
+  const val USER_CREATED = "USER_CREATED"
 }

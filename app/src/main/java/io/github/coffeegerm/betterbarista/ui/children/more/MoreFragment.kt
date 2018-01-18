@@ -37,10 +37,9 @@ class MoreFragment : Fragment() {
   }
   
   private fun sendEmail() {
-    val mailto = "mailto:coffeeandcreamstudios@gmail.com"
     val emailIntent = Intent(Intent.ACTION_SENDTO)
-    emailIntent.data = Uri.parse(mailto)
-    emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Better Barista feedback")
+    emailIntent.data = Uri.parse(getString(R.string.mailto))
+    emailIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.emailSubject))
     startActivity(emailIntent)
   }
 }

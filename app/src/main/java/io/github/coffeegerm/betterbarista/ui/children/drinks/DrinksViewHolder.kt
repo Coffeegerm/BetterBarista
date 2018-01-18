@@ -24,7 +24,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import io.github.coffeegerm.betterbarista.R
 import io.github.coffeegerm.betterbarista.data.model.Drink
-import io.github.coffeegerm.betterbarista.ui.children.drinks.single_drink.SingleDrinkActivity
+import io.github.coffeegerm.betterbarista.ui.children.drinks.singleDrink.SingleDrinkActivity
 import io.github.coffeegerm.betterbarista.utilities.Constants.DRINK_ID_PASSED
 import kotlinx.android.synthetic.main.item_drink.view.*
 
