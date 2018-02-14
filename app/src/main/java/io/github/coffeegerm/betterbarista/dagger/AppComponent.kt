@@ -17,6 +17,7 @@
 package io.github.coffeegerm.betterbarista.dagger
 
 import dagger.Component
+import io.github.coffeegerm.betterbarista.ui.MainActivity
 import io.github.coffeegerm.betterbarista.ui.children.drinks.DrinksFragment
 import io.github.coffeegerm.betterbarista.ui.children.drinks.DrinksViewModel
 import io.github.coffeegerm.betterbarista.ui.children.drinks.singleDrink.SingleDrinkViewModel
@@ -30,6 +31,8 @@ import javax.inject.Singleton
 @Singleton
 @Component(modules = [(BetterBaristaModule::class), (ResourceModule::class)])
 interface AppComponent {
+  fun inject(mainActivity: MainActivity)
+  
   fun inject(singleDrinkViewModel: SingleDrinkViewModel)
   
   fun inject(drinksFragment: DrinksFragment)

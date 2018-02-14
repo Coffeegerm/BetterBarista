@@ -23,7 +23,7 @@ import android.content.res.Resources
 import dagger.Module
 import dagger.Provides
 import io.github.coffeegerm.betterbarista.BetterBarista
-import io.github.coffeegerm.betterbarista.utilities.Constants
+import io.github.coffeegerm.betterbarista.utilities.Constants.SHARED_PREFERENCES
 import javax.inject.Singleton
 
 /**
@@ -49,6 +49,6 @@ class BetterBaristaModule(betterBarista: BetterBarista) {
   
   @Provides
   @Singleton
-  fun providesSharedPreferences(): SharedPreferences = app.getSharedPreferences(Constants.SHARED_PREFERENCES, Context.MODE_PRIVATE)
+  fun providesSharedPreferences(): SharedPreferences = app.getSharedPreferences(SHARED_PREFERENCES, Context.MODE_PRIVATE)
   
 }

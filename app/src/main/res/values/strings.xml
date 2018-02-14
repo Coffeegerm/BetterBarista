@@ -26,7 +26,7 @@
   <string name="instructions">Instructions</string>
   <string name="timer_error">Could not get timer duration for this drink.</string>
   <string name="final_time_for_timer">00:00</string>
-  <string name="feedback">Feedback</string>
+  <string name="feedback">Help improve the app by sending feedback! \n Just click me to send an email.</string>
 
   <string name="image_source">Images provided by Unsplash</string>
 
@@ -104,6 +104,8 @@
 
   <string name="green_eye">Green Eye</string>
   <string name="green_eye_description">When finals are right around the corner possibly the best thing to keep you awake is a Green Eye. Three shots of espresso and coffee on top of that? This thing will keep you going all night long.</string>
+  <string name="about">About</string>
+  <string name="forward_arrow">Forward Arrow</string>
 
   <!-- Instructions -->
 

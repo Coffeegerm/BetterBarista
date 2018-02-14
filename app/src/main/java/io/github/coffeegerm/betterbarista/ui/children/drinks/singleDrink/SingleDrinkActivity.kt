@@ -58,7 +58,7 @@ class SingleDrinkActivity : AppCompatActivity() {
     drink_duration.text = convertBrewDuration(drinkMade.brewDuration)
     drink_strength.text = drinkMade.strength
     drink_difficulty.text = drinkMade.difficulty
-    start_timer_fab.setOnClickListener({ drinkMade.let { drink -> switchToTimer(drink) } })
+    start_timer_fab.setOnClickListener { switchToTimer() }
   }
   
   private fun setupToolbar(drinkMade: Drink) {
@@ -106,10 +106,8 @@ class SingleDrinkActivity : AppCompatActivity() {
     }
   }
   
-  private fun switchToTimer(drinkMade: Drink) {
-    val switchToTimerIntent = Intent()
-    switchToTimerIntent.putExtra(Constants.DRINK_ID_PASSED, drinkMade.id)
-    setResult(Activity.RESULT_OK, switchToTimerIntent)
+  private fun switchToTimer() {
+    setResult(Activity.RESULT_OK, Intent())
     finish()
   }
   
