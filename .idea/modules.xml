@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Better-Barista.iml" filepath="$PROJECT_DIR$/Better-Barista.iml" />
+      <module fileurl="file://E:\Projects\Android\BetterBarista\Better-Barista.iml" filepath="E:\Projects\Android\BetterBarista\Better-Barista.iml" />
+      <module fileurl="file://$PROJECT_DIR$/BetterBarista.iml" filepath="$PROJECT_DIR$/BetterBarista.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

@@ -17,6 +17,7 @@
 package io.github.coffeegerm.betterbarista.dagger
 
 import dagger.Component
+import io.github.coffeegerm.betterbarista.data.CoffeeBar
 import io.github.coffeegerm.betterbarista.ui.MainActivity
 import io.github.coffeegerm.betterbarista.ui.children.drinks.DrinksFragment
 import io.github.coffeegerm.betterbarista.ui.children.drinks.DrinksViewModel
@@ -34,8 +35,10 @@ interface AppComponent {
   fun inject(mainActivity: MainActivity)
   
   fun inject(singleDrinkViewModel: SingleDrinkViewModel)
-  
-  fun inject(drinksFragment: DrinksFragment)
   fun inject(drinksViewModel: DrinksViewModel)
   fun inject(timerViewModel: TimerViewModel)
+  
+  fun inject(drinksFragment: DrinksFragment)
+  
+  fun inject(coffeeBar: CoffeeBar)
 }

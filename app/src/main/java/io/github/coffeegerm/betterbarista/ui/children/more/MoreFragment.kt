@@ -24,6 +24,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import io.github.coffeegerm.betterbarista.R
+import io.github.coffeegerm.betterbarista.ui.children.more.about.AboutActivity
 import kotlinx.android.synthetic.main.fragment_more.*
 
 class MoreFragment : Fragment() {
@@ -33,6 +34,7 @@ class MoreFragment : Fragment() {
   
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
+    about_navigation.setOnClickListener { startActivity(Intent(context, AboutActivity::class.java)) }
     feedback.setOnClickListener { sendEmail() }
   }
   

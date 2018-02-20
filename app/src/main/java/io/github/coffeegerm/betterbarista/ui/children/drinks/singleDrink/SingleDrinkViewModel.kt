@@ -20,15 +20,16 @@ import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.content.res.Resources
 import io.github.coffeegerm.betterbarista.BetterBarista
-import io.github.coffeegerm.betterbarista.R
-import io.github.coffeegerm.betterbarista.data.model.Drink
 import io.github.coffeegerm.betterbarista.data.CoffeeBar
+import io.github.coffeegerm.betterbarista.data.model.Drink
 import javax.inject.Inject
 
 class SingleDrinkViewModel : ViewModel() {
   
-  @Inject lateinit var coffeeBar: CoffeeBar
-  @Inject lateinit var resources: Resources
+  @Inject
+  lateinit var coffeeBar: CoffeeBar
+  @Inject
+  lateinit var resources: Resources
   
   init {
     BetterBarista.syringe.inject(this)
@@ -39,26 +40,6 @@ class SingleDrinkViewModel : ViewModel() {
   
   fun getDrink(drinkId: Int) {
     drinkMade.postValue(coffeeBar.getSingleDrinkById(drinkId))
-    getInstructions(drinkId)
+    instructions.postValue(coffeeBar.getInstructionsForDrink(drinkId))
   }
-  
-  private fun getInstructions(drinkId: Int) {
-    when (drinkId) {
-      0 -> instructions.postValue(resources.getStringArray(R.array.instructions_coffee))
-      1 -> instructions.postValue(resources.getStringArray(R.array.instructions_french_press))
-      2 -> instructions.postValue(resources.getStringArray(R.array.instructions_pour_over))
-      3 -> instructions.postValue(resources.getStringArray(R.array.instructions_cold_brew_coffee))
-      4 -> instructions.postValue(resources.getStringArray(R.array.instructions_aeropress))
-      5 -> instructions.postValue(resources.getStringArray(R.array.instructions_kalita_wave))
-      6 -> instructions.postValue(resources.getStringArray(R.array.instructions_espresso))
-      7 -> instructions.postValue(resources.getStringArray(R.array.instructions_chai_latte))
-      8 -> instructions.postValue(resources.getStringArray(R.array.instructions_dirty_chai))
-      9 -> instructions.postValue(resources.getStringArray(R.array.instructions_americano))
-      10 -> instructions.postValue(resources.getStringArray(R.array.instructions_cappuccino))
-      11 -> instructions.postValue(resources.getStringArray(R.array.instructions_black_eye))
-      12 -> instructions.postValue(resources.getStringArray(R.array.instructions_red_eye))
-      13 -> instructions.postValue(resources.getStringArray(R.array.instructions_green_eye))
-    }
-  }
-  
 }

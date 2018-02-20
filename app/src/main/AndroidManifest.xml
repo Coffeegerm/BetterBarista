@@ -42,6 +42,7 @@
       android:name="io.github.coffeegerm.betterbarista.ui.MainActivity"
       android:label="@string/app_name" />
     <activity android:name="io.github.coffeegerm.betterbarista.ui.children.drinks.singleDrink.SingleDrinkActivity" />
+    <activity android:name=".ui.children.more.about.AboutActivity" />
   </application>
 
 </manifest>

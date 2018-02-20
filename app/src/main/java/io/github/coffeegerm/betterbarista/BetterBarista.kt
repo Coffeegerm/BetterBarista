@@ -50,9 +50,7 @@ class BetterBarista : Application() {
     Realm.setDefaultConfiguration(realmConfig)
     initRealmData()
     
-    if (DEBUG) plant(DebugTree()) else {
-      //custom production tree. set up so logs are sent to crashlytics along with the stack trace or something
-    }
+    if (DEBUG) plant(DebugTree())
   }
   
   private fun initRealmData() {

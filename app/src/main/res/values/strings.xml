@@ -106,6 +106,7 @@
   <string name="green_eye_description">When finals are right around the corner possibly the best thing to keep you awake is a Green Eye. Three shots of espresso and coffee on top of that? This thing will keep you going all night long.</string>
   <string name="about">About</string>
   <string name="forward_arrow">Forward Arrow</string>
+  <string name="about_paragraph">This app was made for the coffee lover in mind, because I love coffee myself. I wanted other\'s to be able to make the best coffee at home without having to spend an exorbitant amount of money at coffee shops, when all it takes is a little time, patience, and willingness to learn. \n \nThanks for allowing this app to help you become a better barista!</string>
 
   <!-- Instructions -->
 
@@ -153,6 +154,11 @@
   </array>
 
   <!-- Instructions for cold brew coffee -->
+
+  <array name="unable_to_find_array">
+    <item>This drink was unable to be found at this time.</item>
+  </array>
+
   <array name="instructions_cold_brew_coffee">
     <item>Grind one pound of coffee beans coarsely.</item>
     <item>Pour grinds into a large mason jar.</item>
