@@ -30,7 +30,7 @@ import kotlinx.android.synthetic.main.item_drink.view.*
 
 class DrinksViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
   
-  private val imagePlaceholder = RequestOptions.placeholderOf(R.drawable.placeholder)!!
+  private val imagePlaceholder = RequestOptions.placeholderOf(R.drawable.placeholder)
   
   fun bindDrink(item: Drink) {
     itemView.drink_name.text = item.name
