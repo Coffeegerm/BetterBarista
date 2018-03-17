@@ -29,7 +29,7 @@ android {
     targetSdkVersion 27
     multiDexEnabled true
     versionCode 7
-    versionName "1.2"
+    versionName "1.3"
     testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     vectorDrawables.useSupportLibrary = true
   }
@@ -38,9 +38,6 @@ android {
       minifyEnabled false
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
     }
-  }
-  lintOptions {
-    checkReleaseBuilds false
   }
 }
 
@@ -76,5 +73,15 @@ dependencies {
 kotlin {
   experimental {
     coroutines "enable"
+  }
+}
+
+configurations {
+  all {
+    exclude group: "com.google.android"
+    exclude module: 'httpclient'
+    exclude module: 'commons-logging'
+    exclude group: 'org.apache.httpcomponents'
+    exclude group: 'org.json', module: 'json'
   }
 }
