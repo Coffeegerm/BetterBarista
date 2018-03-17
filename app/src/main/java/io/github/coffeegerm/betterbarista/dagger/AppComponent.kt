@@ -25,12 +25,8 @@ import io.github.coffeegerm.betterbarista.ui.children.drinks.singleDrink.SingleD
 import io.github.coffeegerm.betterbarista.ui.children.timer.TimerViewModel
 import javax.inject.Singleton
 
-/**
- * AppComponent used for DI with Dagger2
- */
-
 @Singleton
-@Component(modules = [(BetterBaristaModule::class), (ResourceModule::class)])
+@Component(modules = [(BetterBaristaModule::class)])
 interface AppComponent {
   fun inject(mainActivity: MainActivity)
   

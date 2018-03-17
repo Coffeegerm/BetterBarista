@@ -17,7 +17,6 @@
 package io.github.coffeegerm.betterbarista.data
 
 import android.content.res.Resources
-import io.github.coffeegerm.betterbarista.BetterBarista
 import io.github.coffeegerm.betterbarista.R
 import io.github.coffeegerm.betterbarista.data.model.Drink
 import io.realm.Realm
@@ -28,14 +27,7 @@ import javax.inject.Inject
  * Injected into classes using Dagger2
  */
 
-class CoffeeBar {
-  
-  init {
-    BetterBarista.syringe.inject(this)
-  }
-  
-  @Inject
-  lateinit var resources: Resources
+class CoffeeBar @Inject constructor(var resources: Resources) {
   
   private var realm = Realm.getDefaultInstance()
   

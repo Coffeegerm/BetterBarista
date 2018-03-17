@@ -64,9 +64,10 @@ class SingleDrinkActivity : AppCompatActivity() {
   private fun setupToolbar(drinkMade: Drink) {
     Glide.with(single_drink_image).load(drinkMade.image).into(single_drink_image)
     collapsing_toolbar.title = " "
-    setSupportActionBar(toolbar)
+    setSupportActionBar(single_drink_toolbar)
     supportActionBar?.setDisplayHomeAsUpEnabled(false)
     supportActionBar?.setDisplayShowHomeEnabled(false)
+    
     single_drink_app_bar.addOnOffsetChangedListener(object : AppBarLayout.OnOffsetChangedListener {
       internal var isShow = false
       internal var scrollRange = -1

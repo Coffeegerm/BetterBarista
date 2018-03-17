@@ -21,7 +21,6 @@ import io.github.coffeegerm.betterbarista.BuildConfig.DEBUG
 import io.github.coffeegerm.betterbarista.dagger.AppComponent
 import io.github.coffeegerm.betterbarista.dagger.BetterBaristaModule
 import io.github.coffeegerm.betterbarista.dagger.DaggerAppComponent
-import io.github.coffeegerm.betterbarista.dagger.ResourceModule
 import io.github.coffeegerm.betterbarista.data.model.Drink
 import io.realm.Realm
 import io.realm.RealmConfiguration
@@ -39,12 +38,11 @@ class BetterBarista : Application() {
     Realm.init(this)
     syringe = DaggerAppComponent.builder()
           .betterBaristaModule(BetterBaristaModule(this))
-          .resourceModule(ResourceModule())
           .build()
     
     val realmConfig: RealmConfiguration = RealmConfiguration
           .Builder()
-          .schemaVersion(4)
+          .schemaVersion(5)
           .deleteRealmIfMigrationNeeded()
           .build()
     Realm.setDefaultConfiguration(realmConfig)
