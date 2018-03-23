@@ -47,7 +47,6 @@ class BetterBarista : Application() {
           .deleteRealmIfMigrationNeeded()
           .initialData {
             val realm = Realm.getDefaultInstance()
-            realm.deleteAll()
             val drink = Drink()
             
             drink.id = 0
