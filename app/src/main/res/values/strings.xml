@@ -104,6 +104,7 @@
 
   <string name="green_eye">Green Eye</string>
   <string name="green_eye_description">When finals are right around the corner possibly the best thing to keep you awake is a Green Eye. Three shots of espresso and coffee on top of that? This thing will keep you going all night long.</string>
+
   <string name="about">About</string>
   <string name="forward_arrow">Forward Arrow</string>
   <string name="about_paragraph">This app was made for the coffee lover in mind, because I love coffee myself. I wanted other\'s to be able to make the best coffee at home without having to spend an exorbitant amount of money at coffee shops, when all it takes is a little time, patience, and willingness to learn. \n \nThanks for allowing this app to help you become a better barista!</string>
@@ -124,12 +125,14 @@
     <item>Grind 1/2 cup of fresh coffee beans.</item>
     <item>Boil water to 174 degrees fahrenheit.</item>
     <item>Add coffee to beaker.</item>
-    <item>Add enough water to cover water.</item>
-    <item>Let coffee grounds bloom and enjoy the smell of the oxygen bursting.</item>
+    <item>Add enough water to cover coffee grounds.</item>
+    <item>Let coffee grounds bloom (allowing the grounds to absorb a small amount of water) and
+      enjoy the smell of the oxygen bursting.
+    </item>
     <item>Slowly fill beaker the rest of the way with water.</item>
-    <item>Allow brew to sit for four minutes.</item>
+    <item>Allow brew to sit for four to four and a half minutes.</item>
     <item>Plunge press slowly!</item>
-    <item>Pour and enjoy your cup of coffee!</item>
+    <item>Pour and enjoy your cup(s) of coffee!</item>
   </array>
 
   <!-- Pour Over instructions -->
@@ -153,12 +156,11 @@
     </item>
   </array>
 
-  <!-- Instructions for cold brew coffee -->
-
   <array name="unable_to_find_array">
     <item>This drink was unable to be found at this time.</item>
   </array>
 
+  <!-- Instructions for cold brew coffee -->
   <array name="instructions_cold_brew_coffee">
     <item>Grind one pound of coffee beans coarsely.</item>
     <item>Pour grinds into a large mason jar.</item>
@@ -179,21 +181,25 @@
     <item>Bring your water to a boil. Aim for somewhere between 174 and 195 degree\'s
       fahrenheit.
     </item>
-    <item>Grind around 4 tablespoons of coffee beans a fine coarseness.</item>
+    <item>Grind around 4 tablespoons of coffee beans to a fine coarseness.</item>
     <item>Assemble your Aeropress with a paper filter inside the cap.</item>
-    <item>Place over cup and drizzle some water over the filter to get it wet.</item>
+    <item>Place over cup and drizzle some water over the filter to get it wet, no one likes filter
+      flavored coffee.
+    </item>
     <item>Place the funnel on top of the cup and pour in your coffee grounds.</item>
     <item>Remove the funnel.</item>
     <item>Pour water into Aeropress until it comes to the top.</item>
     <item>Stir using provided paddle to ensure that all grounds are wet.</item>
     <item>Insert plunger and press to extract coffee.</item>
-    <item>Taste and dilute if too potent.</item>
+    <item>Taste and dilute coffee with water if too potent.</item>
   </array>
 
   <array name="instructions_kalita_wave">
-    <item>Bring 20 ounces, or 600 grams, of water to a boil.</item>
+    <item>Bring 20 ounces, or 600 grams, of water to a near boil, around 174 and 195 degree\'s
+      fahrenheit.
+    </item>
     <item>Grind 30 grams of coffee beans to a sea-salt like coarseness. This ensures that the
-      water does not simply flow through.
+      water does not simply flow through the ground and gets a good amount of flavor.
     </item>
     <item>Place filter into your wave.</item>
     <item>Wet the filter so as to prevent any filter taste making it\'s way into your coffee.
@@ -344,7 +350,7 @@
     <item>Place the portafilter in your espresso machines grouphead and begin the brewing process.
       (This may vary machine to machine.)
     </item>
-    <item>Repeat two more times for an additional shots of espresso</item>
+    <item>Repeat two more times for additional shots of espresso</item>
     <item>Add drip coffee over your espresso shots and enjoy your beverage.</item>
   </array>
 
