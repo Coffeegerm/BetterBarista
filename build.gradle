@@ -16,7 +16,7 @@
 
 buildscript {
 
-  ext.kotlin_version = '1.2.31'
+  ext.kotlin_version = '1.2.40'
   ext.anko_version = '0.10.0'
 
   repositories {
@@ -24,10 +24,10 @@ buildscript {
     jcenter()
   }
   dependencies {
-    classpath 'com.android.tools.build:gradle:3.1.0'
+    classpath 'com.android.tools.build:gradle:3.1.2'
     classpath 'com.google.gms:google-services:3.1.2'
     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-    classpath "io.realm:realm-gradle-plugin:4.3.4"
+    classpath "io.realm:realm-gradle-plugin:5.1.0"
   }
 }
 
