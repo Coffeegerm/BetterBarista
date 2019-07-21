@@ -25,28 +25,29 @@ import io.github.coffeegerm.betterbarista.utilities.Constants.SINGLE_DRINK_REQUE
 import io.github.coffeegerm.betterbarista.utilities.NavigationOnItemSelectedListener
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.longToast
+import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
-  
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_main)
-    navigation.setOnNavigationItemSelectedListener(NavigationOnItemSelectedListener(supportFragmentManager))
-  }
-  
-  override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-    if (requestCode == SINGLE_DRINK_REQUEST_CODE) {
-      if (resultCode == Activity.RESULT_OK) {
-        navigation.selectedItemId = R.id.navigation_timer
-      }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        navigation.setOnNavigationItemSelectedListener(NavigationOnItemSelectedListener(supportFragmentManager))
     }
-  }
-  
-  private var backPressed: Long = 0
-  
-  override fun onBackPressed() {
-    if (backPressed + 2000 > System.currentTimeMillis()) super.onBackPressed()
-    else longToast(getString(R.string.close_message))
-    backPressed = System.currentTimeMillis()
-  }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == SINGLE_DRINK_REQUEST_CODE) {
+            if (resultCode == Activity.RESULT_OK) {
+                navigation.selectedItemId = R.id.navigation_timer
+            }
+        }
+    }
+
+    private var backPressed: Long = 0
+
+    override fun onBackPressed() {
+        if (backPressed + 2000 > System.currentTimeMillis()) super.onBackPressed()
+        else longToast(getString(R.string.close_message))
+        backPressed = System.currentTimeMillis()
+    }
 }

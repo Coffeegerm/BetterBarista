@@ -15,34 +15,36 @@
   -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:tools="http://schemas.android.com/tools"
-  package="io.github.coffeegerm.betterbarista">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="io.github.coffeegerm.betterbarista">
 
-  <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
-  <application
-    android:name="io.github.coffeegerm.betterbarista.BetterBarista"
-    android:allowBackup="true"
-    android:fullBackupContent="false"
-    android:icon="@mipmap/ic_launcher"
-    android:label="@string/app_name"
-    android:roundIcon="@mipmap/ic_launcher"
-    android:supportsRtl="true"
-    android:theme="@style/AppTheme"
-    tools:ignore="GoogleAppIndexingWarning">
-    <activity
-      android:name="io.github.coffeegerm.betterbarista.ui.SplashActivity"
-      android:theme="@style/SplashTheme">
-      <intent-filter>
-        <action android:name="android.intent.action.MAIN" />
-        <category android:name="android.intent.category.LAUNCHER" />
-      </intent-filter>
-    </activity>
-    <activity
-      android:name="io.github.coffeegerm.betterbarista.ui.MainActivity"
-      android:label="@string/app_name" />
-    <activity android:name="io.github.coffeegerm.betterbarista.ui.children.drinks.singleDrink.SingleDrinkActivity" />
-    <activity android:name=".ui.children.more.about.AboutActivity" />
-  </application>
+    <application
+        android:name="io.github.coffeegerm.betterbarista.BetterBarista"
+        android:allowBackup="true"
+        android:fullBackupContent="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity
+            android:name="io.github.coffeegerm.betterbarista.ui.SplashActivity"
+            android:theme="@style/SplashTheme">
+
+        </activity>
+        <activity
+            android:name="io.github.coffeegerm.betterbarista.ui.MainActivity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="io.github.coffeegerm.betterbarista.ui.children.drinks.singleDrink.SingleDrinkActivity" />
+        <activity android:name=".ui.children.more.about.AboutActivity" />
+    </application>
 
 </manifest>
