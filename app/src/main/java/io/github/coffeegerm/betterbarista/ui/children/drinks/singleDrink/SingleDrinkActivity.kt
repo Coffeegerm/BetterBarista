@@ -17,13 +17,13 @@
 package io.github.coffeegerm.betterbarista.ui.children.drinks.singleDrink
 
 import android.app.Activity
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.AppBarLayout
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
+import com.google.android.material.appbar.AppBarLayout
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import io.github.coffeegerm.betterbarista.R
 import io.github.coffeegerm.betterbarista.data.model.Drink
@@ -41,7 +41,7 @@ class SingleDrinkActivity : AppCompatActivity() {
     setContentView(R.layout.activity_single_drink)
     singleDrinkViewModel = ViewModelProviders.of(this).get(SingleDrinkViewModel::class.java)
     subscribe()
-    single_drink_recycler_view.layoutManager = LinearLayoutManager(applicationContext)
+    single_drink_recycler_view.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(applicationContext)
     single_drink_recycler_view.adapter = singleDrinkAdapter
     val drinkId = intent.getIntExtra(Constants.DRINK_ID_PASSED, 0)
     singleDrinkViewModel.getDrink(drinkId)

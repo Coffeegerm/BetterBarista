@@ -24,7 +24,6 @@ import io.github.coffeegerm.betterbarista.dagger.DaggerAppComponent
 import io.github.coffeegerm.betterbarista.data.model.Drink
 import io.realm.Realm
 import io.realm.RealmConfiguration
-import timber.log.Timber
 import timber.log.Timber.DebugTree
 import timber.log.Timber.plant
 
@@ -42,7 +41,7 @@ class BetterBarista : Application() {
                 .betterBaristaModule(BetterBaristaModule(this))
                 .build()
 
-        val realmConfig: RealmConfiguration = RealmConfiguration
+      val realmConfig: RealmConfiguration = RealmConfiguration
                 .Builder()
                 .schemaVersion(5)
                 .deleteRealmIfMigrationNeeded()

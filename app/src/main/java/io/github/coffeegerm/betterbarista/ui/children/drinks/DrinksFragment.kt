@@ -16,11 +16,11 @@
 
 package io.github.coffeegerm.betterbarista.ui.children.drinks
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.widget.GridLayoutManager
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -35,7 +35,7 @@ import kotlinx.android.synthetic.main.fragment_drinks.*
  * As well as beginning the SingleDrinkActivity
  */
 
-class DrinksFragment : Fragment() {
+class DrinksFragment : androidx.fragment.app.Fragment() {
   
   private lateinit var drinksViewModel: DrinksViewModel
   
@@ -48,7 +48,7 @@ class DrinksFragment : Fragment() {
     super.onViewCreated(view, savedInstanceState)
     syringe.inject(this)
     drinksViewModel = ViewModelProviders.of(this).get(DrinksViewModel::class.java)
-    drinks_recycler_view.layoutManager = GridLayoutManager(activity, 2)
+    drinks_recycler_view.layoutManager = androidx.recyclerview.widget.GridLayoutManager(activity, 2)
     drinks_recycler_view.adapter = drinksAdapter
     subscribe()
   }

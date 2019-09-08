@@ -19,7 +19,7 @@ package io.github.coffeegerm.betterbarista.ui
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import io.github.coffeegerm.betterbarista.R
 import io.github.coffeegerm.betterbarista.utilities.Constants.SINGLE_DRINK_REQUEST_CODE
 import io.github.coffeegerm.betterbarista.utilities.NavigationOnItemSelectedListener

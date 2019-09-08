@@ -16,9 +16,9 @@
 
 package io.github.coffeegerm.betterbarista.utilities
 
-import android.support.design.widget.BottomNavigationView
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import android.view.MenuItem
 import io.github.coffeegerm.betterbarista.R
 import io.github.coffeegerm.betterbarista.ui.children.drinks.DrinksFragment

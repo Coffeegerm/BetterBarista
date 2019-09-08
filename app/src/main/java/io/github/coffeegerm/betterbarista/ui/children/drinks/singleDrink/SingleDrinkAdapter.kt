@@ -16,7 +16,7 @@
 
 package io.github.coffeegerm.betterbarista.ui.children.drinks.singleDrink
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import io.github.coffeegerm.betterbarista.R
@@ -24,7 +24,7 @@ import io.github.coffeegerm.betterbarista.R
 /**
  * TODO: Add class comment header
  */
-class SingleDrinkAdapter : RecyclerView.Adapter<SingleDrinkViewHolder>() {
+class SingleDrinkAdapter : androidx.recyclerview.widget.RecyclerView.Adapter<SingleDrinkViewHolder>() {
   
   private var instructionList: ArrayList<String> = mutableListOf<String>() as ArrayList<String>
   

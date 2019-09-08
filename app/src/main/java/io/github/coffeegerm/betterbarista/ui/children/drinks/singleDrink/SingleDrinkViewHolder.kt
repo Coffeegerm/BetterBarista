@@ -16,11 +16,11 @@
 
 package io.github.coffeegerm.betterbarista.ui.children.drinks.singleDrink
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import kotlinx.android.synthetic.main.item_instructions.view.*
 
-class SingleDrinkViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class SingleDrinkViewHolder(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
   fun bindInstruction(item: String) {
     itemView.single_drink_instructions.text = item
   }

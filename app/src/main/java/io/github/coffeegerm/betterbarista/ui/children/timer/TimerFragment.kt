@@ -16,10 +16,10 @@
 
 package io.github.coffeegerm.betterbarista.ui.children.timer
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,7 +28,7 @@ import android.widget.ArrayAdapter
 import io.github.coffeegerm.betterbarista.R
 import kotlinx.android.synthetic.main.fragment_timer.*
 
-class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
+class TimerFragment : androidx.fragment.app.Fragment(), AdapterView.OnItemSelectedListener {
   
   private lateinit var timerViewModel: TimerViewModel
   

@@ -16,8 +16,8 @@
 
 package io.github.coffeegerm.betterbarista.ui.children.drinks
 
-import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import io.github.coffeegerm.betterbarista.BetterBarista
 import io.github.coffeegerm.betterbarista.data.model.Drink
 import io.github.coffeegerm.betterbarista.data.CoffeeBar
